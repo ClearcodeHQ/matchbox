@@ -1,0 +1,35 @@
+language: python
+python:
+  - "2.7"
+  - "3.3"
+  - "3.4"
+  - "pypy"
+  - "pypy3"
+install:
+    - "python setup.py develop"
+    - "pip install matchbox[tests]"
+    - "pip install coveralls"
+    # rst files verifier, and pygments to parse code-blocks
+    - "pip install restructuredtext_lint pygments"
+    # code coverage tool
+    - "pip install coveralls"
+    # manually install wheel for deployment
+    - "pip install wheel"
+script:
+    - "py.test --verbose --capture=no --showlocals --cov matchbox"
+    - "pylama"
+    # pygments library used by rst-lint doesn't work on python 3.2.
+    - "if [[ $TRAVIS_PYTHON_VERSION != '3.2' ]]; then for f in *.rst; do rst-lint $f; done; fi"
+after_success:
+    - coveralls
+
+deploy:
+    provider: pypi
+    user: fizyk
+    password:
+        secure: J3dAQipENjvE01DmgkkFiqL0OZQ6+IEDkkHWzQ7ugR14/jiLrHLpCUVMoIHR7BFgOemXHDx1/1eDqZEHPXQU1b7rQ44NnojAh+LixIVYJSegV8yXkZ2QfHZ31awm2EI0165C1bLz6BvUo0kN2J4RrWZBZVkBBmAL3V3OIVLSGBzwgoAoBSAvThOnAIckDkZy5dwUijHLZsJW7BMLD9EdPVSNYJapabltCtuKwDuC/v3++zMy6ODkhl+IjKTZ46svrTzjq2WlLJ4SyhdD/YENWdcNV/8rVRsyiF+vGFjlr+d6mHaW+hYPTkHQ9KpB6SqTh8nthMlH4ECKxB+cZFrkGo4XjrJLp2HHPV7zYtjZEkD71wthWz/jf0gR3GACC5A/jFNJySpaeLQhwJJNY7RDbDZYm+N0djOa/tYiXhuXRMPHoDrqUO+ssm4pHbSs4wDp9rUwoWi56nzgJ3XhY3jM8TRyjwO2XWxTLeSxiyyjwtr1BWXTwdehoQXnUU2avmUUTRpxvD6Hi9PpFB7uKM/pFdOvqI3vMK6e/BiUAgqNu1Biq/qlEX3BFKRlDZbF+aLvAWk+lrpB69ohMHYNUfXAkFQxkVVGTyHIJd5J2PT0WgKvy8pRdqeqp8Tt/l9Lg25gtvcTiIM99eF3ZSyv6VUjncNUQJSCs0rwRRsHl38wtN4=
+    on:
+        tags: true
+        all_branches: true
+        repo: ClearcodeHQ/matchbox
+    distributions: "sdist bdist_wheel"
