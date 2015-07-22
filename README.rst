@@ -1,5 +1,5 @@
 matchbox
-====
+========
 
 .. image:: https://pypip.in/v/matchbox/badge.png
     :target: https://pypi.python.org/pypi/matchbox/
