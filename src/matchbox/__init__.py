@@ -1,4 +1,4 @@
-# Copyright (C) 2014 by Clearcode <http://clearcode.cc>
+# Copyright (C) 2015 by Clearcode <http://clearcode.cc>
 # and associates (see AUTHORS).
 
 # This file is part of mirakuru.
@@ -15,6 +15,7 @@
 
 # You should have received a copy of the GNU Lesser General Public License
 # along with mirakuru.  If not, see <http://www.gnu.org/licenses/>.
+"""Main matchbox module."""
 
 import logging
 
