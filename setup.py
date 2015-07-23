@@ -52,8 +52,8 @@ setup(
     name='matchbox',
     version=package_version,
     description=(
-        'Abstraction layer for creating indexes to speed up extracting',
-        ' subsets out of objects collections'
+        'Abstraction layer for creating hash maps to speed up extracting' +
+        ' subsets out of objects in collection'
     ),
     long_description=(
         read('README.rst') + '\n\n' + read('CHANGES.rst')
