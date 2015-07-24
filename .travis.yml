@@ -16,7 +16,7 @@ install:
     # manually install wheel for deployment
     - "pip install wheel"
 script:
-    - "py.test --verbose --capture=no --showlocals --cov matchbox"
+    - "py.test --verbose --capture=no --showlocals --cov src/matchbox"
     - "pylama"
 after_success:
     - coveralls
