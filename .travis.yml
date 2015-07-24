@@ -18,8 +18,6 @@ install:
 script:
     - "py.test --verbose --capture=no --showlocals --cov matchbox"
     - "pylama"
-    # pygments library used by rst-lint doesn't work on python 3.2.
-    - "if [[ $TRAVIS_PYTHON_VERSION != '3.2' ]]; then for f in *.rst; do rst-lint $f; done; fi"
 after_success:
     - coveralls
 
