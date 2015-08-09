@@ -15,6 +15,26 @@ def test_basebox_init():
     )
 
 
+def test_basebox_empty():
+    """Check if freshly initialised box appears as empty."""
+    box = BaseBox('argument')
+    assert bool(box) is False, "Freshly initialised box should be empty"
+
+
+def test_basebox_not_empty_index():
+    """Check if element in index makes the box to appear not empty."""
+    box = BaseBox('argument')
+    box.index['known'].add('element')
+    assert bool(box) is True
+
+
+def test_basebox_not_empty_exclude_unknown():
+    """Check if element in exclude_unknown makes the box to appear not empty."""
+    box = BaseBox('argument')
+    box.exclude_unknown.add('element')
+    assert bool(box) is True
+
+
 def test_basebox_default_index_value():
     """Check if the correct default are used for box.index property."""
     box = BaseBox('argument')
