@@ -82,7 +82,10 @@ class BaseBox(object):
         """
         raise NotImplementedError
 
-    @property
-    def is_used(self):
-        """Check if any of the object added to index is used by box."""
-        raise NotImplementedError
+    def __bool__(self):
+        """Check if box is being actually used or not."""
+        return bool(self.exclude_unknown or any(self.index.values()))
+
+    def __nonzero__(self):
+        """Python 2 equivalent of python 3's __bool__."""
+        return self.__bool__()
