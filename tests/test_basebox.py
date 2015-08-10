@@ -21,6 +21,30 @@ def test_basebox_empty():
     assert bool(box) is False, "Freshly initialised box should be empty"
 
 
+def test_not_matching():
+    """Check if not_matching returns those element that are not described by characteristic."""
+    box = BaseBox('argument')
+    element1 = 'element'
+    element2 = 'element2'
+    totally_other = 'other'
+    box.index['other'].add(totally_other)
+    box.exclude_unknown.add(element1)
+    box.index['test'].add(element2)
+    assert box.not_matching('test') == {element1, element2}, "both elements should be returned."
+
+
+def test_match():
+    """Check if match cuts objects properly."""
+    box = BaseBox('argument')
+    element1 = 'element'
+    element2 = 'element2'
+    totally_other = 'other'
+    box.index['other'].add(totally_other)
+    box.exclude_unknown.add(element1)
+    box.index['test'].add(element2)
+    assert box.match({element1, element2, totally_other}, 'test') == {totally_other}, "only one element should match"
+
+
 def test_basebox_not_empty_index():
     """Check if element in index makes the box to appear not empty."""
     box = BaseBox('argument')

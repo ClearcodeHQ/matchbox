@@ -80,7 +80,23 @@ class BaseBox(object):
         ;returns: set of objects that doesn't match characteristic value
         :rtype: set
         """
-        raise NotImplementedError
+        return self.index[value]
+
+    def match(self, collection, value):
+        """
+        Cut off those object from collection, that does not match the value.
+
+        ... note::
+
+            Collection has to be set of objects that has already been added to index.
+
+        :param set collection: a set of objects that should be checked against value.
+        :param value: any hashable object that describes characteristic defined for this box.
+        :return: set of matching objects.
+        :rtype: set
+
+        """
+        return collection - self.not_matching(value)
 
     def __bool__(self):
         """Check if box is being actually used or not."""
