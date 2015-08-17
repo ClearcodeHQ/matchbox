@@ -37,6 +37,7 @@ class BaseBox(object):
 
             Whole matchbox'es idea follows the idea that while you can't say
             that given object is not described by anything.
+
             You can say that object's characteristic is, or is not described by
             a subset of all values possible, you can't say the object is not
             described by all of them. The third possibility is that it's
