@@ -17,6 +17,7 @@
 # along with matchbox.  If not, see <http://www.gnu.org/licenses/>.
 
 """Multi value MatchBox idea implementation."""
+from __future__ import absolute_import
 
 from matchbox.matchbox import MatchBox
 
@@ -72,7 +73,7 @@ class MultiMatchBox(MatchBox):
         :param object indexed_object: single object to add to box's index
         """
         characteristic_values = getattr(indexed_object, self._characteristic)
-        if characteristic_values is None:
+        if not characteristic_values:
             return
 
         is_matching = getattr(indexed_object, self._characteristic + '_match', True)
