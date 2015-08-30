@@ -1,20 +1,7 @@
 """Tests for MatchBox."""
 from matchbox.matchbox import MatchBox
 
-
-class IndexedObject(object):
-
-    """Dummy object to be indexed."""
-
-    def __init__(self, value, matches=True):
-        """
-        Dummy object's initializing method.
-
-        :param str value: value for a characteristic.
-        :param bool matches: whether it matches or not.
-        """
-        self.characteristic = value
-        self.characteristic_match = matches
+from tests import IndexedObject
 
 
 def test_matchbox_indexed_empty_characteristic():
