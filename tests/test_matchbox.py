@@ -1,110 +1,82 @@
-"""Tests for MatchBox."""
-from matchbox.matchbox import MatchBox
+"""Tests for BaseBox."""
+from collections import defaultdict
 
-from tests import IndexedObject
-
-
-def test_matchbox_indexed_empty_characteristic():
-    """Check simple adding object to index if it does match characteristic's value."""
-    ob = IndexedObject(None)
-
-    matchbox = MatchBox('characteristic')
-    matchbox.add(ob)
-    assert not matchbox.index, "index should be empty."
-    assert not matchbox.exclude_unknown, "collection for not matching unknown should also be empty."
+from matchbox import MatchBox
 
 
-def test_matchbox_indexed_match():
-    """Check simple adding object to index if it does match characteristic's value."""
-    ob = IndexedObject('x')
-
-    matchbox = MatchBox('characteristic')
-    matchbox.add(ob)
-    assert ob.characteristic in matchbox.index, "characteristic value should result in an entry in index."
-    assert matchbox.index[ob.characteristic] == set(), "But the entry should be empty."
-    assert ob in matchbox.exclude_unknown, "object should be not matching any future entries though."
-
-
-def test_matchbox_indexed_not_match():
-    """Check simple adding object to index if it does not match a certain characteristic's value."""
-    ob = IndexedObject('x', False)
-
-    matchbox = MatchBox('characteristic')
-    matchbox.add(ob)
-    assert ob.characteristic in matchbox.index, "characteristic value should result in an entry in index."
-    assert ob in matchbox.index[ob.characteristic], "Object should be in set under it's characteristic's value key."
-    assert matchbox.exclude_unknown == set(), "object should not be matching any unknown values."
+def test_init():
+    """Check if the Box get's initialised correctly."""
+    box = MatchBox('argument')
+    assert not box.exclude_unknown, "exclude_unknown property should be empty."
+    assert not box.index, "index should also be empty"
+    assert (
+        isinstance(box.index, defaultdict),
+        "Having index as defaultdict is critical for algorithm."
+    )
 
 
-def test_matchbox_mixed_objects():
-    """
-    Test more complex example.
+def test_empty():
+    """Check if freshly initialised box appears as empty."""
+    box = MatchBox('argument')
+    assert bool(box) is False, "Freshly initialised box should be empty"
 
-    +--------+-------+-------------------------+
-    | Object | Match | Characteristic's values |
-    +========+=======+=========================+
-    | Ob1    | False | 1                       |
-    +--------+-------+-------------------------+
-    | Ob2    | True  | 3                       |
-    +--------+-------+-------------------------+
-    | Ob3    | False | 5                       |
-    +--------+-------+-------------------------+
-    | Ob4    | False |                         |
-    +--------+-------+-------------------------+
-    | Ob5    | True  | 1                       |
-    +--------+-------+-------------------------+
 
-    Will result in matchbox'es index:
+def test_not_matching():
+    """Check if not_matching returns those element that are not described by characteristic."""
+    box = MatchBox('argument')
+    element1 = 'element'
+    element2 = 'element2'
+    totally_other = 'other'
+    box.index['other'].add(totally_other)
+    box.exclude_unknown.add(element1)
+    box.index['test'].add(element2)
+    assert box.not_matching('test') == {element1, element2}, "both elements should be returned."
 
-    +-----------+-----------------+
-    | Attribute | Matched Objects |
-    +===========+=================+
-    | 1         | Ob1, Ob2        |
-    +-----------+-----------------+
-    | 3         | Ob5             |
-    +-----------+-----------------+
-    | 5         | Ob2, Ob3, Ob5   |
-    +-----------+-----------------+
-    | Any new   | Ob2, Ob5        |
-    +-----------+-----------------+
-    """
-    # create objects
-    ob1 = IndexedObject(1, False)
-    ob2 = IndexedObject(3, True)
-    ob3 = IndexedObject(5, False)
-    ob4 = IndexedObject(None, False)
-    ob5 = IndexedObject(1, True)
 
-    # create matchbox and add objects
-    matchbox = MatchBox('characteristic')
-    matchbox.add(ob1)
-    matchbox.add(ob2)
-    matchbox.add(ob3)
-    matchbox.add(ob4)
-    matchbox.add(ob5)
+def test_match():
+    """Check if match cuts objects properly."""
+    box = MatchBox('argument')
+    element1 = 'element'
+    element2 = 'element2'
+    totally_other = 'other'
+    box.index['other'].add(totally_other)
+    box.exclude_unknown.add(element1)
+    box.index['test'].add(element2)
+    assert box.match({element1, element2, totally_other}, 'test') == {totally_other}, "only one element should match"
 
-    # test matchbox
-    assert ob1 in matchbox.index[1]
-    assert ob1 not in matchbox.index[3]
-    assert ob1 not in matchbox.index[5]
-    assert ob1 not in matchbox.exclude_unknown
 
-    assert ob2 in matchbox.index[1]
-    assert ob2 not in matchbox.index[3]
-    assert ob2 in matchbox.index[5]
-    assert ob2 in matchbox.exclude_unknown
+def test_not_empty_index():
+    """Check if element in index makes the box to appear not empty."""
+    box = MatchBox('argument')
+    box.index['known'].add('element')
+    assert bool(box) is True
 
-    assert ob3 not in matchbox.index[1]
-    assert ob3 not in matchbox.index[3]
-    assert ob3 in matchbox.index[5]
-    assert ob3 not in matchbox.exclude_unknown
 
-    assert ob4 not in matchbox.index[1]
-    assert ob4 not in matchbox.index[3]
-    assert ob4 not in matchbox.index[5]
-    assert ob4 not in matchbox.exclude_unknown
+def test_not_empty_exclude_unknown():
+    """Check if element in exclude_unknown makes the box to appear not empty."""
+    box = MatchBox('argument')
+    box.exclude_unknown.add('element')
+    assert bool(box) is True
 
-    assert ob5 not in matchbox.index[1]
-    assert ob5 in matchbox.index[3]
-    assert ob5 in matchbox.index[5]
-    assert ob5 in matchbox.exclude_unknown
+
+def test_default_index_value():
+    """Check if the correct default are used for box.index property."""
+    box = MatchBox('argument')
+    some_object = "I'm an object."
+    box.exclude_unknown.add(some_object)
+    assert some_object in box.index['unknown']
+
+
+def test_unknown_becoms_known():
+    """Check if objects to exclude_unknown are only added to future unknown."""
+    box = MatchBox('argument')
+    # make one value known
+    box.index['known']
+    some_object = "I'm an object, I only know what I know."
+    second_object = "I'm rejecting what We don't already know."
+    box.exclude_unknown.add(some_object)
+    box.exclude_unknown.add(second_object)
+    assert second_object in box.index['unknown']
+    assert some_object in box.index['unknown']
+    assert second_object not in box.index['known']
+    assert some_object not in box.index['known']

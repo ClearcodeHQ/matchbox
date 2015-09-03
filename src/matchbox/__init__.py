@@ -17,10 +17,9 @@
 # along with matchbox.  If not, see <http://www.gnu.org/licenses/>.
 """Main matchbox module."""
 from __future__ import absolute_import
-
-import logging
+from matchbox.matchbox import MatchBox
+from matchbox.multimatchbox import MultiMatchBox
 
 __version__ = '0.0.0'
 
-
-logger = logging.getLogger(__name__)
+__all__ = ('MatchBox', 'MultiMatchBox')
