@@ -1,6 +1,8 @@
 CHANGELOG
 =========
 
-0.0.0
+unreleased
 -------
-- some changes [by someone]
+- basic implementation of MatchBoxes along with tests
+- package structure
+- documentation

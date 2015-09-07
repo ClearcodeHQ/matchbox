@@ -67,7 +67,7 @@ class MatchBox(object):
         the object is classified by the value **OR** that he object is not
         classified by the value called **{characteristic}_match**.
 
-        ... note::
+        .. note::
 
             Whole matchbox'es idea follows the idea that while you can't say
             that given object is not described by anything.
@@ -131,7 +131,7 @@ class MatchBox(object):
         operations.
 
         :param str value: value of characteristic this box is indexing on.
-        ;returns: set of objects that doesn't match characteristic value
+        :returns: set of objects that doesn't match characteristic value
         :rtype: set
         """
         return self.index[value]
@@ -140,7 +140,7 @@ class MatchBox(object):
         """
         Cut off those object from collection, that does not match the value.
 
-        ... note::
+        .. note::
 
             Collection has to be set of objects that has already been added to index.
 

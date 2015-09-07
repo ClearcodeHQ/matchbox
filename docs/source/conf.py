@@ -271,7 +271,7 @@ texinfo_documents = [
 epub_title = project
 epub_author = author
 epub_publisher = author
-epub_copyright = u'2012, ' + author
+epub_copyright = u'2015, ' + author
 
 # The language of the text. It defaults to the language option
 # or en if the language is not set.
@@ -313,4 +313,4 @@ autoclass_content = 'both'
 autodoc_default_flags = ['members', 'show-inheritance']
 
 # Intersphinx configuration
-intersphinx_mapping = {'python': ('http://docs.python.org/', None)}
+intersphinx_mapping = {'python': ('http://docs.python.org/3.4', None)}
