@@ -18,6 +18,7 @@ script:
 - pylama
 after_success:
 - coveralls
+- python performance.py
 deploy:
   provider: pypi
   user: fizyk
