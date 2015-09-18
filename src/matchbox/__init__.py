@@ -20,6 +20,6 @@ from __future__ import absolute_import
 from matchbox.matchbox import MatchBox
 from matchbox.multimatchbox import MultiMatchBox
 
-__version__ = '0.0.0'
+__version__ = '0.1.0'
 
 __all__ = ('MatchBox', 'MultiMatchBox')
