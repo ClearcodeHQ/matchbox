@@ -66,34 +66,3 @@ class MultiMatchBox(MatchBox):
     +-----------+-----------------+
     """
 
-    def add(self, indexed_object):
-        """
-        Add object to index.
-
-        :param object indexed_object: single object to add to box's index
-        """
-        characteristic_values = getattr(indexed_object, self._characteristic)
-        if not characteristic_values:
-            return
-
-        is_matching = getattr(indexed_object, self._characteristic + '_match', True)
-
-        # if object is not matching given characteristic values, we should add it directly to index.
-        if not is_matching:
-            for characteristic_value in characteristic_values:
-                self.index[characteristic_value].add(indexed_object)
-        else:
-            # If object is matching these values, access key to trigger copy of excluded.
-            # Since now the values becomes known.
-            for characteristic_value in characteristic_values:
-                # we could copy exclude_unknown manually to be more explicit,
-                # but that would require also to check if given key does not already exists, as to not overwrite it.
-                self.index[characteristic_value]
-
-            # we add object to each value in index that's not it's characteristic's values
-            for existing_value in self.index.keys():
-                if existing_value not in characteristic_values:
-                    self.index[existing_value].add(indexed_object)
-
-            # and make sure for every new value it'll be excluded as well
-            self.exclude_unknown.add(indexed_object)

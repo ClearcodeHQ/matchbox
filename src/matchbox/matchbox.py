@@ -18,7 +18,10 @@
 """Single value MatchBox idea implementation."""
 
 from __future__ import absolute_import
-from collections import defaultdict
+from collections import defaultdict, namedtuple, Hashable
+
+
+CharacteristicValue = namedtuple('CharacteristicValue', 'values, is_matching')
 
 
 class MatchBox(object):
@@ -94,30 +97,50 @@ class MatchBox(object):
         """
         self.index = defaultdict(self.exclude_unknown.copy)
 
+    def extract_characteristic_value(self, indexed_object):
+        """
+        Extract data required to classify indexed_object.
+
+
+        :param object indexed_object:
+        :return: namedtuple consisting of characteristic values and match flag
+        :rtype: CharacteristicValue
+        """
+        values = getattr(indexed_object, self._characteristic)
+        if values and isinstance(values, Hashable):
+            values = [values]
+        return CharacteristicValue(
+            values,
+            getattr(indexed_object, self._characteristic + '_match', True)
+        )
+
     def add(self, indexed_object):
         """
         Add object to index.
 
         :param object indexed_object: single object to add to box's index
         """
-        characteristic_value = getattr(indexed_object, self._characteristic)
-        if characteristic_value is None:
+        characteristic = self.extract_characteristic_value(indexed_object)
+        if not characteristic.values:
             return
 
-        is_matching = getattr(indexed_object, self._characteristic + '_match', True)
-
-        # if object is not matching given characteristic, we should add it directly to index.
-        if not is_matching:
-            self.index[characteristic_value].add(indexed_object)
+        # if object is not matching given characteristic values, we should add it directly to index.
+        if not characteristic.is_matching:
+            for value in characteristic.values:
+                self.index[value].add(indexed_object)
         else:
             # If object is matching these values, access key to trigger copy of excluded.
-            # Since now the value becomes known.
-            self.index[characteristic_value]
-            # we add object to each value in index that's not it's characteristic's value
-            for existing_value in self.index:
-                if existing_value == characteristic_value:
-                    continue
-                self.index[existing_value].add(indexed_object)
+            # Since now the values becomes known.
+            for value in characteristic.values:
+                # we could copy exclude_unknown manually to be more explicit,
+                # but that would require also to check if given key does not already exists, as to not overwrite it.
+                self.index[value]
+
+            # we add object to each value in index that's not it's characteristic's values
+            for existing_value in self.index.keys():
+                if existing_value not in characteristic.values:
+                    self.index[existing_value].add(indexed_object)
+
             # and make sure for every new value it'll be excluded as well
             self.exclude_unknown.add(indexed_object)
 
