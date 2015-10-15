@@ -23,7 +23,6 @@ from matchbox.matchbox import MatchBox
 
 
 class MultiMatchBox(MatchBox):
-
     """
     MatchBox implementation for multi value characteristics.
 
@@ -65,4 +64,3 @@ class MultiMatchBox(MatchBox):
     | Any other | Ob2, Ob5        |
     +-----------+-----------------+
     """
-

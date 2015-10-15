@@ -25,7 +25,6 @@ CharacteristicValue = namedtuple('CharacteristicValue', 'values, is_matching')
 
 
 class MatchBox(object):
-
     """
     MatchBox for classifying objects by single-value characteristic.
 
@@ -100,7 +99,6 @@ class MatchBox(object):
     def extract_characteristic_value(self, indexed_object):
         """
         Extract data required to classify indexed_object.
-
 
         :param object indexed_object:
         :return: namedtuple consisting of characteristic values and match flag
