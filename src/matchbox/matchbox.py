@@ -26,9 +26,13 @@ CharacteristicValue = namedtuple('CharacteristicValue', 'values, is_matching')
 
 class MatchBox(object):
     """
-    MatchBox for classifying objects by single-value characteristic.
+    MatchBox for classifying objects by given characteristic's values.
 
-    Example:
+    Due to rellying heavily on dictionaries and sets,
+    MatchBox indexes only hashable objects by hashable values - single hashable value
+    or collection of those.
+
+    Example for single-value (hashable):
 
     +--------+-------+-------------------------+
     | Object | Match | Characteristic's values |
@@ -57,6 +61,46 @@ class MatchBox(object):
     +-----------+-----------------+
     | Any new   | Ob2, Ob5        |
     +-----------+-----------------+
+
+
+    Example for multi-value characteristic:
+
+    +--------+-------+-------------------------+
+    | Object | Match | Characteristic's values |
+    +========+=======+=========================+
+    | Ob1    | False | 1, 2                    |
+    +--------+-------+-------------------------+
+    | Ob2    | True  | 3, 4, 7                 |
+    +--------+-------+-------------------------+
+    | Ob3    | False | 5, 6                    |
+    +--------+-------+-------------------------+
+    | Ob4    | False |                         |
+    +--------+-------+-------------------------+
+    | Ob5    | True  | 1, 7                    |
+    +--------+-------+-------------------------+
+
+    Should result in this index:
+
+    +-----------+-----------------+
+    | Attribute | Matched Objects |
+    +===========+=================+
+    | 1         | Ob1, Ob2        |
+    +-----------+-----------------+
+    | 2         | Ob1, Ob2, Ob5   |
+    +-----------+-----------------+
+    | 3         | Ob5             |
+    +-----------+-----------------+
+    | 4         | Ob5             |
+    +-----------+-----------------+
+    | 5         | Ob2, Ob3, Ob5   |
+    +-----------+-----------------+
+    | 6         | Ob2, Ob3, Ob5   |
+    +-----------+-----------------+
+    | 7         |                 |
+    +-----------+-----------------+
+    | Any other | Ob2, Ob5        |
+    +-----------+-----------------+
+
     """
 
     def __init__(self, characteristic):

@@ -1,7 +1,7 @@
 """Test module for MultiMatchBox."""
 import pytest
 
-from matchbox.multimatchbox import MultiMatchBox
+from matchbox.matchbox import MatchBox
 
 from tests import IndexedObject
 
@@ -11,7 +11,7 @@ def test_multimatchbox_indexed_empty_characteristic(empty_value):
     """Check simple adding object to index if it does match characteristic's value."""
     ob = IndexedObject(empty_value)
 
-    matchbox = MultiMatchBox('characteristic')
+    matchbox = MatchBox('characteristic')
     matchbox.add(ob)
     assert not matchbox.index, "index should be empty."
     assert not matchbox.exclude_unknown, "collection for not matching unknown should also be empty."
@@ -22,7 +22,7 @@ def test_multimatchbox_indexed_match(characteristic_values):
     """Check simple adding object to index if it does match characteristic's value."""
     ob = IndexedObject(characteristic_values)
 
-    matchbox = MultiMatchBox('characteristic')
+    matchbox = MatchBox('characteristic')
     matchbox.add(ob)
     assert (
         set(characteristic_values) == set(matchbox.index.keys()),
@@ -39,7 +39,7 @@ def test_multimatchbox_indexed_not_match(characteristic_values):
     """Check simple adding object to index if it does not match a certain characteristic's value."""
     ob = IndexedObject(characteristic_values, False)
 
-    matchbox = MultiMatchBox('characteristic')
+    matchbox = MatchBox('characteristic')
     matchbox.add(ob)
     assert (
         set(characteristic_values) == set(matchbox.index.keys()),
@@ -99,7 +99,7 @@ def test_multimatchbox_mixed_objects():
     ob5 = IndexedObject([1, 7], True)
 
     # create matchbox and add objects
-    matchbox = MultiMatchBox('characteristic')
+    matchbox = MatchBox('characteristic')
     matchbox.add(ob1)
     matchbox.add(ob2)
     matchbox.add(ob3)
