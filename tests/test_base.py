@@ -1,7 +1,10 @@
-"""Tests for BaseBox."""
+"""Tests for basic functionality of MatchBox and basic data structure."""
 from collections import defaultdict
 
+import pytest
+
 from matchbox import MatchBox
+from tests import IndexedObject
 
 
 def test_init():
@@ -19,30 +22,6 @@ def test_empty():
     """Check if freshly initialised box appears as empty."""
     box = MatchBox('argument')
     assert bool(box) is False, "Freshly initialised box should be empty"
-
-
-def test_not_matching():
-    """Check if not_matching returns those element that are not described by characteristic."""
-    box = MatchBox('argument')
-    element1 = 'element'
-    element2 = 'element2'
-    totally_other = 'other'
-    box.index['other'].add(totally_other)
-    box.exclude_unknown.add(element1)
-    box.index['test'].add(element2)
-    assert box.not_matching('test') == {element1, element2}, "both elements should be returned."
-
-
-def test_match():
-    """Check if match cuts objects properly."""
-    box = MatchBox('argument')
-    element1 = 'element'
-    element2 = 'element2'
-    totally_other = 'other'
-    box.index['other'].add(totally_other)
-    box.exclude_unknown.add(element1)
-    box.index['test'].add(element2)
-    assert box.match({element1, element2, totally_other}, 'test') == {totally_other}, "only one element should match"
 
 
 def test_not_empty_index():
@@ -80,3 +59,16 @@ def test_unknown_becoms_known():
     assert some_object in box.index['unknown']
     assert second_object not in box.index['known']
     assert some_object not in box.index['known']
+
+
+@pytest.mark.parametrize('empty_value', (None, [], ()))
+def test_matchbox_empty_characteristic(empty_value):
+    """Check simple adding object to index if it does match characteristic's value."""
+    ob = IndexedObject(empty_value)
+
+    box = MatchBox('characteristic')
+    assert not box.extract_characteristic_value(ob).values, "falsy value"
+    box.add(ob)
+    assert not box.index, "index should be empty."
+    assert not box.exclude_unknown, "collection for not matching unknown should also be empty."
+    assert not box, "box should be empty"
