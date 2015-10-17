@@ -3,7 +3,6 @@
 
 
 class IndexedObject(object):
-
     """Dummy object to be indexed."""
 
     def __init__(self, value, matches=True):
