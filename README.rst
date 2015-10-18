@@ -40,7 +40,10 @@ Package status
      :target: https://requires.io/github/ClearcodeHQ/matchbox/requirements/?tag=v0.1.0
      :alt: Requirements Status
 
-python package template - to make easier for me to duplicate general package structure.
+Matchbox is a simple python library designed to make selecting object, or object's set based on
+    required characteristics quick operation. No iterating, and no value checking on actual objects,
+    just select and operations on dictionaries.
+
 
 Package resources
 -----------------
@@ -48,10 +51,3 @@ Package resources
 * Bug tracker: https://github.com/ClearcodeHQ/matchbox/issues
 * Documentation: http://matchbox.readthedocs.org/
 
-
-
-
-Travis-ci
----------
-
-After creating package on github, move to tracis-ci.org, and turn on ci builds for given package.
