@@ -1,7 +1,7 @@
 CHANGELOG
 =========
 
-unreleased
+0.2.0
 ----------
 
 - extended tests to cover python 3.5
