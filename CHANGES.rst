@@ -13,6 +13,7 @@ unreleased
 - only None and empty list will be treated as a value not used for matching
 - added repr method to box
 - renamed exclude_unknown to mismatch_unknown to clarify set's meaning
+- Extracted indexing logic from MatchBox to a base class.
 
 0.2.0
 ----------
