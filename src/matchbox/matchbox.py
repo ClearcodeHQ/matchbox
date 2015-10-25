@@ -130,7 +130,7 @@ class MatchBox(object):
         """
         self._characteristic = characteristic
         """Attribute to index objects's on."""
-        self.exclude_unknown = set()
+        self.mismatch_unknown = set()
         """
         This set will keep collection of objects that are not matching unknown
             characteristic values.
@@ -138,7 +138,7 @@ class MatchBox(object):
         Used for MatchBox.index default value. That means for any index_value
         not defined on advert in index.
         """
-        self.index = defaultdict(self.exclude_unknown.copy)
+        self.index = defaultdict(self.mismatch_unknown.copy)
 
     def extract_characteristic_value(self, indexed_object):
         """
@@ -171,10 +171,10 @@ class MatchBox(object):
             for value in characteristic.values:
                 self.index[value].add(indexed_object)
         else:
-            # If object is matching these values, access key to trigger copy of excluded.
+            # If object is matching these values, access key to trigger copy of mismatched.
             # Since now the values becomes known.
             for value in characteristic.values:
-                # we could copy exclude_unknown manually to be more explicit,
+                # we could copy mismatch_unknown manually to be more explicit,
                 # but that would require also to check if given key does not already exists, as to not overwrite it.
                 self.index[value]
 
@@ -183,8 +183,8 @@ class MatchBox(object):
                 if existing_value not in characteristic.values:
                     self.index[existing_value].add(indexed_object)
 
-            # and make sure for every new value it'll be excluded as well
-            self.exclude_unknown.add(indexed_object)
+            # and make sure for every new value it'll be mismatched as well
+            self.mismatch_unknown.add(indexed_object)
 
     def not_matching(self, value):
         """
@@ -219,7 +219,7 @@ class MatchBox(object):
 
     def __bool__(self):
         """Check if box is being actually used or not."""
-        return bool(self.exclude_unknown or any(self.index.values()))
+        return bool(self.mismatch_unknown or any(self.index.values()))
 
     def __nonzero__(self):
         """Python 2 equivalent of python 3's __bool__."""
