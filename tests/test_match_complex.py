@@ -55,27 +55,27 @@ def test_mixed_single_characteristic_objects():
     assert ob1 in matchbox.index[1]
     assert ob1 not in matchbox.index[3]
     assert ob1 not in matchbox.index[5]
-    assert ob1 not in matchbox.exclude_unknown
+    assert ob1 not in matchbox.mismatch_unknown
 
     assert ob2 in matchbox.index[1]
     assert ob2 not in matchbox.index[3]
     assert ob2 in matchbox.index[5]
-    assert ob2 in matchbox.exclude_unknown
+    assert ob2 in matchbox.mismatch_unknown
 
     assert ob3 not in matchbox.index[1]
     assert ob3 not in matchbox.index[3]
     assert ob3 in matchbox.index[5]
-    assert ob3 not in matchbox.exclude_unknown
+    assert ob3 not in matchbox.mismatch_unknown
 
     assert ob4 not in matchbox.index[1]
     assert ob4 not in matchbox.index[3]
     assert ob4 not in matchbox.index[5]
-    assert ob4 not in matchbox.exclude_unknown
+    assert ob4 not in matchbox.mismatch_unknown
 
     assert ob5 not in matchbox.index[1]
     assert ob5 in matchbox.index[3]
     assert ob5 in matchbox.index[5]
-    assert ob5 in matchbox.exclude_unknown
+    assert ob5 in matchbox.mismatch_unknown
 
 
 def test_mixed_multi_characteristic_objects():
@@ -141,7 +141,7 @@ def test_mixed_multi_characteristic_objects():
     assert ob1 not in matchbox.index[5]
     assert ob1 not in matchbox.index[6]
     assert ob1 not in matchbox.index[7]
-    assert ob1 not in matchbox.exclude_unknown
+    assert ob1 not in matchbox.mismatch_unknown
 
     assert ob2 in matchbox.index[1]
     assert ob2 in matchbox.index[2]
@@ -150,7 +150,7 @@ def test_mixed_multi_characteristic_objects():
     assert ob2 in matchbox.index[5]
     assert ob2 in matchbox.index[6]
     assert ob2 not in matchbox.index[7]
-    assert ob2 in matchbox.exclude_unknown
+    assert ob2 in matchbox.mismatch_unknown
 
     assert ob3 not in matchbox.index[1]
     assert ob3 not in matchbox.index[2]
@@ -159,7 +159,7 @@ def test_mixed_multi_characteristic_objects():
     assert ob3 in matchbox.index[5]
     assert ob3 in matchbox.index[6]
     assert ob3 not in matchbox.index[7]
-    assert ob3 not in matchbox.exclude_unknown
+    assert ob3 not in matchbox.mismatch_unknown
 
     assert ob4 not in matchbox.index[1]
     assert ob4 not in matchbox.index[2]
@@ -168,7 +168,7 @@ def test_mixed_multi_characteristic_objects():
     assert ob4 not in matchbox.index[5]
     assert ob4 not in matchbox.index[6]
     assert ob4 not in matchbox.index[7]
-    assert ob4 not in matchbox.exclude_unknown
+    assert ob4 not in matchbox.mismatch_unknown
 
     assert ob5 not in matchbox.index[1]
     assert ob5 in matchbox.index[2]
@@ -177,4 +177,4 @@ def test_mixed_multi_characteristic_objects():
     assert ob5 in matchbox.index[5]
     assert ob5 in matchbox.index[6]
     assert ob5 not in matchbox.index[7]
-    assert ob5 in matchbox.exclude_unknown
+    assert ob5 in matchbox.mismatch_unknown
