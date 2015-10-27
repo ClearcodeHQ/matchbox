@@ -217,6 +217,10 @@ class MatchBox(object):
         """
         return collection - self.not_matching(value)
 
+    def __repr__(self):
+        """Box representation."""
+        return '<MatchBox({0})>'.format(self._characteristic)
+
     def __bool__(self):
         """Check if box is being actually used or not."""
         return bool(self.mismatch_unknown or any(self.index.values()))
