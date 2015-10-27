@@ -26,7 +26,8 @@ def test_match():
     box.index['other'].add(totally_other)
     box.mismatch_unknown.add(element1)
     box.index['test'].add(element2)
-    assert box.match({element1, element2, totally_other}, 'test') == {totally_other}, "only one element should match"
+    all_elements = {element1, element2, totally_other}
+    assert box.match(all_elements, 'test') == {totally_other}, "only one element should match"
 
 
 @pytest.mark.parametrize('characteristic_values', ('x', ['x', 'y'], ['z'], [1, 2, 3, None]))
