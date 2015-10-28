@@ -24,6 +24,12 @@ def test_empty():
     assert bool(box) is False, "Freshly initialised box should be empty"
 
 
+@pytest.mark.parametrize('characteristic', ('a', 'colour', 'size'))
+def test_repr(characteristic):
+    """Make sure repr returns proper box identification string."""
+    assert repr(MatchBox(characteristic)) == '<MatchBox({0})>'.format(characteristic)
+
+
 def test_not_empty_index():
     """Check if element in index makes the box to appear not empty."""
     box = MatchBox('argument')
