@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+unreleased
+----------
+
+- added repr method to box
+- renamed exclude_unknown to mismatch_unknown to clarify set's meaning
+
 0.2.0
 ----------
 
