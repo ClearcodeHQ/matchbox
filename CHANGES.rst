@@ -4,6 +4,7 @@ CHANGELOG
 unreleased
 ----------
 
+- only None and empty list will be treated as a value not used for matching
 - added repr method to box
 - renamed exclude_unknown to mismatch_unknown to clarify set's meaning
 
