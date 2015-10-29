@@ -149,7 +149,7 @@ class MatchBox(object):
         :rtype: CharacteristicValue
         """
         values = getattr(indexed_object, self._characteristic)
-        if values and isinstance(values, Hashable):
+        if values is not None and isinstance(values, Hashable):
             values = [values]
         return CharacteristicValue(
             values,

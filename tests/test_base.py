@@ -67,9 +67,9 @@ def test_unknown_becoms_known():
     assert some_object not in box.index['known']
 
 
-@pytest.mark.parametrize('empty_value', (None, [], ()))
+@pytest.mark.parametrize('empty_value', (None, []))
 def test_matchbox_empty_characteristic(empty_value):
-    """Check simple adding object to index if it does match characteristic's value."""
+    """Check extracting object's values if it is recognised as not used."""
     ob = IndexedObject(empty_value)
 
     box = MatchBox('characteristic')
@@ -78,3 +78,17 @@ def test_matchbox_empty_characteristic(empty_value):
     assert not box.index, "index should be empty."
     assert not box.mismatch_unknown, "collection for not matching unknown should also be empty."
     assert not box, "box should be empty"
+
+
+@pytest.mark.parametrize('falsy_value', ((), False, ''))
+def test_matchbox_falsy_used_characteristic(falsy_value):
+    """Check simple adding object to index if it does match characteristic's value."""
+    ob = IndexedObject(falsy_value)
+
+    box = MatchBox('characteristic')
+    assert box.extract_characteristic_value(ob).values, "values is not falsy"
+    assert not box.extract_characteristic_value(ob).values[0], "though element is"
+    box.add(ob)
+    assert falsy_value in box.index, "index should not be empty, with key for the falsy_value instead."
+    assert ob in box.mismatch_unknown, "due to characteristic_match, this should be fileld."
+    assert box, "box should not be empty"
