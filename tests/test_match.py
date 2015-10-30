@@ -5,8 +5,8 @@ from matchbox import MatchBox
 from tests import IndexedObject
 
 
-def test_not_matching():
-    """Check if not_matching returns those element that are not described by characteristic."""
+def test_mismatch():
+    """Check if mismatch returns those element that are not described by characteristic."""
     box = MatchBox('argument')
     element1 = 'element'
     element2 = 'element2'
@@ -14,7 +14,7 @@ def test_not_matching():
     box.index['other'].add(totally_other)
     box.mismatch_unknown.add(element1)
     box.index['test'].add(element2)
-    assert box.not_matching('test') == {element1, element2}, "both elements should be returned."
+    assert box.mismatch('test') == {element1, element2}, "both elements should be returned."
 
 
 def test_match():

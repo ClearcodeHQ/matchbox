@@ -186,14 +186,13 @@ class MatchBox(object):
             # and make sure for every new value it'll be mismatched as well
             self.mismatch_unknown.add(indexed_object)
 
-    def not_matching(self, value):
+    def mismatch(self, value):
         """
         *Matching* algorithm for the Box type.
 
-        This method should actually return the set of object's that are not
-        matching given value, which will allow then to cut them off of current
-        sub-collection filtered by possibly other boxes by simple set
-        operations.
+        This method returns the set of object's that are not matching given value,
+        which will allow then to cut them off of current (sub) collection
+        filtered by possibly other boxes by simple set operations.
 
         :param str value: value of characteristic this box is indexing on.
         :returns: set of objects that doesn't match characteristic value
@@ -215,7 +214,7 @@ class MatchBox(object):
         :rtype: set
 
         """
-        return collection - self.not_matching(value)
+        return collection - self.mismatch(value)
 
     def __repr__(self):
         """Box representation."""
