@@ -2,15 +2,15 @@
 """matchbox's tests."""
 
 
-class IndexedObject(object):
-    """Dummy object to be indexed."""
+class Entity(object):
+    """Dummy entity to be indexed."""
 
-    def __init__(self, value, matches=True):
+    def __init__(self, trait, matches=True):
         """
-        Dummy object's initializing method.
+        Dummy entity's initializing method.
 
-        :param str value: value for a characteristic.
+        :param trait: characteristic trait.
         :param bool matches: whether it matches or not.
         """
-        self.characteristic = value
+        self.characteristic = trait
         self.characteristic_match = matches

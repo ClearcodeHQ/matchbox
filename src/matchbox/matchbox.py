@@ -21,52 +21,52 @@ from __future__ import absolute_import
 from collections import defaultdict, namedtuple, Hashable
 
 
-CharacteristicValue = namedtuple('CharacteristicValue', 'values, is_matching')
+Trait = namedtuple('Trait', 'traits, is_matching')
 
 
 class MatchBox(object):
     """
-    MatchBox for classifying objects by given characteristic's values.
+    MatchBox for classifying objects by given characteristic's traits.
 
     Due to rellying heavily on dictionaries and sets,
-    MatchBox indexes only hashable objects by hashable values - single hashable value
+    MatchBox indexes only hashable entities by traits which are hashable - single hashable trait
     or collection of those.
 
-    Example for single-value (hashable):
+    Example for single-trait (hashable):
 
-    +--------+-------+-------------------------+
-    | Object | Match | Characteristic's values |
-    +========+=======+=========================+
-    | Ob1    | False | 1                       |
-    +--------+-------+-------------------------+
-    | Ob2    | True  | 3                       |
-    +--------+-------+-------------------------+
-    | Ob3    | False | 5                       |
-    +--------+-------+-------------------------+
-    | Ob4    | False |                         |
-    +--------+-------+-------------------------+
-    | Ob5    | True  | 1                       |
-    +--------+-------+-------------------------+
+    +--------+-------+------------------------+
+    | Entity | Match | Characteristic's trait |
+    +========+=======+========================+
+    | Ob1    | False | 1                      |
+    +--------+-------+------------------------+
+    | Ob2    | True  | 3                      |
+    +--------+-------+------------------------+
+    | Ob3    | False | 5                      |
+    +--------+-------+------------------------+
+    | Ob4    | False |                        |
+    +--------+-------+------------------------+
+    | Ob5    | True  | 1                      |
+    +--------+-------+------------------------+
 
     Will result in matchbox'es index:
 
-    +-----------+-----------------+
-    | Attribute | Matched Objects |
-    +===========+=================+
-    | 1         | Ob1, Ob2        |
-    +-----------+-----------------+
-    | 3         | Ob5             |
-    +-----------+-----------------+
-    | 5         | Ob2, Ob3, Ob5   |
-    +-----------+-----------------+
-    | Any new   | Ob2, Ob5        |
-    +-----------+-----------------+
+    +-----------+------------------+
+    | Attribute | Matched Entities |
+    +===========+==================+
+    | 1         | Ob1, Ob2         |
+    +-----------+------------------+
+    | 3         | Ob5              |
+    +-----------+------------------+
+    | 5         | Ob2, Ob3, Ob5    |
+    +-----------+------------------+
+    | Any new   | Ob2, Ob5         |
+    +-----------+------------------+
 
 
-    Example for multi-value characteristic:
+    Example for multi-trait characteristic:
 
     +--------+-------+-------------------------+
-    | Object | Match | Characteristic's values |
+    | Entity | Match | Characteristic's traits |
     +========+=======+=========================+
     | Ob1    | False | 1, 2                    |
     +--------+-------+-------------------------+
@@ -81,25 +81,25 @@ class MatchBox(object):
 
     Should result in this index:
 
-    +-----------+-----------------+
-    | Attribute | Matched Objects |
-    +===========+=================+
-    | 1         | Ob1, Ob2        |
-    +-----------+-----------------+
-    | 2         | Ob1, Ob2, Ob5   |
-    +-----------+-----------------+
-    | 3         | Ob5             |
-    +-----------+-----------------+
-    | 4         | Ob5             |
-    +-----------+-----------------+
-    | 5         | Ob2, Ob3, Ob5   |
-    +-----------+-----------------+
-    | 6         | Ob2, Ob3, Ob5   |
-    +-----------+-----------------+
-    | 7         |                 |
-    +-----------+-----------------+
-    | Any other | Ob2, Ob5        |
-    +-----------+-----------------+
+    +-----------+------------------+
+    | Attribute | Matched Entities |
+    +===========+==================+
+    | 1         | Ob1, Ob2         |
+    +-----------+------------------+
+    | 2         | Ob1, Ob2, Ob5    |
+    +-----------+------------------+
+    | 3         | Ob5              |
+    +-----------+------------------+
+    | 4         | Ob5              |
+    +-----------+------------------+
+    | 5         | Ob2, Ob3, Ob5    |
+    +-----------+------------------+
+    | 6         | Ob2, Ob3, Ob5    |
+    +-----------+------------------+
+    | 7         |                  |
+    +-----------+------------------+
+    | Any other | Ob2, Ob5         |
+    +-----------+------------------+
 
     """
 
@@ -107,114 +107,110 @@ class MatchBox(object):
         """
         Initialise box and set attribute this box will be indexing objects on.
 
-        Indexed objects are expected to have attribute of the same name as
-        `characteristic` that contains value by which object is classified.
-        Optionally objects should have second attribute that will state that
-        the object is classified by the value **OR** that he object is not
-        classified by the value called **{characteristic}_match**.
+        Indexed entities are expected to have attribute of the same name as
+        `characteristic` that contains traits by which object is classified.
+        Optionally entity should have second attribute that will state that
+        the object is classified by the trait **OR** that he object is not
+        classified by the trait called **{characteristic}_match**.
 
         .. note::
 
-            Whole matchbox'es idea follows the idea that while you can't say
-            that given object is not described by anything.
-
-            You can say that object's characteristic is, or is not described by
-            a subset of all values possible, you can't say the object is not
+            You can say that entity's characteristic is, or is not described by
+            a subset of all traits possible, you can't say the object is not
             described by all of them. The third possibility is that it's
             described by all of them - otherwise the logic dictates that the
             object will not ever match, hence it shouldn't even make it to the
             collection.
 
-        :param str characteristic: Value identifying both indexed object
-            attribute name matchbox is indexing on, and the index value itself.
+        :param str characteristic: Characteristic name MatchBox will index entites on.
         """
         self._characteristic = characteristic
-        """Attribute to index objects's on."""
+        """Characteristic name to index entites on."""
         self.mismatch_unknown = set()
         """
-        This set will keep collection of objects that are not matching unknown
-            characteristic values.
+        This set will keep collection of entities that are not matching unknown
+            characteristic traits.
 
-        Used for MatchBox.index default value. That means for any index_value
-        not defined on advert in index.
+        Used for MatchBox.index default value. That means for any trait
+        not defined on entity in index.
         """
         self.index = defaultdict(self.mismatch_unknown.copy)
 
-    def extract_characteristic_value(self, indexed_object):
+    def extract_traits(self, entity):
         """
-        Extract data required to classify indexed_object.
+        Extract data required to classify entity.
 
-        :param object indexed_object:
-        :return: namedtuple consisting of characteristic values and match flag
-        :rtype: CharacteristicValue
+        :param object entity:
+        :return: namedtuple consisting of characteristic traits and match flag
+        :rtype: matchbox.matchbox.Trait
         """
-        values = getattr(indexed_object, self._characteristic)
-        if values is not None and isinstance(values, Hashable):
-            values = [values]
-        return CharacteristicValue(
-            values,
-            getattr(indexed_object, self._characteristic + '_match', True)
+        traits = getattr(entity, self._characteristic)
+        if traits is not None and isinstance(traits, Hashable):
+            traits = [traits]
+        return Trait(
+            traits,
+            getattr(entity, self._characteristic + '_match', True)
         )
 
-    def add(self, indexed_object):
+    def add(self, entity):
         """
-        Add object to index.
+        Add entity to index.
 
-        :param object indexed_object: single object to add to box's index
+        :param object entity: single object to add to box's index
         """
-        characteristic = self.extract_characteristic_value(indexed_object)
-        if not characteristic.values:
+        characteristic = self.extract_traits(entity)
+        if not characteristic.traits:
             return
 
-        # if object is not matching given characteristic values, we should add it directly to index.
+        # if entity is not matching given characteristic traits, we should add it directly to index.
         if not characteristic.is_matching:
-            for value in characteristic.values:
-                self.index[value].add(indexed_object)
+            for trait in characteristic.traits:
+                self.index[trait].add(entity)
         else:
-            # If object is matching these values, access key to trigger copy of mismatched.
-            # Since now the values becomes known.
-            for value in characteristic.values:
+            # If entity is matching these traits, access key to trigger copy of mismatched.
+            # Since now the traits becomes known.
+            for trait in characteristic.traits:
                 # we could copy mismatch_unknown manually to be more explicit,
                 # but that would require also to check if given key does not already exists, as to not overwrite it.
-                self.index[value]
+                self.index[trait]
 
-            # we add object to each value in index that's not it's characteristic's values
-            for existing_value in self.index.keys():
-                if existing_value not in characteristic.values:
-                    self.index[existing_value].add(indexed_object)
+            # we add object to each trait in index that's not it's characteristic's traits
+            for existing_trait in self.index.keys():
+                if existing_trait not in characteristic.traits:
+                    self.index[existing_trait].add(entity)
 
-            # and make sure for every new value it'll be mismatched as well
-            self.mismatch_unknown.add(indexed_object)
+            # and make sure for every new trait it'll be mismatched as well
+            self.mismatch_unknown.add(entity)
 
-    def mismatch(self, value):
+    def mismatch(self, trait):
         """
         *Matching* algorithm for the Box type.
 
-        This method returns the set of object's that are not matching given value,
-        which will allow then to cut them off of current (sub) collection
-        filtered by possibly other boxes by simple set operations.
+        This method returns the set of entities that are not matching given trait,
+        which will allow then to cut them off of current (sub)set of entities
+        possibly filtered by other boxes.
 
-        :param str value: value of characteristic this box is indexing on.
-        :returns: set of objects that doesn't match characteristic value
+        :param trait: any hashable object that can be considered as characteristic trait for this MatchBox.
+        :returns: set of entities that doesn't match characteristic trait
         :rtype: set
         """
-        return self.index[value]
+        return self.index[trait]
 
-    def match(self, collection, value):
+    def match(self, collection, trait):
         """
-        Cut off those object from collection, that does not match the value.
+        Cut off those entities from collection, that does not match the trait.
 
         .. note::
 
-            Collection has to be set of objects that has already been added to index.
+            Collection has to be a set of entities that has already been added to index.
 
-        :param set collection: a set of objects that should be checked against value.
-        :param value: any hashable object that describes characteristic defined for this box.
-        :return: set of matching objects.
+        :param set collection: a set of entities that should be checked against trait.
+        :param trait: any hashable object that can be considered as characteristic trait for this MatchBox.
+        :return: set of matching entities.
         :rtype: set
 
         """
-        return collection - self.mismatch(value)
+        return collection - self.mismatch(trait)
 
     def __repr__(self):
         """Box representation."""

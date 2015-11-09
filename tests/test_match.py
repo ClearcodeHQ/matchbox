@@ -2,7 +2,7 @@
 import pytest
 
 from matchbox import MatchBox
-from tests import IndexedObject
+from tests import Entity
 
 
 def test_mismatch():
@@ -18,7 +18,7 @@ def test_mismatch():
 
 
 def test_match():
-    """Check if match cuts objects properly."""
+    """Check if match cuts entites properly."""
     box = MatchBox('argument')
     element1 = 'element'
     element2 = 'element2'
@@ -30,39 +30,39 @@ def test_match():
     assert box.match(all_elements, 'test') == {totally_other}, "only one element should match"
 
 
-@pytest.mark.parametrize('characteristic_values', ('x', ['x', 'y'], ['z'], [1, 2, 3, None]))
-def test_indexed_match(characteristic_values):
+@pytest.mark.parametrize('traits', ('x', ['x', 'y'], ['z'], [1, 2, 3, None]))
+def test_indexed_match(traits):
     """
-    Check simple adding object to index if it does match characteristic's value.
+    Check simple adding entity to index if it does match characteristic's trait.
 
-    In this case, objects is recorded on mismatch_unknown.
+    In this case, entities is recorded on mismatch_unknown.
     """
-    ob = IndexedObject(characteristic_values)
+    ob = Entity(traits)
 
     matchbox = MatchBox('characteristic')
     matchbox.add(ob)
-    values = matchbox.extract_characteristic_value(ob).values  # get the values as sorting algorithms sees them
-    assert set(values) == set(matchbox.index.keys()), "characteristic value should result in an entry in index."
-    for characteristic in values:
-        assert matchbox.index[characteristic] == set(), "But the entry should be empty."
+    traits = matchbox.extract_traits(ob).traits  # get traits as sorting algorithms sees them
+    assert set(traits) == set(matchbox.index.keys()), "characteristic trait should result in an entry in index."
+    for trait in traits:
+        assert matchbox.index[trait] == set(), "But the entry should be empty."
 
-    assert ob in matchbox.mismatch_unknown, "object should be not matching any future entries though."
+    assert ob in matchbox.mismatch_unknown, "entity should be not matching any future entries though."
 
 
-@pytest.mark.parametrize('characteristic_values', ('x', ['x', 'y'], ['z'], [1, 2, 3, None]))
-def test_multimatchbox_indexed_not_match(characteristic_values):
+@pytest.mark.parametrize('traits', ('x', ['x', 'y'], ['z'], [1, 2, 3, None]))
+def test_multimatchbox_indexed_not_match(traits):
     """
-    Check simple adding object to index if it does not match a certain characteristic's value.
+    Check simple adding entity to index if it does not match a certain characteristic's trait.
 
-    In this case object gets recorded on index.
+    In this case entity gets recorded on index.
     """
-    ob = IndexedObject(characteristic_values, False)
+    ob = Entity(traits, False)
 
     matchbox = MatchBox('characteristic')
     matchbox.add(ob)
-    values = matchbox.extract_characteristic_value(ob).values  # get the values as sorting algorithms sees them
-    assert set(values) == set(matchbox.index.keys()), "characteristic value should result in an entry in index."
-    assert matchbox.mismatch_unknown == set(), "object should not be matching any unknown values."
+    traits = matchbox.extract_traits(ob).traits  # get traits as sorting algorithms sees them
+    assert set(traits) == set(matchbox.index.keys()), "characteristic trait should result in an entry in index."
+    assert matchbox.mismatch_unknown == set(), "Entity should not be matching any unknown traits."
 
-    for characteristic in values:
-        assert ob in matchbox.index[characteristic], "Object should be in set under it's characteristic's value key."
+    for trait in traits:
+        assert ob in matchbox.index[trait], "Entity should be in set under it's characteristic's trait key."

@@ -4,6 +4,8 @@ CHANGELOG
 unreleased
 ----------
 
+- renamed various onbject's usages and index_object to entity
+- renamed characteristics_value and value references to traits, as in Characteristic's trait.
 - renamed MatchBox.not_matching method into MatchBox.mismatch - signature remained the same.
 - only None and empty list will be treated as a value not used for matching
 - added repr method to box
