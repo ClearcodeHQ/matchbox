@@ -4,6 +4,11 @@ CHANGELOG
 unreleased
 ----------
 
+- added short glossary
+- updated docs to reflect naming changes
+- rewritten usage
+- renamed various object's usages and index_object to entity [thanks Michael Sweeney]
+- renamed characteristics_value and value references to traits, as in Characteristic's trait. [thanks Michael Sweeney]
 - renamed MatchBox.not_matching method into MatchBox.mismatch - signature remained the same.
 - only None and empty list will be treated as a value not used for matching
 - added repr method to box

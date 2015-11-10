@@ -4,7 +4,7 @@ from collections import defaultdict
 import pytest
 
 from matchbox import MatchBox
-from tests import IndexedObject
+from tests import Entity
 
 
 def test_init():
@@ -44,51 +44,51 @@ def test_not_empty_mismatch_unknown():
     assert bool(box) is True
 
 
-def test_default_index_value():
+def test_default_index_trait():
     """Check if the correct default are used for box.index property."""
     box = MatchBox('argument')
-    some_object = "I'm an object."
-    box.mismatch_unknown.add(some_object)
-    assert some_object in box.index['unknown']
+    some_entity = "I'm an object."
+    box.mismatch_unknown.add(some_entity)
+    assert some_entity in box.index['unknown']
 
 
-def test_unknown_becoms_known():
-    """Check if objects to mismatch_unknown are only added to future unknown."""
+def test_unknown_trait_becoms_known():
+    """Check if entities are only added to mismatch_unknown for future unknown."""
     box = MatchBox('argument')
-    # make one value known
+    # make one trait known
     box.index['known']
-    some_object = "I'm an object, I only know what I know."
-    second_object = "I'm rejecting what We don't already know."
-    box.mismatch_unknown.add(some_object)
-    box.mismatch_unknown.add(second_object)
-    assert second_object in box.index['unknown']
-    assert some_object in box.index['unknown']
-    assert second_object not in box.index['known']
-    assert some_object not in box.index['known']
+    some_entity = "I'm an object, I only know what I know."
+    second_entity = "I'm rejecting what We don't already know."
+    box.mismatch_unknown.add(some_entity)
+    box.mismatch_unknown.add(second_entity)
+    assert second_entity in box.index['unknown']
+    assert some_entity in box.index['unknown']
+    assert second_entity not in box.index['known']
+    assert some_entity not in box.index['known']
 
 
-@pytest.mark.parametrize('empty_value', (None, []))
-def test_matchbox_empty_characteristic(empty_value):
-    """Check extracting object's values if it is recognised as not used."""
-    ob = IndexedObject(empty_value)
+@pytest.mark.parametrize('empty_trait', (None, []))
+def test_matchbox_empty_trait(empty_trait):
+    """Check extracting object's traits if it is recognised as not used."""
+    ob = Entity(empty_trait)
 
     box = MatchBox('characteristic')
-    assert not box.extract_characteristic_value(ob).values, "falsy value"
+    assert not box.extract_traits(ob).traits, "falsy trait"
     box.add(ob)
     assert not box.index, "index should be empty."
     assert not box.mismatch_unknown, "collection for not matching unknown should also be empty."
     assert not box, "box should be empty"
 
 
-@pytest.mark.parametrize('falsy_value', ((), False, ''))
-def test_matchbox_falsy_used_characteristic(falsy_value):
-    """Check simple adding object to index if it does match characteristic's value."""
-    ob = IndexedObject(falsy_value)
+@pytest.mark.parametrize('falsy_trait', ((), False, ''))
+def test_matchbox_falsy_used_trait(falsy_trait):
+    """Check simple adding object to index if it does match characteristic's traits."""
+    ob = Entity(falsy_trait)
 
     box = MatchBox('characteristic')
-    assert box.extract_characteristic_value(ob).values, "values is not falsy"
-    assert not box.extract_characteristic_value(ob).values[0], "though element is"
+    assert box.extract_traits(ob).traits, "traits are not falsy"
+    assert not box.extract_traits(ob).traits[0], "though single trait element is"
     box.add(ob)
-    assert falsy_value in box.index, "index should not be empty, with key for the falsy_value instead."
-    assert ob in box.mismatch_unknown, "due to characteristic_match, this should be fileld."
+    assert falsy_trait in box.index, "index should not be empty, with key for the falsy_trait instead."
+    assert ob in box.mismatch_unknown, "due to characteristic_match, this should be filed."
     assert box, "box should not be empty"
