@@ -10,6 +10,7 @@ Contents
    rationale
    usage
    api
+   contributing
    changelog
 
 
