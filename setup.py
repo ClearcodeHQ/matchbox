@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # Copyright (C) 2015 by Clearcode <http://clearcode.cc>
 # and associates (see AUTHORS).
 
