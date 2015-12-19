@@ -20,7 +20,7 @@
 from __future__ import absolute_import
 from collections import namedtuple, Hashable
 
-from matchbox.match_index import MatchIndex
+from matchbox.matchindex import MatchIndex
 
 
 Trait = namedtuple('Trait', 'traits, is_matching')
@@ -44,16 +44,19 @@ class MatchBox(MatchIndex):
 
             Each indexed entity has to have at least one characteristic.
 
-            You can say that entity's characteristic is, or is not described by
-            a subset of all traits possible, you can't say the object is not
-            described by all of them. The third possibility is that it's
-            described by all of them - otherwise the logic dictates that the
-            object will not ever match, hence it shouldn't even make it to the
-            collection.
+            Each indexed entity can be described by:
+
+            * given characteristic traits,
+            * by all but given characteristic traits,
+            * all possible traits
+
+            Indexed entity can't be described by none possible characeristic trait - in this case
+            the logic dictates that the entity will not ever match, hence it shouldn't even
+            be considered in queries and make it to the collection.
 
         :param str characteristic: value identifying the attribute MatchBox will index entites with.
             Optionally the objects may have a '{characteristic}_match' boolean attribute to determine whether the
-            object should be indexed as an match or mismatch
+            object should be indexed as a match or mismatch
         """
         super(MatchBox, self).__init__(*args, **kwargs)
         self._characteristic = characteristic

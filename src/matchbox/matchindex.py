@@ -29,12 +29,12 @@ class MatchIndex(object):
     When used as a filter, all entities in the input set must also be indexed by the MatchIndex to be fully filtered.
 
     .. note ::
-        We can index entities by including or excluding them for given values.
-        matching an object for some values means that this object will match those values and it will NOT
-        match any other values.
-        Mismatching an object for some values means that this object will NOT match those values and will match
-        any other value.
-        It makes no sense to both include and exclude the same object.
+        We can index entities by including or excluding them for given traits.
+        Matching an object for some characteristic traits means that this object will match those values and it will NOT
+        match any other traits.
+        Mismatching an object for some traits means that this object will NOT match those traits and will match
+        any other trait.
+        It makes no sense for an entity to both match and mismatch the same characteristic.
 
     Data layout:
     We store:
@@ -132,9 +132,9 @@ class MatchIndex(object):
         """Initialize the index."""
         self.mismatch_unknown = set()
         """
-        This set will keep included matching entities. They do not match unknown values.
+        This set will keep matching entities. They do not match unknown traits.
 
-        Used for `self.index` default value, that means any previously unknown index value.
+        Used for `self.index` default value, that means any previously unknown trait.
         """
         self.index = defaultdict(self.mismatch_unknown.copy)
 
@@ -145,9 +145,8 @@ class MatchIndex(object):
         We do this by simply adding the mismatch to the index.
 
         :param collections.Hashable indexed_entity: an object to be mismatching the values of `traits_indexed_by`
-        :param list traits_indexed_by: a list of hashable values to index the object with
+        :param list traits_indexed_by: a list of hashable traits to index the entity with
         """
-        # If object is not matching given characteristic values, we should add it directly to the index.
         for trait in traits_indexed_by:
             self.index[trait].add(indexed_entity)
 
@@ -165,14 +164,14 @@ class MatchIndex(object):
         :param collections.Hashable indexed_entity: an object to be matching the values of `traits_indexed_by`
         :param list traits_indexed_by: a list of hashable values to index the object with
         """
-        # The index traits of `traits_indexed_by` might have already been used to index some other rntities. Those
+        # The index traits of `traits_indexed_by` might have already been used to index some other entities. Those
         # relations are to be preserved. If the trait was not used to index any entity, we initialize them to mismatch
         # all matching entities known so far.
         for trait in traits_indexed_by:
-            self.index.setdefault(trait, self.mismatch_unknown.copy())
+            if trait not in self.index:
+                self.index[trait] = self.mismatch_unknown.copy()
 
-        # Now we make all known traits, except for those we use to index this `indexed_entity`, mismatch the entity.
-        # We have to do this because the traits are to become known as they are used in the index.
+        # Now each known trait this entity is not matching, will explicitly mismatch currently added entity.
         for existing_trait in self.index.keys():
             if existing_trait not in traits_indexed_by:
                 self.index[existing_trait].add(indexed_entity)
@@ -182,29 +181,28 @@ class MatchIndex(object):
 
     def mismatch(self, trait):
         """
-        Return a set of indexed entities that are mismatched by the `value`.
+        Return a set of indexed entities that are mismatched by the trait.
 
-        The returned set can used for filtering by substracting it from another set created by a previous MatchIndex
+        The returned set can be used for filtering by substracting it from another set created by a previous MatchIndex
         or other set operations.
 
-        :param collections.Hashable trait: a value of the same kind as the values that objects in this index are
-            indexed with
-        :returns: a set of objects that don't match the `value`
+        :param trait: any hashable object that can be considered as characteristic trait for this MatchBox.
+        :returns: set of entities that doesn't match characteristic trait
         :rtype: set
         """
         return self.index[trait]
 
     def match(self, collection, trait):
         """
-        Cut off those entities from collection that do not match the trait.
+        Filter out those entities from collection that do not match the trait.
 
         .. note ::
             `collection` has to be a set of objects that have already been added to the index.
 
-        :param set collection: a set of objects that should be filtered by this index
-        :param collections.Hashable trait: a value of the same kind as the values that objects in this index are
-            indexed with
-        :return: set of matching objects
+        :param set collection: a set of entities that should be filtered by this index.
+        :param collections.Hashable trait: a value of the same kind as the traits that entities in
+            this index are indexed with
+        :return: set of matching entities.
         :rtype: set
         """
         return collection - self.mismatch(trait)
