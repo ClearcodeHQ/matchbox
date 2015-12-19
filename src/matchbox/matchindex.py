@@ -138,19 +138,19 @@ class MatchIndex(object):
         """
         self.index = defaultdict(self.mismatch_unknown.copy)
 
-    def add_mismatch(self, indexed_entity, *traits_indexed_by):
+    def add_mismatch(self, entity, *traits):
         """
         Add a mismatching entity to the index.
 
         We do this by simply adding the mismatch to the index.
 
-        :param collections.Hashable indexed_entity: an object to be mismatching the values of `traits_indexed_by`
-        :param list traits_indexed_by: a list of hashable traits to index the entity with
+        :param collections.Hashable entity: an object to be mismatching the values of `traits_indexed_by`
+        :param list traits: a list of hashable traits to index the entity with
         """
-        for trait in traits_indexed_by:
-            self.index[trait].add(indexed_entity)
+        for trait in traits:
+            self.index[trait].add(entity)
 
-    def add_match(self, indexed_entity, *traits_indexed_by):
+    def add_match(self, entity, *traits):
         """
         Add a matching entity to the index.
 
@@ -161,23 +161,23 @@ class MatchIndex(object):
 
         For data layout description, see the class-level docstring.
 
-        :param collections.Hashable indexed_entity: an object to be matching the values of `traits_indexed_by`
-        :param list traits_indexed_by: a list of hashable values to index the object with
+        :param collections.Hashable entity: an object to be matching the values of `traits_indexed_by`
+        :param list traits: a list of hashable values to index the object with
         """
         # The index traits of `traits_indexed_by` might have already been used to index some other entities. Those
         # relations are to be preserved. If the trait was not used to index any entity, we initialize them to mismatch
         # all matching entities known so far.
-        for trait in traits_indexed_by:
+        for trait in traits:
             if trait not in self.index:
                 self.index[trait] = self.mismatch_unknown.copy()
 
         # Now each known trait this entity is not matching, will explicitly mismatch currently added entity.
         for existing_trait in self.index.keys():
-            if existing_trait not in traits_indexed_by:
-                self.index[existing_trait].add(indexed_entity)
+            if existing_trait not in traits:
+                self.index[existing_trait].add(entity)
 
         # From now on, any new matching or mismatching index will mismatch this entity by default.
-        self.mismatch_unknown.add(indexed_entity)
+        self.mismatch_unknown.add(entity)
 
     def mismatch(self, trait):
         """
