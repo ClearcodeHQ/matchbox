@@ -18,7 +18,7 @@
 """Main matchbox module."""
 from __future__ import absolute_import
 from matchbox.matchbox import MatchBox
-from matchbox.match_index import MatchIndex
+from matchbox.matchindex import MatchIndex
 
 __version__ = '0.2.0'
 
