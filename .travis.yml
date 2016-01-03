@@ -14,11 +14,11 @@ install:
 - pip install coveralls
 - pip install wheel
 script:
-- py.test --verbose --capture=no --showlocals --cov src/matchbox
+- py.test --verbose --capture=no --showlocals --cov src/matchbox tests/
 - pylama
+- py.test benchmarks/
 after_success:
 - coveralls
-- python performance.py
 deploy:
   provider: pypi
   user: fizyk
