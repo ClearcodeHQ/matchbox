@@ -41,6 +41,7 @@ requirements = []
 test_requires = [
     'pytest',
     'pytest-cov',
+    'pytest-benchmark',
     'pylama',
 ]
 
