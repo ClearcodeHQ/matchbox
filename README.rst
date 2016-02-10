@@ -6,7 +6,7 @@ matchbox
     :alt: Latest PyPI version
 
 .. image:: https://readthedocs.org/projects/matchbox/badge/?version=v0.2.0
-    :target: https://readthedocs.org/projects/matchbox/?badge=v0.2.0
+    :target: http://matchbox.readthedocs.org/en/v0.2.0/
     :alt: Documentation Status
 
 .. image:: https://img.shields.io/pypi/wheel/matchbox.svg
