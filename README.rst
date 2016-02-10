@@ -1,7 +1,7 @@
 matchbox
 ========
 
-.. image:: https://pypip.in/v/matchbox/badge.png
+.. image:: https://img.shields.io/pypi/v/matchbox.svg
     :target: https://pypi.python.org/pypi/matchbox/
     :alt: Latest PyPI version
 
@@ -9,19 +9,15 @@ matchbox
     :target: https://readthedocs.org/projects/matchbox/?badge=v0.2.0
     :alt: Documentation Status
 
-.. image:: https://pypip.in/d/matchbox/badge.png
-    :target: https://pypi.python.org/pypi/matchbox/
-    :alt: Number of PyPI downloads
-
-.. image:: https://pypip.in/wheel/matchbox/badge.png
+.. image:: https://img.shields.io/pypi/wheel/matchbox.svg
     :target: https://pypi.python.org/pypi/matchbox/
     :alt: Wheel Status
 
-.. image:: https://pypip.in/egg/matchbox/badge.png
+.. image:: https://img.shields.io/pypi/pyversions/matchbox.svg
     :target: https://pypi.python.org/pypi/matchbox/
-    :alt: Egg Status
+    :alt: Versions
 
-.. image:: https://pypip.in/license/matchbox/badge.png
+.. image:: https://img.shields.io/pypi/l/matchbox.svg
     :target: https://pypi.python.org/pypi/matchbox/
     :alt: License
 
