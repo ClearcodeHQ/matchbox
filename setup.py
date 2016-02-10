@@ -66,7 +66,7 @@ setup(
     url='https://github.com/ClearcodeHQ/matchbox',
     license="MIT License",
     classifiers=[
-        'Development Status :: 1 - Planning',
+        'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)',
         'Natural Language :: English',
