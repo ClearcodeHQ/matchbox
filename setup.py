@@ -64,7 +64,7 @@ setup(
     author='Grzegorz Sliwinski',
     author_email='g.sliwinski@clearcode.cc',
     url='https://github.com/ClearcodeHQ/matchbox',
-    license="MIT License",
+    license="LGPLv3+",
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
