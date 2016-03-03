@@ -16,6 +16,7 @@ def test_create(benchmark, chairs, characteristic):
     matchbox = MatchBox(characteristic)
 
     def create():
+        """Fill in matchbox with entities."""
         for chair in chairs:
             matchbox.add(chair)
 
@@ -36,6 +37,7 @@ def test_add(benchmark, elements):
     matchbox = MatchBox('c')
 
     def add():
+        """Fill in matchbox with entities."""
         for el in elements:
             matchbox.add(el)
 

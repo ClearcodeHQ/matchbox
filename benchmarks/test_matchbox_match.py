@@ -1,3 +1,4 @@
+# pylama:ignore=R0912
 """Benchmark tests comparing different approaches to same problem - finiding fitting element."""
 from random import Random
 
@@ -11,11 +12,11 @@ random_checker_size = Random(('Chair', SIZE*2, 'size'))
 random_checker_weight = Random(('Chair', SIZE*2, 'weight'))
 random_checker_armrest = Random(('Chair', SIZE*2, 'armrest'))
 
-colour = random_checker_colour.choice(COLOURS)
-legs = random_checker_legs.randint(0, MAX_LEGS)
-size = random_checker_size.randint(0, 100)
-weight = random_checker_weight.randint(0, 100)
-armrest = random_checker_armrest.choice([True, False])
+colour_trait = random_checker_colour.choice(COLOURS)
+legs_trait = random_checker_legs.randint(0, MAX_LEGS)
+size_trait = random_checker_size.randint(0, 100)
+weight_trait = random_checker_weight.randint(0, 100)
+armrest_trait = random_checker_armrest.choice([True, False])
 
 
 def run_match_matchboxes(boxes, chairs, values):
@@ -85,33 +86,33 @@ def run_match_one_for_multi_condition(chairs, colour, legs, size, weight, armres
     for chair in chairs:
         if chair.colour is not None and colour is not None:
             if chair.colour_match and chair.colour != colour:
-                    continue
+                continue
             elif not chair.colour_match and chair.colour == colour:
-                    continue
+                continue
 
         if chair.legs is not None and legs is not None:
             if chair.legs_match and chair.legs != legs:
-                    continue
+                continue
             elif not chair.legs_match and chair.legs == legs:
-                    continue
+                continue
 
         if chair.size is not None and size is not None:
             if chair.size_match and chair.size != size:
-                    continue
+                continue
             elif not chair.size_match and chair.size == size:
-                    continue
+                continue
 
         if chair.weight is not None and weight is not None:
             if chair.weight_match and chair.weight != weight:
-                    continue
+                continue
             elif not chair.weight_match and chair.weight == weight:
-                    continue
+                continue
 
         if chair.armrest is not None and armrest is not None:
             if chair.armrest_match and chair.armrest != armrest:
-                    continue
+                continue
             elif not chair.armrest_match and chair.armrest == armrest:
-                    continue
+                continue
         matched.add(chair)
     return matched
 
@@ -119,28 +120,29 @@ def run_match_one_for_multi_condition(chairs, colour, legs, size, weight, armres
 @pytest.mark.benchmark(group='match_all_categories')
 def test_match_matchbox(benchmark, boxes, chairs):
     """Benchmark for finding matches using matchboxes."""
-    benchmark(run_match_matchboxes, boxes, chairs, [colour, legs, size, weight, armrest])
+    benchmark(run_match_matchboxes, boxes, chairs, [colour_trait, legs_trait, size_trait, weight_trait, armrest_trait])
 
 
 @pytest.mark.benchmark(group='match_all_categories')
 def test_match_one_after_another(benchmark, chairs):
     """Benchmark for finding matches using subsequent iterations per each characteristic."""
-    benchmark(run_match_one_after_another, chairs, colour, legs, size, weight, armrest)
+    benchmark(run_match_one_after_another, chairs, colour_trait, legs_trait, size_trait, weight_trait, armrest_trait)
 
 
 @pytest.mark.benchmark(group='match_all_categories')
 def test_match_one_for_multi_condition(benchmark, chairs):
     """Benchmark for finding matches using one iteration, and checking each desired conditions."""
-    benchmark(run_match_one_for_multi_condition, chairs, colour, legs, size, weight, armrest)
+    benchmark(
+        run_match_one_for_multi_condition, chairs, colour_trait, legs_trait, size_trait, weight_trait, armrest_trait)
 
 
 def test_match_one_after_another_check_matchbox(boxes, chairs):
     """Check if subsequent iterations checking return same result as matchboxes."""
-    assert run_match_matchboxes(boxes, chairs, [colour, legs, size, weight, armrest]) ==\
-        run_match_one_after_another(chairs, colour, legs, size, weight, armrest)
+    assert run_match_matchboxes(boxes, chairs, [colour_trait, legs_trait, size_trait, weight_trait, armrest_trait]) == \
+        run_match_one_after_another(chairs, colour_trait, legs_trait, size_trait, weight_trait, armrest_trait)
 
 
 def test_match_one_for_multi_condition_check_matchbox(boxes, chairs):
     """Check if one interation result finiding return same result as matchboxes."""
-    assert run_match_matchboxes(boxes, chairs, [colour, legs, size, weight, armrest]) ==\
-        run_match_one_for_multi_condition(chairs, colour, legs, size, weight, armrest)
+    assert run_match_matchboxes(boxes, chairs, [colour_trait, legs_trait, size_trait, weight_trait, armrest_trait]) == \
+        run_match_one_for_multi_condition(chairs, colour_trait, legs_trait, size_trait, weight_trait, armrest_trait)
