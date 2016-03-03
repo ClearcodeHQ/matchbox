@@ -17,8 +17,8 @@
 # along with matchbox.  If not, see <http://www.gnu.org/licenses/>.
 """Main matchbox module."""
 from __future__ import absolute_import
-from matchbox.matchbox import MatchBox
-from matchbox.matchindex import MatchIndex
+from matchbox.box import MatchBox
+from matchbox.index import MatchIndex
 
 __version__ = '0.3.0'
 

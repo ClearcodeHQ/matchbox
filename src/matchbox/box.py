@@ -20,7 +20,7 @@
 from __future__ import absolute_import
 from collections import namedtuple, Hashable
 
-from matchbox.matchindex import MatchIndex
+from matchbox.index import MatchIndex
 
 
 Trait = namedtuple('Trait', 'traits, is_matching')
@@ -67,7 +67,7 @@ class MatchBox(MatchIndex):
 
         :param object entity:
         :return: namedtuple consisting of characteristic traits and match flag
-        :rtype: matchbox.matchbox.Trait
+        :rtype: matchbox.box.Trait
         """
         traits = getattr(entity, self._characteristic)
         if traits is not None and isinstance(traits, Hashable):

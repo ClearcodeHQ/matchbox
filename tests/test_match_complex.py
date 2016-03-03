@@ -1,5 +1,5 @@
 """Tests for complex examples of MatchBox."""
-from matchbox.matchbox import MatchBox
+from matchbox.box import MatchBox
 
 from tests import Entity
 
