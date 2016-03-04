@@ -1,3 +1,4 @@
+# pylama:ignore=W0621
 """Benchmark fixtuires."""
 
 from random import Random
@@ -46,7 +47,7 @@ def chairs():
 @pytest.fixture(scope='session')
 def boxes(chairs):
     """Fixture with built boxes."""
-    boxes = [
+    boxes_list = [
         MatchBox('colour'),
         MatchBox('legs'),
         MatchBox('size'),
@@ -54,7 +55,7 @@ def boxes(chairs):
         MatchBox('armrest'),
     ]
     for sample in chairs:
-        for box in boxes:
+        for box in boxes_list:
             box.add(sample)
 
-    return boxes
+    return boxes_list

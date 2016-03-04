@@ -12,10 +12,8 @@ def test_init():
     box = MatchIndex()
     assert not box.mismatch_unknown, "mismatch_unknown property should be empty."
     assert not box.index, "index should also be empty"
-    assert (
-        isinstance(box.index, defaultdict),
+    assert isinstance(box.index, defaultdict),\
         "Having index as defaultdict is critical for algorithm."
-    )
 
 
 def test_empty():
@@ -50,7 +48,7 @@ def test_unknown_trait_becoms_known():
     """Check if entities are only added to mismatch_unknown for future unknown."""
     box = MatchIndex()
     # make one trait known
-    box.index['known']
+    assert box.index['known'] == set([])
     some_entity = "I'm an object, I only know what I know."
     second_entity = "I'm rejecting what We don't already know."
     box.mismatch_unknown.add(some_entity)
