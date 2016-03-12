@@ -66,3 +66,73 @@ def test_multimatchbox_indexed_not_match(traits):
 
     for trait in traits:
         assert ob in matchbox.index[trait], "Entity should be in set under it's characteristic's trait key."
+
+
+def test_matchbox_remove_one():
+    """Check removing entity from matchbox."""
+    # Given set of entities, all with matching trait, and one mismatching within index
+    entity1 = Entity('entity1')
+    entity2 = Entity('entity2')
+    entity3 = Entity('entity3')
+    entity4 = Entity('entity4', False)
+
+    matchbox = MatchBox('characteristic')
+    matchbox.add(entity1)
+    matchbox.add(entity2)
+    matchbox.add(entity3)
+    matchbox.add(entity4)
+
+    assert matchbox
+    assert matchbox.mismatch_unknown
+    assert matchbox.index
+
+    assert entity1 in matchbox.mismatch_unknown
+    assert entity1 not in matchbox.index['entity1']
+    assert entity1 in matchbox.index['entity2']
+    assert entity1 in matchbox.index['entity2']
+    assert entity1 in matchbox.index['entity2']
+
+    # When removing one entity from a box
+    matchbox.remove(entity1)
+
+    # it's no longer present
+    assert entity1 not in matchbox.mismatch_unknown
+    assert entity1 not in matchbox.index['entity1']
+    assert entity1 not in matchbox.index['entity2']
+    assert entity1 not in matchbox.index['entity2']
+    assert entity1 not in matchbox.index['entity2']
+
+    # but the matchbox is filled
+    assert matchbox
+    assert matchbox.mismatch_unknown
+    assert matchbox.index
+
+
+def test_matchbox_remove_completely():
+    """Check removing entities from matchbox."""
+    # Given set of entities, all with matching trait, and one mismatching within index
+    entity1 = Entity('entity1')
+    entity2 = Entity('entity2')
+    entity3 = Entity('entity3')
+    entity4 = Entity('entity4', False)
+
+    matchbox = MatchBox('characteristic')
+    matchbox.add(entity1)
+    matchbox.add(entity2)
+    matchbox.add(entity3)
+    matchbox.add(entity4)
+
+    assert matchbox
+    assert matchbox.mismatch_unknown
+    assert matchbox.index
+
+    # When removing them from a box
+    matchbox.remove(entity1)
+    matchbox.remove(entity2)
+    matchbox.remove(entity3)
+    matchbox.remove(entity4)
+
+    # Then box should be empty
+    assert not matchbox
+    assert not matchbox.mismatch_unknown
+    assert not matchbox.index

@@ -92,6 +92,22 @@ class MatchBox(MatchIndex):
         else:
             self.add_mismatch(entity, *characteristic.traits)
 
+    def remove(self, entity):
+        """
+        Remove entity from the MatchBox.
+
+        :param object entity:
+        """
+        empty_traits = set()
+        self.mismatch_unknown.discard(entity)
+        for trait, entities in self.index.items():
+            entities.discard(entity)
+            if not entities:
+                empty_traits.add(trait)
+
+        for empty_trait in empty_traits:
+            del self.index[empty_trait]
+
     def __repr__(self):
         """Box representation."""
         return '<MatchBox({0})>'.format(self._characteristic)
