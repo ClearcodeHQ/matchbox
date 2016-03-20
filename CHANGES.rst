@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+unreleased
+----------
+
+- remove method - ability to remove entity from already built box
+- fix license information
+
 0.3.0
 ----------
 
