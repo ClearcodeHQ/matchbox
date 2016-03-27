@@ -172,7 +172,7 @@ class MatchIndex(object):
                 self.index[trait] = self.mismatch_unknown.copy()
 
         # Now each known trait this entity is not matching, will explicitly mismatch currently added entity.
-        for existing_trait in self.index.keys():
+        for existing_trait in self.index:
             if existing_trait not in traits:
                 self.index[existing_trait].add(entity)
 
