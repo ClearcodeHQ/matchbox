@@ -4,6 +4,7 @@ CHANGELOG
 unreleased
 ----------
 
+- small code enhancement during adding matching entities to boxes
 - remove method - ability to remove entity from already built box
 - fix license information
 
