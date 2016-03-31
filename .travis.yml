@@ -10,8 +10,6 @@ install:
 - python setup.py develop
 - pip install matchbox[tests]
 - pip install coveralls
-- pip install restructuredtext_lint pygments
-- pip install coveralls
 - pip install wheel
 script:
 - py.test --verbose --capture=no --showlocals --cov src/matchbox tests/
