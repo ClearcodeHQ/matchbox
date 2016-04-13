@@ -42,8 +42,13 @@ test_requires = [
     'pytest',
     'pytest-cov',
     'pytest-benchmark',
-    'pylama',
-    'pylama_pylint'
+    'pylama==7.0.9',
+    'pyflakes==1.1.0',
+    'pep257==0.7.0',
+    'pep8==1.7.0',
+    'mccabe==0.4.0',
+    'pylama_pylint==2.2.1',
+    'pylint==1.5.4',
 ]
 
 extras_require = {
