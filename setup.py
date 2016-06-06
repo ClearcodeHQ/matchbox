@@ -48,7 +48,7 @@ test_requires = [
     'pep8==1.7.0',
     'mccabe==0.5.0',
     'pylama_pylint==2.2.1',
-    'pylint==1.5.5',
+    'pylint==1.5.6',
 ]
 
 extras_require = {
