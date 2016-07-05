@@ -40,7 +40,7 @@ requirements = []
 
 test_requires = [
     'pytest==2.9.2',
-    'pytest-cov==2.2.1',
+    'pytest-cov==2.3.0',
     'pytest-benchmark==3.0.0',
     'pylama==7.0.9',
     'pyflakes==1.2.3',
