@@ -46,7 +46,7 @@ test_requires = [
     'pyflakes==1.2.3',
     'pep257==0.7.0',
     'pep8==1.7.0',
-    'mccabe==0.5.1',
+    'mccabe==0.5.2',
     'pylama_pylint==2.2.1',
 ]
 
