@@ -43,7 +43,7 @@ test_requires = [
     'pytest-cov==2.3.1',
     'pytest-benchmark==3.0.0',
     'pylama==7.0.9',
-    'pyflakes==1.2.3',
+    'pyflakes==1.3.0',
     'pep257==0.7.0',
     'pep8==1.7.0',
     'mccabe==0.5.2',
