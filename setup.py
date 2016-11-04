@@ -19,13 +19,9 @@
 """matchbox's installation module."""
 
 import os
-import re
 from setuptools import setup, find_packages
 
 here = os.path.dirname(__file__)
-with open(os.path.join(here, 'src', 'matchbox', '__init__.py')) as v_file:
-    package_version = re.compile(
-        r".*__version__ = '(.*?)'", re.S).match(v_file.read()).group(1)
 
 
 def read(fname):
@@ -35,6 +31,7 @@ def read(fname):
     :param str fname: name of a file to read
     """
     return open(os.path.join(here, fname)).read()
+
 
 requirements = []
 
@@ -51,7 +48,7 @@ extras_require = {
 
 setup(
     name='matchbox',
-    version=package_version,
+    version='0.3.0',
     description=(
         'Abstraction layer for creating hash maps to speed up extracting' +
         ' subsets out of objects in collection'
