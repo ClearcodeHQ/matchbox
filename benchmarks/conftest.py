@@ -23,7 +23,7 @@ armrest_match_randomizer = Random('armrest_match')
 
 @pytest.fixture(scope='session')
 def chairs():
-    """Data fixtures for benchmarks."""
+    """Return data fixtures for benchmarks."""
     chairs_list = []
     for i in range(SIZE):
         chairs_list.append(
