@@ -7,7 +7,7 @@ class Entity(object):
 
     def __init__(self, trait, matches=True):
         """
-        Dummy entity's initializing method.
+        Initialize dummy entity.
 
         :param trait: characteristic trait.
         :param bool matches: whether it matches or not.
