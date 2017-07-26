@@ -38,7 +38,7 @@ requirements = []
 test_requires = [
     'pytest==3.1.3',
     'pytest-cov==2.5.1',
-    'pytest-benchmark==3.1.0',
+    'pytest-benchmark==3.1.1',
 ]
 
 extras_require = {
