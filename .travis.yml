@@ -12,24 +12,41 @@ branches:
   except:
   - requires-io-master
 install:
-- "pip install -r requirements-test.txt"
-- python setup.py develop
-- pip install matchbox[tests]
-- pip install coveralls
-- pip install wheel
+- pip install -r requirements-test.txt
+- pip install -e .[tests] coveralls wheel
 script:
 - py.test --verbose --capture=no --showlocals --cov src/matchbox tests/
 - pylama
-- py.test benchmarks/
 after_success:
 - coveralls
-deploy:
-  provider: pypi
-  user: fizyk
-  password:
-    secure: e9sX9MdxZhypMQR10ovHM6atF/JAmz8+4RXI+qIPkTHJ4jaTLVZxYTny380hgNKoVIt4YmxhbzHR1o7uEiI1RH6xLNicGD3mmkE12Fye6Y+4tUh+hFjtoTq46+QRNyxqUFyUYrH9W5XezWHkAaaXwuw/wDWASAzotAvkCX0WIuzedPCDdl7Z0Q8SREniA+rae/0e3GwTCIF0cNP0W7125UZ1C6NZ6Bt/94qBfx6h5u2YW79VdzPukGWOoukf4xrGfCiSA08XIdn8Z9yA2+HgF4lRgQr0egBWePg6LB4sTIGdey+7RGast+Jg+lG2bUQZuPOCZgiPNGnnjFMuZHMSmbYaT+M1KCLHQBisWjchIwNpu5RStz99Mj8QuJN0hvQaDjA7nMjK+WAlHrZ8x+SweaQsE/SfhoMX39WzMsZdNIZNlpKy3CVUeZWIl9ZdzH/sDGjvk8fCObPVyd3yDKel9EwKAIK+wA3Xk1ba2foKi+bHEfEoUGSQWjG9U+v2GWskAvm4OeTLXCz9Dbiun2T9/uAYOM6oBmMw0Ny1VKgpb4iChCgBMeW9fdFEUI5F850h4QwE4QW348WkIXJ/L9jS8LaDjYGlLsNNqB6Z6JlZHc9inWH5UL7WAuY9zBIHfwkuxH+4ntjt26B829ItZxziRQeVuCW/RAvqJcrUt/Cq7k8=
-  on:
-    tags: true
-    all_branches: true
-    repo: ClearcodeHQ/matchbox
-  distributions: sdist bdist_wheel
+jobs:
+  include:
+    - &benchmarks
+      stage: benchmarks
+      script:
+        - py.test benchmarks/
+      after_success: skip
+    - <<: *benchmarks
+      python: 3.4
+    - <<: *benchmarks
+      python: 3.5
+    - <<: *benchmarks
+      python: 3.6
+    - <<: *benchmarks
+      python: pypy
+    - <<: *benchmarks
+      python: pypy3
+    - stage: deploy
+      python: 3.6
+      if: tag IS present
+      script: skip
+      deploy:
+        provider: pypi
+        user: fizyk
+        password:
+          secure: e9sX9MdxZhypMQR10ovHM6atF/JAmz8+4RXI+qIPkTHJ4jaTLVZxYTny380hgNKoVIt4YmxhbzHR1o7uEiI1RH6xLNicGD3mmkE12Fye6Y+4tUh+hFjtoTq46+QRNyxqUFyUYrH9W5XezWHkAaaXwuw/wDWASAzotAvkCX0WIuzedPCDdl7Z0Q8SREniA+rae/0e3GwTCIF0cNP0W7125UZ1C6NZ6Bt/94qBfx6h5u2YW79VdzPukGWOoukf4xrGfCiSA08XIdn8Z9yA2+HgF4lRgQr0egBWePg6LB4sTIGdey+7RGast+Jg+lG2bUQZuPOCZgiPNGnnjFMuZHMSmbYaT+M1KCLHQBisWjchIwNpu5RStz99Mj8QuJN0hvQaDjA7nMjK+WAlHrZ8x+SweaQsE/SfhoMX39WzMsZdNIZNlpKy3CVUeZWIl9ZdzH/sDGjvk8fCObPVyd3yDKel9EwKAIK+wA3Xk1ba2foKi+bHEfEoUGSQWjG9U+v2GWskAvm4OeTLXCz9Dbiun2T9/uAYOM6oBmMw0Ny1VKgpb4iChCgBMeW9fdFEUI5F850h4QwE4QW348WkIXJ/L9jS8LaDjYGlLsNNqB6Z6JlZHc9inWH5UL7WAuY9zBIHfwkuxH+4ntjt26B829ItZxziRQeVuCW/RAvqJcrUt/Cq7k8=
+        on:
+          tags: true
+          all_branches: true
+          repo: ClearcodeHQ/matchbox
+        distributions: bdist_wheel
