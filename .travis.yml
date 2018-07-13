@@ -27,8 +27,6 @@ jobs:
         - py.test benchmarks/
       after_success: skip
     - <<: *benchmarks
-      python: 2.7
-    - <<: *benchmarks
       python: 3.4
     - <<: *benchmarks
       python: 3.5
