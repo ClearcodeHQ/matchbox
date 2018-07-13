@@ -197,7 +197,10 @@ class MatchIndex(object):
         Filter out those entities from collection that do not match the trait.
 
         .. note ::
-            `collection` has to be a set of objects that have already been added to the index.
+
+            `collection` should be a set of objects that have already been added to the index.
+            But if the objects in the collection hadn't had given characteristics defined,
+            they wouldn't be indexed, and won't get rejected either.
 
         :param set collection: a set of entities that should be filtered by this index.
         :param collections.Hashable trait: a value of the same kind as the traits that entities in
