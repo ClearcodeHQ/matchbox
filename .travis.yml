@@ -29,8 +29,6 @@ jobs:
     - <<: *benchmarks
       python: 2.7
     - <<: *benchmarks
-      python: 3.3
-    - <<: *benchmarks
       python: 3.4
     - <<: *benchmarks
       python: 3.5
