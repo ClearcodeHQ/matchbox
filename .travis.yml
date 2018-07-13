@@ -21,10 +21,25 @@ after_success:
 - coveralls
 jobs:
   include:
-    - stage: benchmarks
+    - &benchmarks
+      stage: benchmarks
       script:
         - py.test benchmarks/
       after_success: skip
+    - <<: *benchmarks
+      python: 2.7
+    - <<: *benchmarks
+      python: 3.3
+    - <<: *benchmarks
+      python: 3.4
+    - <<: *benchmarks
+      python: 3.5
+    - <<: *benchmarks
+      python: 3.6
+    - <<: *benchmarks
+      python: pypy
+    - <<: *benchmarks
+      python: pypy3
     - stage: deploy
       python: 3.6
       if: tag IS present
