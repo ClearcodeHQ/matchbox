@@ -15,11 +15,18 @@ install:
 - pip install -e .[tests] coveralls wheel
 script:
 - py.test --verbose --capture=no --showlocals --cov src/matchbox tests/
-- pylama
 after_success:
 - coveralls
 jobs:
   include:
+    - stage: linters
+      python: 3.6
+      install:
+        - pip install -r requirements-lint.txt
+        - pip install -e .[tests]
+      script:
+        - pylama
+      after_success: skip
     - &benchmarks
       stage: benchmarks
       script:
