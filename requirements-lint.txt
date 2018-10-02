@@ -1,5 +1,5 @@
 # linters
-pylama==7.4.3
+pylama==7.5.0
 pyflakes==2.0.0
 pydocstyle==2.1.1
 mccabe==0.6.1
