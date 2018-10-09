@@ -1,4 +1,3 @@
-# pylama:ignore=W0621
 """Benchmark fixtuires."""
 
 from random import Random
@@ -9,16 +8,16 @@ from matchbox import MatchBox
 
 from benchmarks import Chair, SIZE, COLOURS, MAX_LEGS
 
-colour_randomizer = Random('colour')
-colour_match_randomizer = Random('colour_match')
-legs_randomzer = Random('legs')
-legs_match_randomizer = Random('legs_match')
-size_randomizer = Random('size')
-size_match_randomizer = Random('size_match')
-weight_randomizer = Random('weight')
-weight_match_randomizer = Random('weight_match')
-armrest_randomizer = Random('armrest')
-armrest_match_randomizer = Random('armrest_match')
+COLOUR_RANDOMIZER = Random('colour')
+COLOUR_MATCH_RANDOMIZER = Random('colour_match')
+LEGS_RANDOMIZER = Random('legs')
+LEGS_MATCH_RANDOMIZER = Random('legs_match')
+SIZE_RANDOMIZER = Random('size')
+SIZE_MATCH_RANDOMIZER = Random('size_match')
+WEIGHT_RANDOMIZER = Random('weight')
+WEIGHT_MATCH_RANDOMIZER = Random('weight_match')
+ARMREST_RANDOMIZER = Random('armrest')
+ARMREST_MATCH_RANDOMIZER = Random('armrest_match')
 
 
 @pytest.fixture(scope='session')
@@ -29,23 +28,23 @@ def chairs():
         chairs_list.append(
             Chair(
                 id=i,
-                colour=colour_randomizer.choice(COLOURS),
-                colour_match=colour_match_randomizer.choice([True, False]),
-                legs=legs_randomzer.randint(0, MAX_LEGS),
-                legs_match=legs_match_randomizer.choice([True, False]),
-                size=size_randomizer.randint(0, 100),
-                size_match=size_match_randomizer.choice([True, False]),
-                weight=weight_randomizer.randint(0, 100),
-                weight_match=weight_match_randomizer.choice([True, False]),
-                armrest=armrest_randomizer.choice([True, False]),
-                armrest_match=armrest_match_randomizer.choice([True, False]),
+                colour=COLOUR_RANDOMIZER.choice(COLOURS),
+                colour_match=COLOUR_MATCH_RANDOMIZER.choice([True, False]),
+                legs=LEGS_RANDOMIZER.randint(0, MAX_LEGS),
+                legs_match=LEGS_MATCH_RANDOMIZER.choice([True, False]),
+                size=SIZE_RANDOMIZER.randint(0, 100),
+                size_match=SIZE_MATCH_RANDOMIZER.choice([True, False]),
+                weight=WEIGHT_RANDOMIZER.randint(0, 100),
+                weight_match=WEIGHT_MATCH_RANDOMIZER.choice([True, False]),
+                armrest=ARMREST_RANDOMIZER.choice([True, False]),
+                armrest_match=ARMREST_MATCH_RANDOMIZER.choice([True, False]),
             )
         )
     return set(chairs_list)
 
 
 @pytest.fixture(scope='session')
-def boxes(chairs):
+def boxes(chairs):  # pylint:disable=redefined-outer-name
     """Fixture with built boxes."""
     boxes_list = [
         MatchBox('colour'),

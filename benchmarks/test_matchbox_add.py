@@ -6,7 +6,7 @@ import pytest
 from matchbox import MatchBox
 
 
-dummy = namedtuple('dummy', 'c c_match')
+Dummy = namedtuple('Dummy', 'c c_match')
 
 
 @pytest.mark.benchmark(group='create')
@@ -25,12 +25,12 @@ def test_create(benchmark, chairs, characteristic):
 
 @pytest.mark.benchmark(group='add')
 @pytest.mark.parametrize('elements', [
-    (dummy(1, True), dummy(1, True)),
-    (dummy(1, True), dummy(2, True)),
-    (dummy(1, False), dummy(1, False)),
-    (dummy(1, False), dummy(2, False)),
-    (dummy(1, True), dummy(1, False)),
-    (dummy(1, True), dummy(2, False)),
+    (Dummy(1, True), Dummy(1, True)),
+    (Dummy(1, True), Dummy(2, True)),
+    (Dummy(1, False), Dummy(1, False)),
+    (Dummy(1, False), Dummy(2, False)),
+    (Dummy(1, True), Dummy(1, False)),
+    (Dummy(1, True), Dummy(2, False)),
 ])
 def test_add(benchmark, elements):
     """Test benchmark adding specified set of elements to MatchBox."""
@@ -38,7 +38,7 @@ def test_add(benchmark, elements):
 
     def add():
         """Fill in matchbox with entities."""
-        for el in elements:
-            matchbox.add(el)
+        for element in elements:
+            matchbox.add(element)
 
     benchmark(add)

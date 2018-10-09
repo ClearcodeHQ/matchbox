@@ -2,12 +2,12 @@
 """matchbox's tests."""
 
 
-class Entity(object):
+class Entity(object):  # pylint:disable=too-few-public-methods
     """Dummy entity to be indexed."""
 
     def __init__(self, trait, matches=True):
         """
-        Initialize dummy entity.
+        Initialize Dummy entity.
 
         :param trait: characteristic trait.
         :param bool matches: whether it matches or not.
