@@ -1,4 +1,3 @@
-# pylama:ignore=R0912
 """Benchmark tests comparing different approaches to same problem - finiding fitting element."""
 from random import Random
 
@@ -6,17 +5,17 @@ import pytest
 
 from benchmarks import SIZE, COLOURS, MAX_LEGS
 
-random_checker_colour = Random(('Chair', SIZE*2, 'colour'))
-random_checker_legs = Random(('Chair', SIZE*2, 'legs'))
-random_checker_size = Random(('Chair', SIZE*2, 'size'))
-random_checker_weight = Random(('Chair', SIZE*2, 'weight'))
-random_checker_armrest = Random(('Chair', SIZE*2, 'armrest'))
+RANDOM_CHECKER_COLOUR = Random(('Chair', SIZE * 2, 'colour'))
+RANDOM_CHECKER_LEGS = Random(('Chair', SIZE * 2, 'legs'))
+RANDOM_CHECKER_SIZE = Random(('Chair', SIZE * 2, 'size'))
+RANDOM_CHECKER_WEIGHT = Random(('Chair', SIZE * 2, 'weight'))
+RANDOM_CHECKER_ARMREST = Random(('Chair', SIZE * 2, 'armrest'))
 
-colour_trait = random_checker_colour.choice(COLOURS)
-legs_trait = random_checker_legs.randint(0, MAX_LEGS)
-size_trait = random_checker_size.randint(0, 100)
-weight_trait = random_checker_weight.randint(0, 100)
-armrest_trait = random_checker_armrest.choice([True, False])
+COLOUR_TRAIT = RANDOM_CHECKER_COLOUR.choice(COLOURS)
+LEGS_TRAIT = RANDOM_CHECKER_LEGS.randint(0, MAX_LEGS)
+SIZE_TRAIT = RANDOM_CHECKER_SIZE.randint(0, 100)
+WEIGHT_TRAIT = RANDOM_CHECKER_WEIGHT.randint(0, 100)
+ARMREST_TRAIT = RANDOM_CHECKER_ARMREST.choice([True, False])
 
 
 def run_match_matchboxes(boxes, chairs, values):
@@ -28,7 +27,7 @@ def run_match_matchboxes(boxes, chairs, values):
     return chairs
 
 
-def run_match_one_after_another(chairs, colour, legs, size, weight, armrest):
+def run_match_one_after_another(chairs, colour, legs, size, weight, armrest):  # pylint:disable=too-many-branches
     """Test run with individual for loops and checking of each characteristic."""
     matched = set([])
     for chair in chairs:
@@ -80,7 +79,7 @@ def run_match_one_after_another(chairs, colour, legs, size, weight, armrest):
     return matched5
 
 
-def run_match_one_for_multi_condition(chairs, colour, legs, size, weight, armrest):
+def run_match_one_for_multi_condition(chairs, colour, legs, size, weight, armrest):  # pylint:disable=too-many-branches
     """One test with one for loop but multi condition."""
     matched = set([])
     for chair in chairs:
@@ -120,29 +119,29 @@ def run_match_one_for_multi_condition(chairs, colour, legs, size, weight, armres
 @pytest.mark.benchmark(group='match_all_categories')
 def test_match_matchbox(benchmark, boxes, chairs):
     """Benchmark for finding matches using matchboxes."""
-    benchmark(run_match_matchboxes, boxes, chairs, [colour_trait, legs_trait, size_trait, weight_trait, armrest_trait])
+    benchmark(run_match_matchboxes, boxes, chairs, [COLOUR_TRAIT, LEGS_TRAIT, SIZE_TRAIT, WEIGHT_TRAIT, ARMREST_TRAIT])
 
 
 @pytest.mark.benchmark(group='match_all_categories')
 def test_match_one_after_another(benchmark, chairs):
     """Benchmark for finding matches using subsequent iterations per each characteristic."""
-    benchmark(run_match_one_after_another, chairs, colour_trait, legs_trait, size_trait, weight_trait, armrest_trait)
+    benchmark(run_match_one_after_another, chairs, COLOUR_TRAIT, LEGS_TRAIT, SIZE_TRAIT, WEIGHT_TRAIT, ARMREST_TRAIT)
 
 
 @pytest.mark.benchmark(group='match_all_categories')
 def test_match_one_for_multi_condition(benchmark, chairs):
     """Benchmark for finding matches using one iteration, and checking each desired conditions."""
     benchmark(
-        run_match_one_for_multi_condition, chairs, colour_trait, legs_trait, size_trait, weight_trait, armrest_trait)
+        run_match_one_for_multi_condition, chairs, COLOUR_TRAIT, LEGS_TRAIT, SIZE_TRAIT, WEIGHT_TRAIT, ARMREST_TRAIT)
 
 
 def test_match_one_after_another_check_matchbox(boxes, chairs):
     """Check if subsequent iterations checking return same result as matchboxes."""
-    assert run_match_matchboxes(boxes, chairs, [colour_trait, legs_trait, size_trait, weight_trait, armrest_trait]) == \
-        run_match_one_after_another(chairs, colour_trait, legs_trait, size_trait, weight_trait, armrest_trait)
+    assert run_match_matchboxes(boxes, chairs, [COLOUR_TRAIT, LEGS_TRAIT, SIZE_TRAIT, WEIGHT_TRAIT, ARMREST_TRAIT]) == \
+        run_match_one_after_another(chairs, COLOUR_TRAIT, LEGS_TRAIT, SIZE_TRAIT, WEIGHT_TRAIT, ARMREST_TRAIT)
 
 
 def test_match_one_for_multi_condition_check_matchbox(boxes, chairs):
     """Check if one interation result finiding return same result as matchboxes."""
-    assert run_match_matchboxes(boxes, chairs, [colour_trait, legs_trait, size_trait, weight_trait, armrest_trait]) == \
-        run_match_one_for_multi_condition(chairs, colour_trait, legs_trait, size_trait, weight_trait, armrest_trait)
+    assert run_match_matchboxes(boxes, chairs, [COLOUR_TRAIT, LEGS_TRAIT, SIZE_TRAIT, WEIGHT_TRAIT, ARMREST_TRAIT]) == \
+        run_match_one_for_multi_condition(chairs, COLOUR_TRAIT, LEGS_TRAIT, SIZE_TRAIT, WEIGHT_TRAIT, ARMREST_TRAIT)

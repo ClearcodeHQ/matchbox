@@ -68,11 +68,11 @@ def test_repr(characteristic):
 @pytest.mark.parametrize('empty_trait', (None, []))
 def test_matchbox_empty_trait(empty_trait):
     """Check extracting object's traits if it is recognised as not used."""
-    ob = Entity(empty_trait)
+    obj = Entity(empty_trait)
 
     box = MatchBox('characteristic')
-    assert not box.extract_traits(ob).traits, "falsy trait"
-    box.add(ob)
+    assert not box.extract_traits(obj).traits, "falsy trait"
+    box.add(obj)
     assert not box.index, "index should be empty."
     assert not box.mismatch_unknown, "collection for not matching unknown should also be empty."
     assert not box, "box should be empty"
@@ -81,12 +81,12 @@ def test_matchbox_empty_trait(empty_trait):
 @pytest.mark.parametrize('falsy_trait', ((), False, ''))
 def test_matchbox_falsy_used_trait(falsy_trait):
     """Check simple adding object to index if it does match characteristic's traits."""
-    ob = Entity(falsy_trait)
+    obj = Entity(falsy_trait)
 
     box = MatchBox('characteristic')
-    assert box.extract_traits(ob).traits, "traits are not falsy"
-    assert not box.extract_traits(ob).traits[0], "though single trait element is"
-    box.add(ob)
+    assert box.extract_traits(obj).traits, "traits are not falsy"
+    assert not box.extract_traits(obj).traits[0], "though single trait element is"
+    box.add(obj)
     assert falsy_trait in box.index, "index should not be empty, with key for the falsy_trait instead."
-    assert ob in box.mismatch_unknown, "due to characteristic_match, this should be filed."
+    assert obj in box.mismatch_unknown, "due to characteristic_match, this should be filed."
     assert box, "box should not be empty"

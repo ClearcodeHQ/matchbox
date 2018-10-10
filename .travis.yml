@@ -25,7 +25,9 @@ jobs:
         - pip install -r requirements-lint.txt
         - pip install -e .[tests]
       script:
-        - pylama
+        - pycodestyle
+        - pydocstyle
+        - pylint matchbox tests benchmarks
       after_success: skip
     - &benchmarks
       stage: benchmarks
