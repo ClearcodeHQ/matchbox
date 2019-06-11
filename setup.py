@@ -36,7 +36,7 @@ def read(fname):
 requirements = []
 
 test_requires = [
-    'pytest==4.6.2',
+    'pytest==4.6.3',
     'pytest-cov==2.7.1',
     'pytest-benchmark==3.2.2',
 ]
