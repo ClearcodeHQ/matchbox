@@ -16,7 +16,8 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with matchbox.  If not, see <http://www.gnu.org/licenses/>.
 """Match box - for indexing objects by their fields."""
-from collections import namedtuple, Hashable
+from collections import namedtuple
+from collections.abc import Hashable
 
 from matchbox.index import MatchIndex
 
