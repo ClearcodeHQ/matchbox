@@ -1,2 +1,2 @@
 # test runs requirements (versions we'll be testing against) - automatically updated by requires.io
-coverage==4.5.3 # pytest-cov
+coverage==4.5.4 # pytest-cov
