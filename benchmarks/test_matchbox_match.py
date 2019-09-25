@@ -35,7 +35,7 @@ def run_match_one_after_another(chairs, colour, legs, size, weight, armrest):  #
         if chair.colour is not None and colour is not None:
             if chair.colour_match and chair.colour != colour:
                 continue
-            elif not chair.colour_match and chair.colour == colour:
+            if not chair.colour_match and chair.colour == colour:
                 continue
         matched.add(chair)
 
@@ -45,7 +45,7 @@ def run_match_one_after_another(chairs, colour, legs, size, weight, armrest):  #
         if chair.legs is not None and legs is not None:
             if chair.legs_match and chair.legs != legs:
                 continue
-            elif not chair.legs_match and chair.legs == legs:
+            if not chair.legs_match and chair.legs == legs:
                 continue
         matched2.add(chair)
     #
@@ -55,7 +55,7 @@ def run_match_one_after_another(chairs, colour, legs, size, weight, armrest):  #
         if chair.size is not None and size is not None:
             if chair.size_match and chair.size != size:
                 continue
-            elif not chair.size_match and chair.size == size:
+            if not chair.size_match and chair.size == size:
                 continue
         matched3.add(chair)
 
@@ -64,7 +64,7 @@ def run_match_one_after_another(chairs, colour, legs, size, weight, armrest):  #
         if chair.weight is not None and weight is not None:
             if chair.weight_match and chair.weight != weight:
                 continue
-            elif not chair.weight_match and chair.weight == weight:
+            if not chair.weight_match and chair.weight == weight:
                 continue
         matched4.add(chair)
 
@@ -73,7 +73,7 @@ def run_match_one_after_another(chairs, colour, legs, size, weight, armrest):  #
         if chair.armrest is not None and armrest is not None:
             if chair.armrest_match and chair.armrest != armrest:
                 continue
-            elif not chair.armrest_match and chair.armrest == armrest:
+            if not chair.armrest_match and chair.armrest == armrest:
                 continue
         matched5.add(chair)
     return matched5
@@ -86,31 +86,31 @@ def run_match_one_for_multi_condition(chairs, colour, legs, size, weight, armres
         if chair.colour is not None and colour is not None:
             if chair.colour_match and chair.colour != colour:
                 continue
-            elif not chair.colour_match and chair.colour == colour:
+            if not chair.colour_match and chair.colour == colour:
                 continue
 
         if chair.legs is not None and legs is not None:
             if chair.legs_match and chair.legs != legs:
                 continue
-            elif not chair.legs_match and chair.legs == legs:
+            if not chair.legs_match and chair.legs == legs:
                 continue
 
         if chair.size is not None and size is not None:
             if chair.size_match and chair.size != size:
                 continue
-            elif not chair.size_match and chair.size == size:
+            if not chair.size_match and chair.size == size:
                 continue
 
         if chair.weight is not None and weight is not None:
             if chair.weight_match and chair.weight != weight:
                 continue
-            elif not chair.weight_match and chair.weight == weight:
+            if not chair.weight_match and chair.weight == weight:
                 continue
 
         if chair.armrest is not None and armrest is not None:
             if chair.armrest_match and chair.armrest != armrest:
                 continue
-            elif not chair.armrest_match and chair.armrest == armrest:
+            if not chair.armrest_match and chair.armrest == armrest:
                 continue
         matched.add(chair)
     return matched
