@@ -33,7 +33,6 @@ jobs:
       stage: benchmarks
       script:
         - py.test benchmarks/
-      after_success: skip
     - <<: *benchmarks
       python: 3.6
     - <<: *benchmarks
