@@ -31,7 +31,7 @@ jobs:
     - &benchmarks
       stage: benchmarks
       script:
-        - py.test benchmarks/
+        - py.test --cov benchmarks benchmarks/
     - <<: *benchmarks
       python: 3.6
     - <<: *benchmarks
