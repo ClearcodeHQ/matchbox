@@ -19,7 +19,7 @@
 from collections import defaultdict
 
 
-class MatchIndex(object):
+class MatchIndex:
     """
     An index for matching or mismatching of entities by hashable traits.
 
