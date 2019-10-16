@@ -109,4 +109,4 @@ class MatchBox(MatchIndex):
 
     def __repr__(self):
         """Box representation."""
-        return '<MatchBox({0})>'.format(self._characteristic)
+        return f'<MatchBox({self._characteristic})>'

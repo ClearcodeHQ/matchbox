@@ -1,9 +1,9 @@
 dist: xenial
 language: python
 python:
-  - 3.5
   - 3.6
   - 3.7
+  - 3.8-dev
   - pypy3
 # blocklist branches
 branches:
@@ -33,9 +33,9 @@ jobs:
       script:
         - py.test --cov benchmarks benchmarks/
     - <<: *benchmarks
-      python: 3.6
-    - <<: *benchmarks
       python: 3.7
+    - <<: *benchmarks
+      python: 3.8-dev
     - <<: *benchmarks
       python: pypy3
     - stage: deploy

@@ -2,7 +2,7 @@
 """matchbox's tests."""
 
 
-class Entity(object):  # pylint:disable=too-few-public-methods
+class Entity:  # pylint:disable=too-few-public-methods
     """Dummy entity to be indexed."""
 
     def __init__(self, trait, matches=True):
