@@ -213,7 +213,3 @@ class MatchIndex(object):
     def __bool__(self):
         """Check if the index is being actually used or not."""
         return bool(self.mismatch_unknown or any(self.index.values()))
-
-    def __nonzero__(self):
-        """Python 2 equivalent of python 3's __bool__."""
-        return self.__bool__()

@@ -62,7 +62,7 @@ def test_unknown_trait_becoms_known():
 @pytest.mark.parametrize('characteristic', ('a', 'colour', 'size'))
 def test_repr(characteristic):
     """Make sure repr returns proper box identification string."""
-    assert repr(MatchBox(characteristic)) == '<MatchBox({0})>'.format(characteristic)
+    assert repr(MatchBox(characteristic)) == f'<MatchBox({characteristic})>'
 
 
 @pytest.mark.parametrize('empty_trait', (None, []))

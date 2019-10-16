@@ -16,8 +16,7 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with matchbox.  If not, see <http://www.gnu.org/licenses/>.
 """Match box - for indexing objects by their fields."""
-from collections import namedtuple
-from collections.abc import Hashable
+from collections import namedtuple, Hashable
 
 from matchbox.index import MatchIndex
 
@@ -109,4 +108,4 @@ class MatchBox(MatchIndex):
 
     def __repr__(self):
         """Box representation."""
-        return '<MatchBox({0})>'.format(self._characteristic)
+        return f'<MatchBox({self._characteristic})>'
