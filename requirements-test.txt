@@ -1,6 +1,6 @@
 # test runs requirements (versions we'll be testing against) - automatically updated by requires.io
 pytest==5.0.1
 pytest-benchmark==3.2.2
-pytest-cov==2.7.1
+pytest-cov==2.8.1
 coverage==4.5.4
 -e .[tests]
