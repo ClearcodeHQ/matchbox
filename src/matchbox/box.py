@@ -18,7 +18,6 @@
 """Match box - for indexing objects by their fields."""
 from collections import namedtuple
 from collections.abc import Hashable
-from typing import List, Dict
 
 from matchbox.index import MatchIndex
 
