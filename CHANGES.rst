@@ -5,6 +5,7 @@ unreleased
 ----------
 
 - [enhancement] support only python3 and up
+- [enhancement] Add type hints
 - small code enhancement during adding matching entities to boxes
 - remove method - ability to remove entity from already built box
 - fix license information

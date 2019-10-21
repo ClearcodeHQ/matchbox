@@ -17,6 +17,7 @@
 # along with matchbox.  If not, see <http://www.gnu.org/licenses/>.
 """Data structure that allows indexing includes and excludes of values."""
 from collections import defaultdict
+from typing import Set, Hashable, Dict, Iterable
 
 
 class MatchIndex:
@@ -128,17 +129,17 @@ class MatchIndex:
     +-----------+---------------------+
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         """Initialize the index."""
-        self.mismatch_unknown = set()
+        self.mismatch_unknown: Set = set()
         """
         This set will keep matching entities. They do not match unknown traits.
 
         Used for `self.index` default value, that means any previously unknown trait.
         """
-        self.index = defaultdict(self.mismatch_unknown.copy)
+        self.index: Dict[Hashable, Set] = defaultdict(self.mismatch_unknown.copy)
 
-    def add_mismatch(self, entity, *traits):
+    def add_mismatch(self, entity: Hashable, *traits: Iterable[Hashable]) -> None:
         """
         Add a mismatching entity to the index.
 
@@ -150,7 +151,7 @@ class MatchIndex:
         for trait in traits:
             self.index[trait].add(entity)
 
-    def add_match(self, entity, *traits):
+    def add_match(self, entity: Hashable, *traits: Iterable[Hashable]) -> None:
         """
         Add a matching entity to the index.
 
@@ -179,7 +180,7 @@ class MatchIndex:
         # From now on, any new matching or mismatching index will mismatch this entity by default.
         self.mismatch_unknown.add(entity)
 
-    def mismatch(self, trait):
+    def mismatch(self, trait: Hashable) -> Set:
         """
         Return a set of indexed entities that are mismatched by the trait.
 
@@ -192,7 +193,7 @@ class MatchIndex:
         """
         return self.index[trait]
 
-    def match(self, collection, trait):
+    def match(self, collection: Set, trait: Hashable) -> Set:
         """
         Filter out those entities from collection that do not match the trait.
 
@@ -210,6 +211,6 @@ class MatchIndex:
         """
         return collection - self.mismatch(trait)
 
-    def __bool__(self):
+    def __bool__(self) -> bool:
         """Check if the index is being actually used or not."""
         return bool(self.mismatch_unknown or any(self.index.values()))

@@ -18,6 +18,7 @@
 """Match box - for indexing objects by their fields."""
 from collections import namedtuple
 from collections.abc import Hashable
+from typing import List, Dict
 
 from matchbox.index import MatchIndex
 
@@ -28,7 +29,7 @@ Trait = namedtuple('Trait', 'traits, is_matching')
 class MatchBox(MatchIndex):
     """MatchBox is a MatchIndex that can index objects by their fields."""
 
-    def __init__(self, characteristic, *args, **kwargs):
+    def __init__(self, characteristic: str) -> None:
         """
         Initialise the box and set the attribute this box will be indexing objects on.
 
@@ -57,10 +58,10 @@ class MatchBox(MatchIndex):
             Optionally the objects may have a '{characteristic}_match' boolean attribute to determine whether the
             object should be indexed as a match or mismatch
         """
-        super(MatchBox, self).__init__(*args, **kwargs)
+        super(MatchBox, self).__init__()
         self._characteristic = characteristic
 
-    def extract_traits(self, entity):
+    def extract_traits(self, entity: Hashable) -> Trait:
         """
         Extract data required to classify entity.
 
@@ -76,7 +77,7 @@ class MatchBox(MatchIndex):
             getattr(entity, self._characteristic + '_match', True)
         )
 
-    def add(self, entity):
+    def add(self, entity: Hashable) -> None:
         """
         Add entity to index.
 
@@ -91,7 +92,7 @@ class MatchBox(MatchIndex):
         else:
             self.add_mismatch(entity, *characteristic.traits)
 
-    def remove(self, entity):
+    def remove(self, entity: Hashable) -> None:
         """
         Remove entity from the MatchBox.
 
@@ -107,6 +108,6 @@ class MatchBox(MatchIndex):
         for empty_trait in empty_traits:
             del self.index[empty_trait]
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """Box representation."""
         return f'<MatchBox({self._characteristic})>'
