@@ -3,7 +3,8 @@ language: python
 python:
   - 3.6
   - 3.7
-  - 3.8-dev
+  - 3.8
+  - nightly
   - pypy3
 # blocklist branches
 branches:
