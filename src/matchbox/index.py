@@ -17,10 +17,13 @@
 # along with matchbox.  If not, see <http://www.gnu.org/licenses/>.
 """Data structure that allows indexing includes and excludes of values."""
 from collections import defaultdict
-from typing import Set, Hashable, Dict, Iterable
+from typing import Set, Hashable, Dict, Iterable, TypeVar, Generic
+
+ET = TypeVar('ET', bound=Hashable)
+TT = TypeVar('TT', bound=Hashable)
 
 
-class MatchIndex:
+class MatchIndex(Generic[TT, ET]):
     """
     An index for matching or mismatching of entities by hashable traits.
 
@@ -131,15 +134,15 @@ class MatchIndex:
 
     def __init__(self) -> None:
         """Initialize the index."""
-        self.mismatch_unknown: Set = set()
+        self.mismatch_unknown: Set[ET] = set()
         """
         This set will keep matching entities. They do not match unknown traits.
 
         Used for `self.index` default value, that means any previously unknown trait.
         """
-        self.index: Dict[Hashable, Set] = defaultdict(self.mismatch_unknown.copy)
+        self.index: Dict[TT, Set[ET]] = defaultdict(self.mismatch_unknown.copy)
 
-    def add_mismatch(self, entity: Hashable, *traits: Iterable[Hashable]) -> None:
+    def add_mismatch(self, entity: ET, *traits: TT) -> None:
         """
         Add a mismatching entity to the index.
 
@@ -151,7 +154,7 @@ class MatchIndex:
         for trait in traits:
             self.index[trait].add(entity)
 
-    def add_match(self, entity: Hashable, *traits: Iterable[Hashable]) -> None:
+    def add_match(self, entity: ET, *traits: TT) -> None:
         """
         Add a matching entity to the index.
 
@@ -180,7 +183,7 @@ class MatchIndex:
         # From now on, any new matching or mismatching index will mismatch this entity by default.
         self.mismatch_unknown.add(entity)
 
-    def mismatch(self, trait: Hashable) -> Set:
+    def mismatch(self, trait: TT) -> Set[ET]:
         """
         Return a set of indexed entities that are mismatched by the trait.
 
@@ -193,7 +196,7 @@ class MatchIndex:
         """
         return self.index[trait]
 
-    def match(self, collection: Set, trait: Hashable) -> Set:
+    def match(self, collection: Set[ET], trait: TT) -> Set[ET]:
         """
         Filter out those entities from collection that do not match the trait.
 

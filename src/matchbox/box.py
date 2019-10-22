@@ -16,16 +16,18 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with matchbox.  If not, see <http://www.gnu.org/licenses/>.
 """Match box - for indexing objects by their fields."""
-from collections import namedtuple
 from collections.abc import Hashable
+from typing import NamedTuple, Set, Generic, Iterable
 
-from matchbox.index import MatchIndex
-
-
-Trait = namedtuple('Trait', 'traits, is_matching')
+from matchbox.index import MatchIndex, ET, TT
 
 
-class MatchBox(MatchIndex):
+class Trait(NamedTuple, Generic[TT]):
+    traits: Iterable[TT]
+    is_matching: bool
+
+
+class MatchBox(MatchIndex[TT, ET]):
     """MatchBox is a MatchIndex that can index objects by their fields."""
 
     def __init__(self, characteristic: str) -> None:
@@ -60,7 +62,7 @@ class MatchBox(MatchIndex):
         super(MatchBox, self).__init__()
         self._characteristic = characteristic
 
-    def extract_traits(self, entity: Hashable) -> Trait:
+    def extract_traits(self, entity: ET) -> Trait:
         """
         Extract data required to classify entity.
 
@@ -76,7 +78,7 @@ class MatchBox(MatchIndex):
             getattr(entity, self._characteristic + '_match', True)
         )
 
-    def add(self, entity: Hashable) -> None:
+    def add(self, entity: ET) -> None:
         """
         Add entity to index.
 
@@ -91,13 +93,13 @@ class MatchBox(MatchIndex):
         else:
             self.add_mismatch(entity, *characteristic.traits)
 
-    def remove(self, entity: Hashable) -> None:
+    def remove(self, entity: ET) -> None:
         """
         Remove entity from the MatchBox.
 
         :param object entity:
         """
-        empty_traits = set()
+        empty_traits: Set[TT] = set()
         self.mismatch_unknown.discard(entity)
         for trait, entities in self.index.items():
             entities.discard(entity)
