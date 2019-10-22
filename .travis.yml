@@ -1,7 +1,6 @@
 dist: xenial
 language: python
 python:
-  - 3.6
   - 3.7
   - 3.8
   - nightly
@@ -19,9 +18,11 @@ script:
 after_success:
 - coveralls
 jobs:
+  allow_failures:
+    - python: pypy3
   include:
     - stage: linters
-      python: 3.7
+      python: 3.8
       install:
         - pip install -r requirements-lint.txt
       script:
@@ -37,11 +38,13 @@ jobs:
     - <<: *benchmarks
       python: 3.7
     - <<: *benchmarks
-      python: 3.8-dev
+      python: 3.8
+    - <<: *benchmarks
+      python: nightly
     - <<: *benchmarks
       python: pypy3
     - stage: deploy
-      python: 3.7
+      python: 3.8
       if: tag IS present
       script: skip
       deploy:
