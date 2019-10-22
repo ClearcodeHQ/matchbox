@@ -36,11 +36,7 @@ jobs:
       script:
         - py.test --cov benchmarks benchmarks/
     - <<: *benchmarks
-      python: 3.7
-    - <<: *benchmarks
       python: 3.8
-    - <<: *benchmarks
-      python: nightly
     - <<: *benchmarks
       python: pypy3
     - stage: deploy
