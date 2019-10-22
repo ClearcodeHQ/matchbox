@@ -1,7 +1,7 @@
 """Benchmark fixtuires."""
 
 from random import Random
-from typing import Optional, List
+from typing import List
 
 import pytest
 
