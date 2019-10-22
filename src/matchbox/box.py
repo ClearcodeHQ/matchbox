@@ -23,6 +23,7 @@ from matchbox.index import MatchIndex, ET, TT
 
 
 class Trait(NamedTuple, Generic[TT]):
+    """Traits helper class."""
     traits: Iterable[TT]
     is_matching: bool
 

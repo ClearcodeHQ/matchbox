@@ -17,7 +17,7 @@
 # along with matchbox.  If not, see <http://www.gnu.org/licenses/>.
 """Data structure that allows indexing includes and excludes of values."""
 from collections import defaultdict
-from typing import Set, Hashable, Dict, Iterable, TypeVar, Generic
+from typing import Set, Hashable, Dict, TypeVar, Generic
 
 ET = TypeVar('ET', bound=Hashable)
 TT = TypeVar('TT', bound=Hashable)
