@@ -1,6 +1,7 @@
 """Benchmark fixtuires."""
 
 from random import Random
+from typing import Optional, List
 
 import pytest
 
@@ -46,12 +47,12 @@ def chairs():
 @pytest.fixture(scope='session')
 def boxes(chairs):  # pylint:disable=redefined-outer-name
     """Fixture with built boxes."""
-    boxes_list = [
-        MatchBox('colour'),
-        MatchBox('legs'),
-        MatchBox('size'),
-        MatchBox('weight'),
-        MatchBox('armrest'),
+    boxes_list: List[MatchBox] = [
+        MatchBox[str, Chair]('colour'),
+        MatchBox[int, Chair]('legs'),
+        MatchBox[int, Chair]('size'),
+        MatchBox[int, Chair]('weight'),
+        MatchBox[bool, Chair]('armrest'),
     ]
     for sample in chairs:
         for box in boxes_list:

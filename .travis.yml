@@ -27,7 +27,7 @@ jobs:
         - pycodestyle
         - pydocstyle
         - pylint matchbox tests benchmarks
-        - mypy src tests
+        - mypy src tests benchmarks
       after_success: skip
     - &benchmarks
       stage: benchmarks

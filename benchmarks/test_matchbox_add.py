@@ -1,8 +1,10 @@
 """Reference performance tests - adding entities to MatchBox."""
 from collections import namedtuple
+from typing import Any
 
 import pytest
 
+from benchmarks import Chair
 from matchbox import MatchBox
 
 
@@ -13,7 +15,7 @@ Dummy = namedtuple('Dummy', 'c c_match')
 @pytest.mark.parametrize('characteristic', ['colour', 'legs', 'size', 'weight', 'armrest'])
 def test_create(benchmark, chairs, characteristic):
     """Reference benchmark to record times in regards to adding elements from chairs fixture to MatchBox."""
-    matchbox = MatchBox(characteristic)
+    matchbox = MatchBox[Any, Chair](characteristic)
 
     def create():
         """Fill in matchbox with entities."""
@@ -34,7 +36,7 @@ def test_create(benchmark, chairs, characteristic):
 ])
 def test_add(benchmark, elements):
     """Test benchmark adding specified set of elements to MatchBox."""
-    matchbox = MatchBox('c')
+    matchbox = MatchBox[bool, Dummy]('c')
 
     def add():
         """Fill in matchbox with entities."""
