@@ -1,4 +1,6 @@
 """Tests for match method."""
+from typing import Any
+
 import pytest
 
 from matchbox import MatchBox
@@ -7,7 +9,7 @@ from tests import Entity
 
 def test_mismatch():
     """Check if mismatch returns those element that are not described by characteristic."""
-    box = MatchBox('argument')
+    box = MatchBox[Any, str]('argument')
     element1 = 'element'
     element2 = 'element2'
     totally_other = 'other'
@@ -19,7 +21,7 @@ def test_mismatch():
 
 def test_match():
     """Check if match cuts entites properly."""
-    box = MatchBox('argument')
+    box = MatchBox[Any, str]('argument')
     element1 = 'element'
     element2 = 'element2'
     totally_other = 'other'
@@ -37,9 +39,9 @@ def test_indexed_match(traits):
 
     In this case, entities is recorded on mismatch_unknown.
     """
-    obj = Entity(traits)
+    obj = Entity[int](traits)
 
-    matchbox = MatchBox('characteristic')
+    matchbox = MatchBox[int, Entity]('characteristic')
     matchbox.add(obj)
     traits = matchbox.extract_traits(obj).traits  # get traits as sorting algorithms sees them
     assert set(traits) == set(matchbox.index.keys()), "characteristic trait should result in an entry in index."
@@ -56,9 +58,9 @@ def test_multimatchbox_indexed_not_match(traits):
 
     In this case entity gets recorded on index.
     """
-    obj = Entity(traits, False)
+    obj = Entity[int](traits, False)
 
-    matchbox = MatchBox('characteristic')
+    matchbox = MatchBox[int, Entity]('characteristic')
     matchbox.add(obj)
     traits = matchbox.extract_traits(obj).traits  # get traits as sorting algorithms sees them
     assert set(traits) == set(matchbox.index.keys()), "characteristic trait should result in an entry in index."
@@ -76,7 +78,7 @@ def test_matchbox_remove_one():
     entity3 = Entity('entity3')
     entity4 = Entity('entity4', False)
 
-    matchbox = MatchBox('characteristic')
+    matchbox = MatchBox[str, Entity]('characteristic')
     matchbox.add(entity1)
     matchbox.add(entity2)
     matchbox.add(entity3)
@@ -116,7 +118,7 @@ def test_matchbox_remove_completely():
     entity3 = Entity('entity3')
     entity4 = Entity('entity4', False)
 
-    matchbox = MatchBox('characteristic')
+    matchbox = MatchBox[str, Entity]('characteristic')
     matchbox.add(entity1)
     matchbox.add(entity2)
     matchbox.add(entity3)
