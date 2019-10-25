@@ -9,8 +9,8 @@ matchbox
     :target: https://pypi.python.org/pypi/matchbox/
     :alt: Latest PyPI version
 
-.. image:: https://readthedocs.org/projects/matchbox/badge/?version=v0.3.0
-    :target: http://matchbox.readthedocs.org/en/v0.3.0/
+.. image:: https://readthedocs.org/projects/matchbox/badge/?version=v1.0.0
+    :target: http://matchbox.readthedocs.org/en/v1.0.0/
     :alt: Documentation Status
 
 .. image:: https://img.shields.io/pypi/wheel/matchbox.svg
@@ -28,16 +28,16 @@ matchbox
 Package status
 --------------
 
-.. image:: https://travis-ci.org/ClearcodeHQ/matchbox.svg?branch=v0.3.0
+.. image:: https://travis-ci.org/ClearcodeHQ/matchbox.svg?branch=v1.0.0
     :target: https://travis-ci.org/ClearcodeHQ/matchbox
     :alt: Tests
 
-.. image:: https://coveralls.io/repos/ClearcodeHQ/matchbox/badge.png?branch=v0.3.0
-    :target: https://coveralls.io/r/ClearcodeHQ/matchbox?branch=v0.3.0
+.. image:: https://coveralls.io/repos/ClearcodeHQ/matchbox/badge.png?branch=v1.0.0
+    :target: https://coveralls.io/r/ClearcodeHQ/matchbox?branch=v1.0.0
     :alt: Coverage Status
 
-.. image:: https://requires.io/github/ClearcodeHQ/matchbox/requirements.svg?tag=v0.3.0
-     :target: https://requires.io/github/ClearcodeHQ/matchbox/requirements/?tag=v0.3.0
+.. image:: https://requires.io/github/ClearcodeHQ/matchbox/requirements.svg?tag=v1.0.0
+     :target: https://requires.io/github/ClearcodeHQ/matchbox/requirements/?tag=v1.0.0
      :alt: Requirements Status
 
 Matchbox is a simple python library designed to make selecting object, or object's set based on

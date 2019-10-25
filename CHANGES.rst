@@ -1,7 +1,7 @@
 CHANGELOG
 =========
 
-unreleased
+1.0.0
 ----------
 
 - [enhancement] support only python 3.7 and up

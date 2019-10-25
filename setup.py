@@ -48,7 +48,7 @@ extras_require = {
 
 setup(
     name='matchbox',
-    version='0.3.0',
+    version='1.0.0',
     description=(
         'Abstraction layer for creating hash maps to speed up extracting' +
         ' subsets out of objects in collection'
