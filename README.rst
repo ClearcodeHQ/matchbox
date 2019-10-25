@@ -1,3 +1,7 @@
+.. image:: https://raw.githubusercontent.com/ClearcodeHQ/matchbox/master/logo.png
+    :width: 100px
+    :height: 150px
+
 matchbox
 ========
 
