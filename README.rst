@@ -36,10 +36,6 @@ Package status
     :target: https://coveralls.io/r/ClearcodeHQ/matchbox?branch=v1.0.0
     :alt: Coverage Status
 
-.. image:: https://requires.io/github/ClearcodeHQ/matchbox/requirements.svg?tag=v1.0.0
-     :target: https://requires.io/github/ClearcodeHQ/matchbox/requirements/?tag=v1.0.0
-     :alt: Requirements Status
-
 Matchbox is a simple python library designed to make selecting object, or object's set based on
     required characteristics quick operation. No iterating, and no value checking on actual objects,
     just select and operations on dictionaries.
