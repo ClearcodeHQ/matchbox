@@ -1,5 +1,5 @@
 # linters
-pydocstyle==5.0.1
+pydocstyle==5.0.2
 mccabe==0.6.1
 pylint==2.4.4; python_version>'3.3'
 pycodestyle==2.5.0
