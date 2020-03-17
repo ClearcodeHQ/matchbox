@@ -2,5 +2,5 @@
 pytest==5.4.1
 pytest-benchmark==3.2.3
 pytest-cov==2.8.1
-coverage==5.0.3
+coverage==5.0.4
 -e .[tests]
