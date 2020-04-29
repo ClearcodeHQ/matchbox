@@ -1,8 +1,9 @@
 dist: xenial
 language: python
 python:
-  - 3.7
   - 3.8
+  - 3.7
+  - 3.9-dev
   - nightly
   - pypy3
 # blocklist branches
@@ -20,9 +21,10 @@ after_success:
 jobs:
   allow_failures:
     - python: pypy3
+    - python: 3.9-dev
+    - python: nightly
   include:
     - stage: linters
-      python: 3.8
       install:
         - pip install -r requirements-lint.txt
       script:
@@ -36,11 +38,10 @@ jobs:
       script:
         - py.test --cov benchmarks benchmarks/
     - <<: *benchmarks
-      python: 3.8
+      python: 3.7
     - <<: *benchmarks
       python: pypy3
     - stage: deploy
-      python: 3.8
       if: tag IS present
       script: skip
       deploy:
