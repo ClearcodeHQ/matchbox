@@ -60,7 +60,7 @@ class MatchBox(MatchIndex[TT, ET]):
             Optionally the objects may have a '{characteristic}_match' boolean attribute to determine whether the
             object should be indexed as a match or mismatch
         """
-        super(MatchBox, self).__init__()
+        super().__init__()
         self._characteristic = characteristic
 
     def extract_traits(self, entity: ET) -> Trait:
