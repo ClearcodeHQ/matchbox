@@ -2,6 +2,6 @@
 pydocstyle==5.1.1
 mccabe==0.6.1
 pylint==2.7.2; python_version>'3.3'
-pycodestyle==2.6.0
+pycodestyle==2.7.0
 mypy==0.812
 -r requirements-test.txt
