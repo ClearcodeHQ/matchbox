@@ -1,7 +1,7 @@
 # linters
 pydocstyle==6.0.0
 mccabe==0.6.1
-pylint==2.8.1; python_version>'3.3'
+pylint==2.8.2; python_version>'3.3'
 pycodestyle==2.7.0
 mypy==0.812
 -r requirements-test.txt
