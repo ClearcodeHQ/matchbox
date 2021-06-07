@@ -1,6 +1,15 @@
 CHANGELOG
 =========
 
+unreleased
+----------
+
+Feature
++++++++
+
+- Add support for python 3.9
+- Replace NamedTuple usage with dataclass for the Trait class
+
 1.0.0
 ----------
 

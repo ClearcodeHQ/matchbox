@@ -17,12 +17,14 @@
 # along with matchbox.  If not, see <http://www.gnu.org/licenses/>.
 """Match box - for indexing objects by their fields."""
 from collections.abc import Hashable
-from typing import NamedTuple, Set, Generic, Iterable
+from dataclasses import dataclass
+from typing import Set, Generic, Iterable
 
 from matchbox.index import MatchIndex, ET, TT
 
 
-class Trait(NamedTuple, Generic[TT]):
+@dataclass
+class Trait(Generic[TT]):
     """Traits helper class."""
     traits: Iterable[TT]
     is_matching: bool
