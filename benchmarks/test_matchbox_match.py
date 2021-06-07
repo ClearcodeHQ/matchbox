@@ -5,11 +5,11 @@ import pytest
 
 from benchmarks import SIZE, COLOURS, MAX_LEGS
 
-RANDOM_CHECKER_COLOUR = Random(('Chair', SIZE * 2, 'colour'))
-RANDOM_CHECKER_LEGS = Random(('Chair', SIZE * 2, 'legs'))
-RANDOM_CHECKER_SIZE = Random(('Chair', SIZE * 2, 'size'))
-RANDOM_CHECKER_WEIGHT = Random(('Chair', SIZE * 2, 'weight'))
-RANDOM_CHECKER_ARMREST = Random(('Chair', SIZE * 2, 'armrest'))
+RANDOM_CHECKER_COLOUR = Random(f'Chair{SIZE}colour')
+RANDOM_CHECKER_LEGS = Random(f'Chair{SIZE}legs')
+RANDOM_CHECKER_SIZE = Random(f'Chair{SIZE}size')
+RANDOM_CHECKER_WEIGHT = Random(f'Chair{SIZE}weight')
+RANDOM_CHECKER_ARMREST = Random(f'Chair{SIZE}armrest')
 
 COLOUR_TRAIT = RANDOM_CHECKER_COLOUR.choice(COLOURS)
 LEGS_TRAIT = RANDOM_CHECKER_LEGS.randint(0, MAX_LEGS)

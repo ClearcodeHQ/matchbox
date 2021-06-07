@@ -1,9 +1,9 @@
 dist: xenial
 language: python
 python:
+  - 3.9
   - 3.8
   - 3.7
-  - 3.9-dev
   - nightly
   - pypy3
 # blocklist branches
@@ -21,7 +21,6 @@ after_success:
 jobs:
   allow_failures:
     - python: pypy3
-    - python: 3.9-dev
     - python: nightly
   include:
     - stage: linters
@@ -38,7 +37,7 @@ jobs:
       script:
         - py.test --cov benchmarks benchmarks/
     - <<: *benchmarks
-      python: 3.7
+      python: 3.8
     - <<: *benchmarks
       python: pypy3
     - stage: deploy
