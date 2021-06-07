@@ -9,19 +9,19 @@ from matchbox import MatchBox
 
 from benchmarks import Chair, SIZE, COLOURS, MAX_LEGS
 
-COLOUR_RANDOMIZER = Random('colour')
-COLOUR_MATCH_RANDOMIZER = Random('colour_match')
-LEGS_RANDOMIZER = Random('legs')
-LEGS_MATCH_RANDOMIZER = Random('legs_match')
-SIZE_RANDOMIZER = Random('size')
-SIZE_MATCH_RANDOMIZER = Random('size_match')
-WEIGHT_RANDOMIZER = Random('weight')
-WEIGHT_MATCH_RANDOMIZER = Random('weight_match')
-ARMREST_RANDOMIZER = Random('armrest')
-ARMREST_MATCH_RANDOMIZER = Random('armrest_match')
+COLOUR_RANDOMIZER = Random("colour")
+COLOUR_MATCH_RANDOMIZER = Random("colour_match")
+LEGS_RANDOMIZER = Random("legs")
+LEGS_MATCH_RANDOMIZER = Random("legs_match")
+SIZE_RANDOMIZER = Random("size")
+SIZE_MATCH_RANDOMIZER = Random("size_match")
+WEIGHT_RANDOMIZER = Random("weight")
+WEIGHT_MATCH_RANDOMIZER = Random("weight_match")
+ARMREST_RANDOMIZER = Random("armrest")
+ARMREST_MATCH_RANDOMIZER = Random("armrest_match")
 
 
-@pytest.fixture(scope='session')
+@pytest.fixture(scope="session")
 def chairs():
     """Return data fixtures for benchmarks."""
     chairs_list = []
@@ -44,15 +44,15 @@ def chairs():
     return set(chairs_list)
 
 
-@pytest.fixture(scope='session')
+@pytest.fixture(scope="session")
 def boxes(chairs):  # pylint:disable=redefined-outer-name
     """Fixture with built boxes."""
     boxes_list: List[MatchBox] = [
-        MatchBox[str, Chair]('colour'),
-        MatchBox[int, Chair]('legs'),
-        MatchBox[int, Chair]('size'),
-        MatchBox[int, Chair]('weight'),
-        MatchBox[bool, Chair]('armrest'),
+        MatchBox[str, Chair]("colour"),
+        MatchBox[int, Chair]("legs"),
+        MatchBox[int, Chair]("size"),
+        MatchBox[int, Chair]("weight"),
+        MatchBox[bool, Chair]("armrest"),
     ]
     for sample in chairs:
         for box in boxes_list:

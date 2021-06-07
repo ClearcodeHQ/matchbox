@@ -9,30 +9,33 @@ from tests import Entity
 
 def test_mismatch():
     """Check if mismatch returns those element that are not described by characteristic."""
-    box = MatchBox[Any, str]('argument')
-    element1 = 'element'
-    element2 = 'element2'
-    totally_other = 'other'
-    box.index['other'].add(totally_other)
+    box = MatchBox[Any, str]("argument")
+    element1 = "element"
+    element2 = "element2"
+    totally_other = "other"
+    box.index["other"].add(totally_other)
     box.mismatch_unknown.add(element1)
-    box.index['test'].add(element2)
-    assert box.mismatch('test') == {element1, element2}, "both elements should be returned."
+    box.index["test"].add(element2)
+    assert box.mismatch("test") == {
+        element1,
+        element2,
+    }, "both elements should be returned."
 
 
 def test_match():
     """Check if match cuts entites properly."""
-    box = MatchBox[Any, str]('argument')
-    element1 = 'element'
-    element2 = 'element2'
-    totally_other = 'other'
-    box.index['other'].add(totally_other)
+    box = MatchBox[Any, str]("argument")
+    element1 = "element"
+    element2 = "element2"
+    totally_other = "other"
+    box.index["other"].add(totally_other)
     box.mismatch_unknown.add(element1)
-    box.index['test'].add(element2)
+    box.index["test"].add(element2)
     all_elements = {element1, element2, totally_other}
-    assert box.match(all_elements, 'test') == {totally_other}, "only one element should match"
+    assert box.match(all_elements, "test") == {totally_other}, "only one element should match"
 
 
-@pytest.mark.parametrize('traits', ('x', ['x', 'y'], ['z'], [1, 2, 3, None]))
+@pytest.mark.parametrize("traits", ("x", ["x", "y"], ["z"], [1, 2, 3, None]))
 def test_indexed_match(traits):
     """
     Check simple adding entity to index if it does match characteristic's trait.
@@ -41,7 +44,7 @@ def test_indexed_match(traits):
     """
     obj = Entity[int](traits)
 
-    matchbox = MatchBox[int, Entity]('characteristic')
+    matchbox = MatchBox[int, Entity]("characteristic")
     matchbox.add(obj)
     traits = matchbox.extract_traits(obj).traits  # get traits as sorting algorithms sees them
     assert set(traits) == set(matchbox.index.keys()), "characteristic trait should result in an entry in index."
@@ -51,7 +54,7 @@ def test_indexed_match(traits):
     assert obj in matchbox.mismatch_unknown, "entity should be not matching any future entries though."
 
 
-@pytest.mark.parametrize('traits', ('x', ['x', 'y'], ['z'], [1, 2, 3, None]))
+@pytest.mark.parametrize("traits", ("x", ["x", "y"], ["z"], [1, 2, 3, None]))
 def test_multimatchbox_indexed_not_match(traits):
     """
     Check simple adding entity to index if it does not match a certain characteristic's trait.
@@ -60,7 +63,7 @@ def test_multimatchbox_indexed_not_match(traits):
     """
     obj = Entity[int](traits, False)
 
-    matchbox = MatchBox[int, Entity]('characteristic')
+    matchbox = MatchBox[int, Entity]("characteristic")
     matchbox.add(obj)
     traits = matchbox.extract_traits(obj).traits  # get traits as sorting algorithms sees them
     assert set(traits) == set(matchbox.index.keys()), "characteristic trait should result in an entry in index."
@@ -73,12 +76,12 @@ def test_multimatchbox_indexed_not_match(traits):
 def test_matchbox_remove_one():
     """Check removing entity from matchbox."""
     # Given set of entities, all with matching trait, and one mismatching within index
-    entity1 = Entity('entity1')
-    entity2 = Entity('entity2')
-    entity3 = Entity('entity3')
-    entity4 = Entity('entity4', False)
+    entity1 = Entity("entity1")
+    entity2 = Entity("entity2")
+    entity3 = Entity("entity3")
+    entity4 = Entity("entity4", False)
 
-    matchbox = MatchBox[str, Entity]('characteristic')
+    matchbox = MatchBox[str, Entity]("characteristic")
     matchbox.add(entity1)
     matchbox.add(entity2)
     matchbox.add(entity3)
@@ -89,20 +92,20 @@ def test_matchbox_remove_one():
     assert matchbox.index
 
     assert entity1 in matchbox.mismatch_unknown
-    assert entity1 not in matchbox.index['entity1']
-    assert entity1 in matchbox.index['entity2']
-    assert entity1 in matchbox.index['entity2']
-    assert entity1 in matchbox.index['entity2']
+    assert entity1 not in matchbox.index["entity1"]
+    assert entity1 in matchbox.index["entity2"]
+    assert entity1 in matchbox.index["entity2"]
+    assert entity1 in matchbox.index["entity2"]
 
     # When removing one entity from a box
     matchbox.remove(entity1)
 
     # it's no longer present
     assert entity1 not in matchbox.mismatch_unknown
-    assert entity1 not in matchbox.index['entity1']
-    assert entity1 not in matchbox.index['entity2']
-    assert entity1 not in matchbox.index['entity2']
-    assert entity1 not in matchbox.index['entity2']
+    assert entity1 not in matchbox.index["entity1"]
+    assert entity1 not in matchbox.index["entity2"]
+    assert entity1 not in matchbox.index["entity2"]
+    assert entity1 not in matchbox.index["entity2"]
 
     # but the matchbox is filled
     assert matchbox
@@ -113,12 +116,12 @@ def test_matchbox_remove_one():
 def test_matchbox_remove_completely():
     """Check removing entities from matchbox."""
     # Given set of entities, all with matching trait, and one mismatching within index
-    entity1 = Entity('entity1')
-    entity2 = Entity('entity2')
-    entity3 = Entity('entity3')
-    entity4 = Entity('entity4', False)
+    entity1 = Entity("entity1")
+    entity2 = Entity("entity2")
+    entity3 = Entity("entity3")
+    entity4 = Entity("entity4", False)
 
-    matchbox = MatchBox[str, Entity]('characteristic')
+    matchbox = MatchBox[str, Entity]("characteristic")
     matchbox.add(entity1)
     matchbox.add(entity2)
     matchbox.add(entity3)

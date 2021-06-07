@@ -5,11 +5,11 @@ import pytest
 
 from benchmarks import SIZE, COLOURS, MAX_LEGS
 
-RANDOM_CHECKER_COLOUR = Random(f'Chair{SIZE}colour')
-RANDOM_CHECKER_LEGS = Random(f'Chair{SIZE}legs')
-RANDOM_CHECKER_SIZE = Random(f'Chair{SIZE}size')
-RANDOM_CHECKER_WEIGHT = Random(f'Chair{SIZE}weight')
-RANDOM_CHECKER_ARMREST = Random(f'Chair{SIZE}armrest')
+RANDOM_CHECKER_COLOUR = Random(f"Chair{SIZE}colour")
+RANDOM_CHECKER_LEGS = Random(f"Chair{SIZE}legs")
+RANDOM_CHECKER_SIZE = Random(f"Chair{SIZE}size")
+RANDOM_CHECKER_WEIGHT = Random(f"Chair{SIZE}weight")
+RANDOM_CHECKER_ARMREST = Random(f"Chair{SIZE}armrest")
 
 COLOUR_TRAIT = RANDOM_CHECKER_COLOUR.choice(COLOURS)
 LEGS_TRAIT = RANDOM_CHECKER_LEGS.randint(0, MAX_LEGS)
@@ -116,32 +116,64 @@ def run_match_one_for_multi_condition(chairs, colour, legs, size, weight, armres
     return matched
 
 
-@pytest.mark.benchmark(group='match_all_categories')
+@pytest.mark.benchmark(group="match_all_categories")
 def test_match_matchbox(benchmark, boxes, chairs):
     """Benchmark for finding matches using matchboxes."""
-    benchmark(run_match_matchboxes, boxes, chairs, [COLOUR_TRAIT, LEGS_TRAIT, SIZE_TRAIT, WEIGHT_TRAIT, ARMREST_TRAIT])
+    benchmark(
+        run_match_matchboxes,
+        boxes,
+        chairs,
+        [COLOUR_TRAIT, LEGS_TRAIT, SIZE_TRAIT, WEIGHT_TRAIT, ARMREST_TRAIT],
+    )
 
 
-@pytest.mark.benchmark(group='match_all_categories')
+@pytest.mark.benchmark(group="match_all_categories")
 def test_match_one_after_another(benchmark, chairs):
     """Benchmark for finding matches using subsequent iterations per each characteristic."""
-    benchmark(run_match_one_after_another, chairs, COLOUR_TRAIT, LEGS_TRAIT, SIZE_TRAIT, WEIGHT_TRAIT, ARMREST_TRAIT)
+    benchmark(
+        run_match_one_after_another,
+        chairs,
+        COLOUR_TRAIT,
+        LEGS_TRAIT,
+        SIZE_TRAIT,
+        WEIGHT_TRAIT,
+        ARMREST_TRAIT,
+    )
 
 
-@pytest.mark.benchmark(group='match_all_categories')
+@pytest.mark.benchmark(group="match_all_categories")
 def test_match_one_for_multi_condition(benchmark, chairs):
     """Benchmark for finding matches using one iteration, and checking each desired conditions."""
     benchmark(
-        run_match_one_for_multi_condition, chairs, COLOUR_TRAIT, LEGS_TRAIT, SIZE_TRAIT, WEIGHT_TRAIT, ARMREST_TRAIT)
+        run_match_one_for_multi_condition,
+        chairs,
+        COLOUR_TRAIT,
+        LEGS_TRAIT,
+        SIZE_TRAIT,
+        WEIGHT_TRAIT,
+        ARMREST_TRAIT,
+    )
 
 
 def test_match_one_after_another_check_matchbox(boxes, chairs):
     """Check if subsequent iterations checking return same result as matchboxes."""
-    assert run_match_matchboxes(boxes, chairs, [COLOUR_TRAIT, LEGS_TRAIT, SIZE_TRAIT, WEIGHT_TRAIT, ARMREST_TRAIT]) == \
-        run_match_one_after_another(chairs, COLOUR_TRAIT, LEGS_TRAIT, SIZE_TRAIT, WEIGHT_TRAIT, ARMREST_TRAIT)
+    assert (
+        run_match_matchboxes(
+            boxes,
+            chairs,
+            [COLOUR_TRAIT, LEGS_TRAIT, SIZE_TRAIT, WEIGHT_TRAIT, ARMREST_TRAIT],
+        )
+        == run_match_one_after_another(chairs, COLOUR_TRAIT, LEGS_TRAIT, SIZE_TRAIT, WEIGHT_TRAIT, ARMREST_TRAIT)
+    )
 
 
 def test_match_one_for_multi_condition_check_matchbox(boxes, chairs):
     """Check if one interation result finiding return same result as matchboxes."""
-    assert run_match_matchboxes(boxes, chairs, [COLOUR_TRAIT, LEGS_TRAIT, SIZE_TRAIT, WEIGHT_TRAIT, ARMREST_TRAIT]) == \
-        run_match_one_for_multi_condition(chairs, COLOUR_TRAIT, LEGS_TRAIT, SIZE_TRAIT, WEIGHT_TRAIT, ARMREST_TRAIT)
+    assert (
+        run_match_matchboxes(
+            boxes,
+            chairs,
+            [COLOUR_TRAIT, LEGS_TRAIT, SIZE_TRAIT, WEIGHT_TRAIT, ARMREST_TRAIT],
+        )
+        == run_match_one_for_multi_condition(chairs, COLOUR_TRAIT, LEGS_TRAIT, SIZE_TRAIT, WEIGHT_TRAIT, ARMREST_TRAIT)
+    )

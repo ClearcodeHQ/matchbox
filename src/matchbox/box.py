@@ -26,6 +26,7 @@ from matchbox.index import MatchIndex, ET, TT
 @dataclass
 class Trait(Generic[TT]):
     """Traits helper class."""
+
     traits: Iterable[TT]
     is_matching: bool
 
@@ -76,10 +77,7 @@ class MatchBox(MatchIndex[TT, ET]):
         traits = getattr(entity, self._characteristic)
         if traits is not None and isinstance(traits, Hashable):
             traits = [traits]
-        return Trait(
-            traits,
-            getattr(entity, self._characteristic + '_match', True)
-        )
+        return Trait(traits, getattr(entity, self._characteristic + "_match", True))
 
     def add(self, entity: ET) -> None:
         """
@@ -114,4 +112,4 @@ class MatchBox(MatchIndex[TT, ET]):
 
     def __repr__(self) -> str:
         """Box representation."""
-        return f'<MatchBox({self._characteristic})>'
+        return f"<MatchBox({self._characteristic})>"

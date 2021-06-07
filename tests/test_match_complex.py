@@ -44,7 +44,7 @@ def test_mixed_single_characteristic_entities():
     ob5 = Entity[int](1, True)
 
     # create matchbox and add entities
-    matchbox = MatchBox[int, Entity]('characteristic')
+    matchbox = MatchBox[int, Entity]("characteristic")
     matchbox.add(ob1)
     matchbox.add(ob2)
     matchbox.add(ob3)
@@ -126,7 +126,7 @@ def test_mixed_multi_characteristic_entities():  # pylint:disable=too-many-state
     ob5 = Entity[int]([1, 7], True)
 
     # create matchbox and add entities
-    matchbox = MatchBox[int, Entity]('characteristic')
+    matchbox = MatchBox[int, Entity]("characteristic")
     matchbox.add(ob1)
     matchbox.add(ob2)
     matchbox.add(ob3)
