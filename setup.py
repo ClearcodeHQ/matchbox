@@ -36,49 +36,43 @@ def read(fname):
 requirements = []
 
 test_requires = [
-    'pytest',
-    'pytest-cov',
-    'pytest-benchmark',
+    "pytest",
+    "pytest-cov",
+    "pytest-benchmark",
 ]
 
-extras_require = {
-    'docs': ['sphinx'],
-    'tests': test_requires
-}
+extras_require = {"docs": ["sphinx"], "tests": test_requires}
 
 setup(
-    name='matchbox',
-    version='1.0.0',
+    name="matchbox",
+    version="1.0.0",
     description=(
-        'Abstraction layer for creating hash maps to speed up extracting' +
-        ' subsets out of objects in collection'
+        "Abstraction layer for creating hash maps to speed up extracting" + " subsets out of objects in collection"
     ),
-    long_description=(
-        read('README.rst') + '\n\n' + read('CHANGES.rst')
-    ),
-    keywords='python index match',
-    author='Grzegorz Sliwinski',
-    author_email='g.sliwinski@clearcode.cc',
-    url='https://github.com/ClearcodeHQ/matchbox',
+    long_description=(read("README.rst") + "\n\n" + read("CHANGES.rst")),
+    keywords="python index match",
+    author="Grzegorz Sliwinski",
+    author_email="g.sliwinski@clearcode.cc",
+    url="https://github.com/ClearcodeHQ/matchbox",
     license="LGPLv3+",
-    python_requires='>=3.7',
+    python_requires=">=3.7",
     classifiers=[
-        'Development Status :: 4 - Beta',
-        'Intended Audience :: Developers',
-        'License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)',
-        'Natural Language :: English',
-        'Operating System :: OS Independent',
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.7',
-        'Programming Language :: Python :: 3.8',
-        'Programming Language :: Python :: 3.9',
-        'Topic :: Software Development :: Libraries :: Python Modules',
+        "Development Status :: 4 - Beta",
+        "Intended Audience :: Developers",
+        "License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)",
+        "Natural Language :: English",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Topic :: Software Development :: Libraries :: Python Modules",
     ],
-    package_dir={'': 'src'},
-    packages=find_packages('src'),
+    package_dir={"": "src"},
+    packages=find_packages("src"),
     install_requires=requirements,
     tests_require=test_requires,
-    test_suite='tests',
+    test_suite="tests",
     include_package_data=True,
     zip_safe=False,
     extras_require=extras_require,

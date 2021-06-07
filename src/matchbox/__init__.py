@@ -19,6 +19,6 @@
 from matchbox.box import MatchBox
 from matchbox.index import MatchIndex
 
-__version__ = '1.0.0'
+__version__ = "1.0.0"
 
-__all__ = ('MatchBox', 'MatchIndex')
+__all__ = ("MatchBox", "MatchIndex")

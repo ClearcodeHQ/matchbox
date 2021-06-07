@@ -19,8 +19,8 @@
 from collections import defaultdict
 from typing import Set, Hashable, Dict, TypeVar, Generic
 
-ET = TypeVar('ET', bound=Hashable)
-TT = TypeVar('TT', bound=Hashable)
+ET = TypeVar("ET", bound=Hashable)
+TT = TypeVar("TT", bound=Hashable)
 
 
 class MatchIndex(Generic[TT, ET]):
