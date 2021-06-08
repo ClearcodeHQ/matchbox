@@ -34,6 +34,9 @@ jobs:
     - name: Run test
       run: |
         pytest benchmarks/  --benchmark-json output.json
+    - name: echo
+      run: |
+        echo "${{ github.ref }}"
     - name: Analyse benchmark results for Pull Requests
       uses: rhysd/github-action-benchmark@v1
       if: ${{ github.ref != 'refs/heads/main' }}
