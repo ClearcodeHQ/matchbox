@@ -29,12 +29,12 @@ def test_create(benchmark, chairs, characteristic):
 @pytest.mark.parametrize(
     "elements",
     [
-        (Dummy(1, True), Dummy(1, True)),
-        (Dummy(1, True), Dummy(2, True)),
-        (Dummy(1, False), Dummy(1, False)),
-        (Dummy(1, False), Dummy(2, False)),
-        (Dummy(1, True), Dummy(1, False)),
-        (Dummy(1, True), Dummy(2, False)),
+        pytest.param((Dummy(1, True), Dummy(1, True)), id="TwoElementsSameValueAndMatching"),
+        pytest.param((Dummy(1, True), Dummy(2, True)), id="TwoElementsDifferentValueAndMatching"),
+        pytest.param((Dummy(1, False), Dummy(1, False)), id="TwoElementsSameValueAndNotMatching"),
+        pytest.param((Dummy(1, False), Dummy(2, False)), id="TwoElementsDifferentValueAndNotMatching"),
+        pytest.param((Dummy(1, True), Dummy(1, False)), id="TwoElementsSameValueAndOneMatchingOtherNo"),
+        pytest.param((Dummy(1, True), Dummy(2, False)), id="TwoElementsDifferentValueAndOneMatchingOtherNo"),
     ],
 )
 def test_add(benchmark, elements):
