@@ -1,9 +1,12 @@
 """Benchmark tests comparing different approaches to same problem - finiding fitting element."""
 from random import Random
+from typing import Set, List, Optional, Union
 
 import pytest
+from pytest_benchmark.session import BenchmarkSession
 
-from benchmarks import SIZE, COLOURS, MAX_LEGS
+from benchmarks import SIZE, COLOURS, MAX_LEGS, Chair
+from matchbox import MatchBox
 
 RANDOM_CHECKER_COLOUR = Random(f"Chair{SIZE}colour")
 RANDOM_CHECKER_LEGS = Random(f"Chair{SIZE}legs")
@@ -18,7 +21,9 @@ WEIGHT_TRAIT = RANDOM_CHECKER_WEIGHT.randint(0, 100)
 ARMREST_TRAIT = RANDOM_CHECKER_ARMREST.choice([True, False])
 
 
-def run_match_matchboxes(boxes, chairs, values):
+def run_match_matchboxes(
+    boxes: List[MatchBox], chairs: Set[Chair], values: List[Union[Optional[str], int, bool]]
+) -> Set[Chair]:
     """Test run with matchboxes."""
     for box, value in zip(boxes, values):
         if value is None:
@@ -27,7 +32,9 @@ def run_match_matchboxes(boxes, chairs, values):
     return chairs
 
 
-def run_match_one_after_another(chairs, colour, legs, size, weight, armrest):  # pylint:disable=too-many-branches
+def run_match_one_after_another(
+    chairs: Set[Chair], colour: Optional[str], legs: int, size: int, weight: int, armrest: bool
+) -> Set[Chair]:  # pylint:disable=too-many-branches
     """Test run with individual for loops and checking of each characteristic."""
     matched = set([])
     for chair in chairs:
@@ -79,7 +86,9 @@ def run_match_one_after_another(chairs, colour, legs, size, weight, armrest):  #
     return matched5
 
 
-def run_match_one_for_multi_condition(chairs, colour, legs, size, weight, armrest):  # pylint:disable=too-many-branches
+def run_match_one_for_multi_condition(
+    chairs: Set[Chair], colour: Optional[str], legs: int, size: int, weight: int, armrest: bool
+) -> Set[Chair]:
     """One test with one for loop but multi condition."""
     matched = set([])
     for chair in chairs:
@@ -117,7 +126,7 @@ def run_match_one_for_multi_condition(chairs, colour, legs, size, weight, armres
 
 
 @pytest.mark.benchmark(group="match_all_categories")
-def test_match_matchbox(benchmark, boxes, chairs):
+def test_match_matchbox(benchmark: BenchmarkSession, boxes: List[MatchBox], chairs: Set[Chair]) -> None:
     """Benchmark for finding matches using matchboxes."""
     benchmark(
         run_match_matchboxes,
@@ -128,7 +137,7 @@ def test_match_matchbox(benchmark, boxes, chairs):
 
 
 @pytest.mark.benchmark(group="match_all_categories")
-def test_match_one_after_another(benchmark, chairs):
+def test_match_one_after_another(benchmark: BenchmarkSession, chairs: Set[Chair]) -> None:
     """Benchmark for finding matches using subsequent iterations per each characteristic."""
     benchmark(
         run_match_one_after_another,
@@ -142,7 +151,7 @@ def test_match_one_after_another(benchmark, chairs):
 
 
 @pytest.mark.benchmark(group="match_all_categories")
-def test_match_one_for_multi_condition(benchmark, chairs):
+def test_match_one_for_multi_condition(benchmark: BenchmarkSession, chairs: Set[Chair]) -> None:
     """Benchmark for finding matches using one iteration, and checking each desired conditions."""
     benchmark(
         run_match_one_for_multi_condition,
@@ -155,7 +164,7 @@ def test_match_one_for_multi_condition(benchmark, chairs):
     )
 
 
-def test_match_one_after_another_check_matchbox(boxes, chairs):
+def test_match_one_after_another_check_matchbox(boxes: List[MatchBox], chairs: Set[Chair]) -> None:
     """Check if subsequent iterations checking return same result as matchboxes."""
     assert (
         run_match_matchboxes(
@@ -167,7 +176,7 @@ def test_match_one_after_another_check_matchbox(boxes, chairs):
     )
 
 
-def test_match_one_for_multi_condition_check_matchbox(boxes, chairs):
+def test_match_one_for_multi_condition_check_matchbox(boxes: List[MatchBox], chairs: Set[Chair]) -> None:
     """Check if one interation result finiding return same result as matchboxes."""
     assert (
         run_match_matchboxes(

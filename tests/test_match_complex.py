@@ -4,7 +4,7 @@ from matchbox.box import MatchBox
 from tests import Entity
 
 
-def test_mixed_single_characteristic_entities():
+def test_mixed_single_characteristic_entities() -> None:
     """
     Test more complex example.
 
@@ -78,7 +78,7 @@ def test_mixed_single_characteristic_entities():
     assert ob5 in matchbox.mismatch_unknown
 
 
-def test_mixed_multi_characteristic_entities():  # pylint:disable=too-many-statements
+def test_mixed_multi_characteristic_entities() -> None:
     """
     Test more complex example.
 
