@@ -1,5 +1,5 @@
 """Tests for match method."""
-from typing import Any
+from typing import Any, Union, List
 
 import pytest
 
@@ -7,7 +7,7 @@ from matchbox import MatchBox
 from tests import Entity
 
 
-def test_mismatch():
+def test_mismatch() -> None:
     """Check if mismatch returns those element that are not described by characteristic."""
     box = MatchBox[Any, str]("argument")
     element1 = "element"
@@ -22,7 +22,7 @@ def test_mismatch():
     }, "both elements should be returned."
 
 
-def test_match():
+def test_match() -> None:
     """Check if match cuts entites properly."""
     box = MatchBox[Any, str]("argument")
     element1 = "element"
@@ -36,7 +36,7 @@ def test_match():
 
 
 @pytest.mark.parametrize("traits", ("x", ["x", "y"], ["z"], [1, 2, 3, None]))
-def test_indexed_match(traits):
+def test_indexed_match(traits: Any) -> None:
     """
     Check simple adding entity to index if it does match characteristic's trait.
 
@@ -55,7 +55,7 @@ def test_indexed_match(traits):
 
 
 @pytest.mark.parametrize("traits", ("x", ["x", "y"], ["z"], [1, 2, 3, None]))
-def test_multimatchbox_indexed_not_match(traits):
+def test_multimatchbox_indexed_not_match(traits: Union[List[Any], Any]) -> None:
     """
     Check simple adding entity to index if it does not match a certain characteristic's trait.
 
@@ -73,7 +73,7 @@ def test_multimatchbox_indexed_not_match(traits):
         assert obj in matchbox.index[trait], "Entity should be in set under it's characteristic's trait key."
 
 
-def test_matchbox_remove_one():
+def test_matchbox_remove_one() -> None:
     """Check removing entity from matchbox."""
     # Given set of entities, all with matching trait, and one mismatching within index
     entity1 = Entity("entity1")
@@ -113,7 +113,7 @@ def test_matchbox_remove_one():
     assert matchbox.index
 
 
-def test_matchbox_remove_completely():
+def test_matchbox_remove_completely() -> None:
     """Check removing entities from matchbox."""
     # Given set of entities, all with matching trait, and one mismatching within index
     entity1 = Entity("entity1")

@@ -6,7 +6,8 @@ on:
   pull_request:
     branches: [ master ]
     paths:
-      - '**.py'
+      - 'benchmarks/**.py'
+      - 'src/**.py'
       - setup.cfg
       - .github/workflows/benchmarks.yml
       - requirements-test.txt

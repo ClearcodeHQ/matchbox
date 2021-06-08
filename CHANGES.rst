@@ -9,6 +9,7 @@ Feature
 
 - Add support for python 3.9
 - Replace NamedTuple usage with dataclass for the Trait class
+- Support `PEP 561 <https://www.python.org/dev/peps/pep-0561/>`_
 
 1.0.0
 ----------

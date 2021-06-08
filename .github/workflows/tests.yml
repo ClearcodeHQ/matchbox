@@ -4,7 +4,9 @@ on:
   push:
     branches: [ master ]
     paths:
-      - '**.py'
+      - 'tests/**.py'
+      - 'src/**.py'
+      - setup.cfg
       - .github/workflows/tests.yml
       - requirements-test.txt
   pull_request:
