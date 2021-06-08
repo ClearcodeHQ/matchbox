@@ -1,0 +1,68 @@
+name: Run benchmarks
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - '**.py'
+      - .github/workflows/tests.yml
+      - requirements-test.txt
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  bench:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.7, 3.8, 3.9, pypy-3.7-v7.3.3]
+    env:
+      OS: ubuntu-latest
+      PYTHON: ${{ matrix.python-version }}
+    # Service containers to run with `container-job`
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements-test.txt
+    - name: Run test
+      run: |
+        pytest benchmarks/  --benchmark-json output.json
+    - name: Analyse benchmark results for Pull Requests
+      uses: rhysd/github-action-benchmark@v1
+      if: ${{ github.ref != 'refs/heads/main' }}
+      with:
+        name: Matchbox performance benchmarks on Python ${{ matrix.python-version }}
+        tool: 'pytest'
+        output-file-path: output.json
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        auto-push: false
+        benchmark-data-dir-path: benchmarks
+        # Show alert with commit comment on detecting possible performance regression
+        alert-threshold: '200%'
+        comment-on-alert: true
+        fail-on-alert: false
+        alert-comment-cc-users: '@fizyk'
+    - name: Store benchmark result for master branch
+      uses: rhysd/github-action-benchmark@v1
+      if: ${{ github.ref == 'refs/heads/main' }}
+      with:
+        name: Matchbox performance benchmarks on Python ${{ matrix.python-version }}
+        tool: 'pytest'
+        output-file-path: output.json
+#        # Use personal access token instead of GITHUB_TOKEN due to https://github.community/t5/GitHub-Actions/Github-action-not-triggering-gh-pages-upon-push/td-p/26869/highlight/false
+#        github-token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        auto-push: true
+        benchmark-data-dir-path: benchmarks
+        # Show alert with commit comment on detecting possible performance regression
+        alert-threshold: '200%'
+        comment-on-alert: true
+        fail-on-alert: false
+        alert-comment-cc-users: '@fizyk'
