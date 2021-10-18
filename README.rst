@@ -46,4 +46,5 @@ Package resources
 
 * Bug tracker: https://github.com/ClearcodeHQ/matchbox/issues
 * Documentation: http://matchbox.readthedocs.org/
+* Benchmarks: http://clearcodehq.github.io/matchbox/
 
