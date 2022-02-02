@@ -1,6 +1,14 @@
 CHANGELOG
 =========
 
+unreleased
+----------
+
+Misc
+++++
+
+- Run tests on python 3.10
+
 1.1.0
 ----------
 
