@@ -1,3 +1,4 @@
+"""Documentation configuration."""
 # Copyright (C) 2015 by Clearcode <http://clearcode.cc>
 # and associates (see AUTHORS).
 
@@ -29,6 +30,7 @@
 
 import sys
 import os
+from typing import List, Dict
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -85,7 +87,7 @@ release = __version__
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = []
+exclude_patterns: List = []
 
 # The reST default role (used for this markup: `text`) to use for all documents.
 # default_role = None
@@ -190,7 +192,7 @@ htmlhelp_basename = basename + "doc"
 
 # -- Options for LaTeX output --------------------------------------------------
 
-latex_elements = {
+latex_elements: Dict = {
     # The paper size ('letterpaper' or 'a4paper').
     #'papersize': 'letterpaper',
     # The font size ('10pt', '11pt' or '12pt').

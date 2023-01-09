@@ -1,0 +1,5 @@
+[run]
+include =
+    matchbox/*
+    tests/*
+    benchmarks/*
