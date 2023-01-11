@@ -166,23 +166,17 @@ def test_match_one_for_multi_condition(benchmark: BenchmarkSession, chairs: Set[
 
 def test_match_one_after_another_check_matchbox(boxes: List[MatchBox], chairs: Set[Chair]) -> None:
     """Check if subsequent iterations checking return same result as matchboxes."""
-    assert (
-        run_match_matchboxes(
-            boxes,
-            chairs,
-            [COLOUR_TRAIT, LEGS_TRAIT, SIZE_TRAIT, WEIGHT_TRAIT, ARMREST_TRAIT],
-        )
-        == run_match_one_after_another(chairs, COLOUR_TRAIT, LEGS_TRAIT, SIZE_TRAIT, WEIGHT_TRAIT, ARMREST_TRAIT)
-    )
+    assert run_match_matchboxes(
+        boxes,
+        chairs,
+        [COLOUR_TRAIT, LEGS_TRAIT, SIZE_TRAIT, WEIGHT_TRAIT, ARMREST_TRAIT],
+    ) == run_match_one_after_another(chairs, COLOUR_TRAIT, LEGS_TRAIT, SIZE_TRAIT, WEIGHT_TRAIT, ARMREST_TRAIT)
 
 
 def test_match_one_for_multi_condition_check_matchbox(boxes: List[MatchBox], chairs: Set[Chair]) -> None:
     """Check if one interation result finiding return same result as matchboxes."""
-    assert (
-        run_match_matchboxes(
-            boxes,
-            chairs,
-            [COLOUR_TRAIT, LEGS_TRAIT, SIZE_TRAIT, WEIGHT_TRAIT, ARMREST_TRAIT],
-        )
-        == run_match_one_for_multi_condition(chairs, COLOUR_TRAIT, LEGS_TRAIT, SIZE_TRAIT, WEIGHT_TRAIT, ARMREST_TRAIT)
-    )
+    assert run_match_matchboxes(
+        boxes,
+        chairs,
+        [COLOUR_TRAIT, LEGS_TRAIT, SIZE_TRAIT, WEIGHT_TRAIT, ARMREST_TRAIT],
+    ) == run_match_one_for_multi_condition(chairs, COLOUR_TRAIT, LEGS_TRAIT, SIZE_TRAIT, WEIGHT_TRAIT, ARMREST_TRAIT)

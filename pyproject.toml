@@ -1,6 +1,53 @@
+[project]
+name = "matchbox"
+version = "1.1.1"
+description = "Abstraction layer for creating hash maps to speed up extracting subsets out of objects in collection"
+readme = "README.rst"
+keywords = ["index", "match", "set", "hashmap"]
+license = {file = "LICENSE"}
+authors = [
+    {name = "Grzegorz Śliwiński", email = "fizyk+pypi@fizyk.dev"}
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+requires-python = ">= 3.7"
+
+[project.urls]
+"Source" = "https://github.com/ClearcodeHQ/matchbox"
+"Bug Tracker" = "https://github.com/ClearcodeHQ/matchbox/issues"
+"Changelog" = "https://github.com/ClearcodeHQ/matchbox/blob/v1.0.0//CHANGES.rst"
+"Documentation" = "http://matchbox.readthedocs.org/en/v1.0.0/"
+
+[project.optional-dependencies]
+docs = ["sphinx"]
+
 [build-system]
-requires = ["setuptools >= 40.6.0", "wheel"]
+requires = ["setuptools >= 61.0.0", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+zip-safe = true
+
+[tool.setuptools.packages.find]
+include = ["matchbox*"]
+exclude = ["tests*"]
+namespaces = false
+
+[tool.setuptools.package-data]
+port_for = ["py.typed"]
 
 [tool.towncrier]
 directory = "newsfragments"
@@ -23,6 +70,10 @@ showcontent = true
 [tool.towncrier.fragment.misc]
 name = "Miscellaneus"
 showcontent = true
+
+[tool.pytest.ini_options]
+filterwarnings = "error"
+xfail_strict = "True"
 
 [tool.black]
 line-length = 120

@@ -1,0 +1,1 @@
+Migrate most of setup.cfg to pyproject.toml
