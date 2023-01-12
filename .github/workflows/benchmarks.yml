@@ -5,12 +5,6 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-    paths:
-      - 'benchmarks/**.py'
-      - 'src/**.py'
-      - setup.cfg
-      - .github/workflows/benchmarks.yml
-      - requirements-test.txt
 
 jobs:
   bench:
@@ -29,16 +23,14 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements-test.txt
-    - name: Run benchmarks
-      run: |
-        pytest benchmarks/  --benchmark-json output.json
+    - uses: fizyk/actions-reuse/.github/actions/pipenv@v1.6.4
+      with:
+        python-version: ${{ matrix.python-version }}
+        pipenv-install-options: "--skip-lock"
+        command: "pytest benchmarks/  --benchmark-json output.json"
     - name: Analyse benchmark results for Pull Requests
       uses: rhysd/github-action-benchmark@v1.14.0
-      if: ${{ github.ref != 'refs/heads/master' }}
+      if: ${{ github.ref != 'refs/heads/main' }}
       with:
         name: Matchbox performance benchmarks on Python ${{ matrix.python-version }}
         tool: 'pytest'
@@ -53,7 +45,7 @@ jobs:
         alert-comment-cc-users: '@fizyk'
     - name: Store benchmark result for master branch
       uses: rhysd/github-action-benchmark@v1.14.0
-      if: ${{ github.ref == 'refs/heads/master' }}
+      if: ${{ github.ref == 'refs/heads/main' }}
       with:
         name: Matchbox performance benchmarks on Python ${{ matrix.python-version }}
         tool: 'pytest'
