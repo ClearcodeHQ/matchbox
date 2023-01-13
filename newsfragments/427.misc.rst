@@ -1,0 +1,1 @@
+Use tbump as version management tool. Also fix a number of places where bumpversion wasn't used previously.
