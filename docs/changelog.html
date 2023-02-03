@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>CHANGELOG &#8212; matchbox 1.1.1 documentation</title>
+    <title>CHANGELOG &#8212; matchbox 1.2.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/classic.css" />
     
@@ -30,7 +30,7 @@
         <li class="right" >
           <a href="contributing.html" title="Contribute to matchbox"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">matchbox 1.1.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">matchbox 1.2.0 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">CHANGELOG</a></li> 
       </ul>
     </div>  
@@ -42,8 +42,29 @@
             
   <section id="changelog">
 <span id="id1"></span><h1>CHANGELOG<a class="headerlink" href="#changelog" title="Permalink to this heading">¶</a></h1>
+</section>
 <section id="id2">
-<h2>1.1.1<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<h1>1.2.0 (2023-02-03)<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h1>
+<section id="features">
+<h2>Features<a class="headerlink" href="#features" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Support python 3.11 (<a class="reference external" href="https://https://github.com/ClearcodeHQ/matchbox/issues/424">#424</a>)</p></li>
+</ul>
+</section>
+<section id="miscellaneus">
+<h2>Miscellaneus<a class="headerlink" href="#miscellaneus" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Add towncrier to manage newsfragments and automatically build CHANGES.rst (<a class="reference external" href="https://https://github.com/ClearcodeHQ/matchbox/issues/422">#422</a>)</p></li>
+<li><p>Move dependency management from requirements to pipenv (<a class="reference external" href="https://https://github.com/ClearcodeHQ/matchbox/issues/423">#423</a>)</p></li>
+<li><p>Migrate most of setup.cfg to pyproject.toml (<a class="reference external" href="https://https://github.com/ClearcodeHQ/matchbox/issues/425">#425</a>)</p></li>
+<li><p>Migrate automerge to a shared workflow from <cite>fizyk/actions-reuse</cite> (<a class="reference external" href="https://https://github.com/ClearcodeHQ/matchbox/issues/426">#426</a>)</p></li>
+<li><p>Use tbump as version management tool. Also fix a number of places where bumpversion wasn’t used previously. (<a class="reference external" href="https://https://github.com/ClearcodeHQ/matchbox/issues/427">#427</a>)</p></li>
+<li><p>Run benchmarks only after tests passes. (<a class="reference external" href="https://https://github.com/ClearcodeHQ/matchbox/issues/434">#434</a>)</p></li>
+<li><p>Publish documentation next to benchmarks on github pages. (<a class="reference external" href="https://https://github.com/ClearcodeHQ/matchbox/issues/435">#435</a>)</p></li>
+</ul>
+</section>
+<section id="id11">
+<h2>1.1.1<a class="headerlink" href="#id11" title="Permalink to this heading">¶</a></h2>
 <section id="misc">
 <h3>Misc<a class="headerlink" href="#misc" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
@@ -51,8 +72,8 @@
 </ul>
 </section>
 </section>
-<section id="id3">
-<h2>1.1.0<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<section id="id12">
+<h2>1.1.0<a class="headerlink" href="#id12" title="Permalink to this heading">¶</a></h2>
 <section id="feature">
 <h3>Feature<a class="headerlink" href="#feature" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
@@ -62,8 +83,8 @@
 </ul>
 </section>
 </section>
-<section id="id4">
-<h2>1.0.0<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
+<section id="id13">
+<h2>1.0.0<a class="headerlink" href="#id13" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>[enhancement] support only python 3.7 and up</p></li>
 <li><p>[enhancement] Add type hints</p></li>
@@ -72,8 +93,8 @@
 <li><p>fix license information</p></li>
 </ul>
 </section>
-<section id="id5">
-<h2>0.3.0<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h2>
+<section id="id14">
+<h2>0.3.0<a class="headerlink" href="#id14" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>added short glossary</p></li>
 <li><p>updated docs to reflect naming changes</p></li>
@@ -87,15 +108,15 @@
 <li><p>Extracted indexing logic from MatchBox to a base class.</p></li>
 </ul>
 </section>
-<section id="id6">
-<h2>0.2.0<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h2>
+<section id="id15">
+<h2>0.2.0<a class="headerlink" href="#id15" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>extended tests to cover python 3.5</p></li>
 <li><p>merge MultiMatchBox into MatchBox - now anyone extending MatchBoxes will be able to work with value extractors rather than re-implementing MatchBoxes.</p></li>
 </ul>
 </section>
-<section id="id7">
-<h2>0.1.0<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h2>
+<section id="id16">
+<h2>0.1.0<a class="headerlink" href="#id16" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>MatchBox - single value based Matching Box</p></li>
 <li><p>MultiMatchBox - multivalue based Matching Box</p></li>
@@ -115,19 +136,22 @@
   <div>
     <h3><a href="index.html">Table of Contents</a></h3>
     <ul>
-<li><a class="reference internal" href="#">CHANGELOG</a><ul>
-<li><a class="reference internal" href="#id2">1.1.1</a><ul>
+<li><a class="reference internal" href="#">CHANGELOG</a></li>
+<li><a class="reference internal" href="#id2">1.2.0 (2023-02-03)</a><ul>
+<li><a class="reference internal" href="#features">Features</a></li>
+<li><a class="reference internal" href="#miscellaneus">Miscellaneus</a></li>
+<li><a class="reference internal" href="#id11">1.1.1</a><ul>
 <li><a class="reference internal" href="#misc">Misc</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id3">1.1.0</a><ul>
+<li><a class="reference internal" href="#id12">1.1.0</a><ul>
 <li><a class="reference internal" href="#feature">Feature</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id4">1.0.0</a></li>
-<li><a class="reference internal" href="#id5">0.3.0</a></li>
-<li><a class="reference internal" href="#id6">0.2.0</a></li>
-<li><a class="reference internal" href="#id7">0.1.0</a></li>
+<li><a class="reference internal" href="#id13">1.0.0</a></li>
+<li><a class="reference internal" href="#id14">0.3.0</a></li>
+<li><a class="reference internal" href="#id15">0.2.0</a></li>
+<li><a class="reference internal" href="#id16">0.1.0</a></li>
 </ul>
 </li>
 </ul>
@@ -171,7 +195,7 @@
         <li class="right" >
           <a href="contributing.html" title="Contribute to matchbox"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">matchbox 1.1.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">matchbox 1.2.0 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">CHANGELOG</a></li> 
       </ul>
     </div>
