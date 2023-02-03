@@ -2,6 +2,8 @@ name: Docs
 on:
   push:
     branches: [main]
+    tags:
+      - v*
   pull_request:
     branches: [main]
 jobs:
@@ -17,7 +19,7 @@ jobs:
           command: "sphinx-build -b html docs/source build/html"
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
-        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        if: ${{ github.event_name == 'push' && github.ref_type == 'tag' }}
         with:
           publish_branch: gh-pages
           github_token: ${{ secrets.GITHUB_TOKEN }}
