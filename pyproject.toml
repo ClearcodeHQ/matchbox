@@ -30,7 +30,7 @@ requires-python = ">= 3.7"
 "Source" = "https://github.com/ClearcodeHQ/matchbox"
 "Bug Tracker" = "https://github.com/ClearcodeHQ/matchbox/issues"
 "Changelog" = "https://github.com/ClearcodeHQ/matchbox/blob/v1.1.1/CHANGES.rst"
-"Documentation" = "http://matchbox.readthedocs.org/en/v1.1.1/"
+"Documentation" = "http://clearcodehq.github.io/matchbox/"
 
 [project.optional-dependencies]
 docs = ["sphinx"]
@@ -118,9 +118,6 @@ default = ""
 # tbump.toml location.
 [[tool.tbump.file]]
 src = "matchbox/__init__.py"
-
-[[tool.tbump.file]]
-src = "README.rst"
 
 [[tool.tbump.file]]
 src = "docs/source/conf.py"
