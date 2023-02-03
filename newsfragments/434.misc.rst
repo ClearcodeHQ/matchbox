@@ -1,1 +1,0 @@
-Run benchmarks only after tests passes.

@@ -1,1 +1,0 @@
-Move dependency management from requirements to pipenv

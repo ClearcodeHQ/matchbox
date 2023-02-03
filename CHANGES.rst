@@ -3,6 +3,27 @@ CHANGELOG
 
 .. towncrier release notes start
 
+1.2.0 (2023-02-03)
+==================
+
+Features
+--------
+
+- Support python 3.11 (`#424 <https://https://github.com/ClearcodeHQ/matchbox/issues/424>`_)
+
+
+Miscellaneus
+------------
+
+- Add towncrier to manage newsfragments and automatically build CHANGES.rst (`#422 <https://https://github.com/ClearcodeHQ/matchbox/issues/422>`_)
+- Move dependency management from requirements to pipenv (`#423 <https://https://github.com/ClearcodeHQ/matchbox/issues/423>`_)
+- Migrate most of setup.cfg to pyproject.toml (`#425 <https://https://github.com/ClearcodeHQ/matchbox/issues/425>`_)
+- Migrate automerge to a shared workflow from `fizyk/actions-reuse` (`#426 <https://https://github.com/ClearcodeHQ/matchbox/issues/426>`_)
+- Use tbump as version management tool. Also fix a number of places where bumpversion wasn't used previously. (`#427 <https://https://github.com/ClearcodeHQ/matchbox/issues/427>`_)
+- Run benchmarks only after tests passes. (`#434 <https://https://github.com/ClearcodeHQ/matchbox/issues/434>`_)
+- Publish documentation next to benchmarks on github pages. (`#435 <https://https://github.com/ClearcodeHQ/matchbox/issues/435>`_)
+
+
 1.1.1
 ----------
 
