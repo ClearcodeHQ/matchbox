@@ -1,3 +1,4 @@
-## Welcome to Matchbox benchmark pages
+## Welcome to Matchbox documentation pages
 
-See [benchmarks](benchmarks/) for Matchbox.
+* [Documentation](docs/)
+* [Benchmarks](benchmarks/)
