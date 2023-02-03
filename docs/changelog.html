@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>CHANGELOG &#8212; matchbox 1.1.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Contribute to matchbox" href="contributing.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="contributing.html" title="Contribute to matchbox"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">matchbox 1.1.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">CHANGELOG</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="changelog">
+<span id="id1"></span><h1>CHANGELOG<a class="headerlink" href="#changelog" title="Permalink to this heading">¶</a></h1>
+<section id="id2">
+<h2>1.1.1<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<section id="misc">
+<h3>Misc<a class="headerlink" href="#misc" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Run tests on python 3.10</p></li>
+</ul>
+</section>
+</section>
+<section id="id3">
+<h2>1.1.0<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<section id="feature">
+<h3>Feature<a class="headerlink" href="#feature" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Add support for python 3.9</p></li>
+<li><p>Replace NamedTuple usage with dataclass for the Trait class</p></li>
+<li><p>Support <a class="reference external" href="https://www.python.org/dev/peps/pep-0561/">PEP 561</a></p></li>
+</ul>
+</section>
+</section>
+<section id="id4">
+<h2>1.0.0<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>[enhancement] support only python 3.7 and up</p></li>
+<li><p>[enhancement] Add type hints</p></li>
+<li><p>small code enhancement during adding matching entities to boxes</p></li>
+<li><p>remove method - ability to remove entity from already built box</p></li>
+<li><p>fix license information</p></li>
+</ul>
+</section>
+<section id="id5">
+<h2>0.3.0<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>added short glossary</p></li>
+<li><p>updated docs to reflect naming changes</p></li>
+<li><p>rewritten usage</p></li>
+<li><p>renamed various object’s usages and index_object to entity [thanks Michael Sweeney]</p></li>
+<li><p>renamed characteristics_value and value references to traits, as in Characteristic’s trait. [thanks Michael Sweeney]</p></li>
+<li><p>renamed MatchBox.not_matching method into MatchBox.mismatch - signature remained the same.</p></li>
+<li><p>only None and empty list will be treated as a value not used for matching</p></li>
+<li><p>added repr method to box</p></li>
+<li><p>renamed exclude_unknown to mismatch_unknown to clarify set’s meaning</p></li>
+<li><p>Extracted indexing logic from MatchBox to a base class.</p></li>
+</ul>
+</section>
+<section id="id6">
+<h2>0.2.0<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>extended tests to cover python 3.5</p></li>
+<li><p>merge MultiMatchBox into MatchBox - now anyone extending MatchBoxes will be able to work with value extractors rather than re-implementing MatchBoxes.</p></li>
+</ul>
+</section>
+<section id="id7">
+<h2>0.1.0<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>MatchBox - single value based Matching Box</p></li>
+<li><p>MultiMatchBox - multivalue based Matching Box</p></li>
+<li><p>package structure</p></li>
+<li><p>documentation</p></li>
+</ul>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">CHANGELOG</a><ul>
+<li><a class="reference internal" href="#id2">1.1.1</a><ul>
+<li><a class="reference internal" href="#misc">Misc</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id3">1.1.0</a><ul>
+<li><a class="reference internal" href="#feature">Feature</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id4">1.0.0</a></li>
+<li><a class="reference internal" href="#id5">0.3.0</a></li>
+<li><a class="reference internal" href="#id6">0.2.0</a></li>
+<li><a class="reference internal" href="#id7">0.1.0</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="contributing.html"
+                          title="previous chapter">Contribute to matchbox</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/changelog.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="contributing.html" title="Contribute to matchbox"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">matchbox 1.1.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">CHANGELOG</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015, Clearcode.cc.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
+    </div>
+  </body>
+</html>
