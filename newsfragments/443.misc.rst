@@ -1,0 +1,1 @@
+Reformatted changelog to have same headers as the towncrier generated ones.
