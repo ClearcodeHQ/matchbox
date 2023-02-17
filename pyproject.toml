@@ -47,9 +47,6 @@ include = ["matchbox*"]
 exclude = ["tests*"]
 namespaces = false
 
-[tool.setuptools.package-data]
-port_for = ["py.typed"]
-
 [tool.towncrier]
 directory = "newsfragments"
 single_file=true
