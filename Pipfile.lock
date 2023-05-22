@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "2b2844fc58c6a7f6c767862bb385cb81b7f1445478aa602322c0c954d75d2678"
+            "sha256": "5dbadd67e768377eb174a44191145fae38f01e91b210c2c238f63986b11f681d"
         },
         "pipfile-spec": 6,
         "requires": {},
@@ -257,11 +257,11 @@
         },
         "docutils": {
             "hashes": [
-                "sha256:a428f10de4de4774389734c986a01b4af2d802d26717108b0f1b9356862937c5",
-                "sha256:f75a5a52fbcacd81b47e42888ad2b380748aaccfb3f13af0fe69deb759f01eb6"
+                "sha256:96f387a2c5562db4476f09f13bbab2192e764cac08ebbf3a34a95d9b1e4a59d6",
+                "sha256:f08a4e276c3a1583a86dce3e34aba3fe04d02bba2dd51ed16106244e8a923e3b"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==0.20"
+            "version": "==0.20.1"
         },
         "idna": {
             "hashes": [
@@ -505,11 +505,11 @@
         },
         "setuptools": {
             "hashes": [
-                "sha256:23aaf86b85ca52ceb801d32703f12d77517b2556af839621c641fca11287952b",
-                "sha256:f104fa03692a2602fa0fec6c6a9e63b6c8a968de13e17c026957dd1f53d80990"
+                "sha256:5df61bf30bb10c6f756eb19e7c9f3b473051f48db77fddbe06ff2ca307df9a6f",
+                "sha256:62642358adc77ffa87233bc4d2354c4b2682d214048f500964dbe760ccedf102"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==67.7.2"
+            "version": "==67.8.0"
         },
         "snowballstemmer": {
             "hashes": [
@@ -586,11 +586,11 @@
         },
         "tbump": {
             "hashes": [
-                "sha256:683eab2e5a4d4861b6928c422d9e51e1d3aeccbbd69d0281fab2c374345e1d9f",
-                "sha256:cf711835b155eaefcf2023ca8963200d893cb40998c9393684df020e6ab1c0b3"
+                "sha256:170a4395d167daee357cb96af5e874119c470feaba9f605e73f3426e768c2542",
+                "sha256:9ebf5d69bc92ca8be1afb13a80f51e374526cb9988f4c3b167036a9e8a10a684"
             ],
             "index": "pypi",
-            "version": "==6.9.0"
+            "version": "==6.10.0"
         },
         "tomlkit": {
             "hashes": [
