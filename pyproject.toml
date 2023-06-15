@@ -51,7 +51,7 @@ namespaces = false
 directory = "newsfragments"
 single_file=true
 filename="CHANGES.rst"
-issue_format="`#{issue} <https://https://github.com/ClearcodeHQ/matchbox/issues/{issue}>`_"
+issue_format="`#{issue} <https://github.com/ClearcodeHQ/matchbox/issues/{issue}>`_"
 
 [tool.towncrier.fragment.feature]
 name = "Features"
