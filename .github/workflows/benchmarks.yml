@@ -26,7 +26,7 @@ jobs:
         pipenv-install-options: "--skip-lock"
         command: "pytest benchmarks/  --benchmark-json output.json"
     - name: Analyse benchmark results for Pull Requests
-      uses: rhysd/github-action-benchmark@v1.17.0
+      uses: rhysd/github-action-benchmark@v1.18.0
       if: ${{ github.ref != 'refs/heads/main' }}
       with:
         name: Matchbox performance benchmarks on Python ${{ matrix.python-version }}
@@ -41,7 +41,7 @@ jobs:
         fail-on-alert: false
         alert-comment-cc-users: '@fizyk'
     - name: Store benchmark result for master branch
-      uses: rhysd/github-action-benchmark@v1.17.0
+      uses: rhysd/github-action-benchmark@v1.18.0
       if: ${{ github.ref == 'refs/heads/main' }}
       with:
         name: Matchbox performance benchmarks on Python ${{ matrix.python-version }}
