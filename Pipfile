@@ -15,4 +15,4 @@ pycodestyle = "==2.11.0"
 mypy = "==1.5.1"
 black = {version = "==23.7.0", markers="python_version >= '3.8'"}
 tbump = "==6.10.0"
-sphinx = {version = "==7.2.0", markers="python_version >= '3.8'"}
+sphinx = {version = "==7.2.0", markers="python_version >= '3.9'"}
