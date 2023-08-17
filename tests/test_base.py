@@ -1,11 +1,10 @@
 """Tests for basic functionality of MatchBox and basic data structure."""
 from collections import defaultdict
-from typing import Any, Union, Tuple, List
+from typing import Any, List, Union
 
 import pytest
 
 from matchbox import MatchBox, MatchIndex
-from matchbox.index import TT
 from tests import Entity
 
 
@@ -86,7 +85,7 @@ def test_matchbox_falsy_used_trait(falsy_trait: Union[List[bool], bool, None]) -
 
     box = MatchBox[bool, Entity]("characteristic")
     assert box.extract_traits(obj).traits, "traits are not falsy"
-    assert not list(box.extract_traits(obj).traits)[0], "though single trait element is"
+    assert not next(iter(box.extract_traits(obj).traits)), "though single trait element is"
     box.add(obj)
     assert falsy_trait in box.index, "index should not be empty, with key for the falsy_trait instead."
     assert obj in box.mismatch_unknown, "due to characteristic_match, this should be filed."

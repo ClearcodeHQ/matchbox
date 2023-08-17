@@ -1,9 +1,8 @@
 """Documentation configuration."""
 import os
-import sys
 import pathlib
-
-from typing import List, Dict
+import sys
+from typing import Dict, List
 
 # Copyright (C) 2015 by Clearcode <http://clearcode.cc>
 # and associates (see AUTHORS).

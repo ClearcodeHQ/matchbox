@@ -1,12 +1,10 @@
 """Tests for complex examples of MatchBox."""
 from matchbox.box import MatchBox
-
 from tests import Entity
 
 
 def test_mixed_single_characteristic_entities() -> None:
-    """
-    Test more complex example.
+    """Test more complex example.
 
     +--------+-------+------------------------+
     | Entity | Match | Characteristic's trait |
@@ -79,8 +77,7 @@ def test_mixed_single_characteristic_entities() -> None:
 
 
 def test_mixed_multi_characteristic_entities() -> None:
-    """
-    Test more complex example.
+    """Test more complex example.
 
     +--------+-------+-------------------------+
     | Entity | Match | Characteristic's traits |
