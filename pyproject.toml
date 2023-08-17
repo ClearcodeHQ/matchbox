@@ -86,6 +86,17 @@ line-length = 120
 target-version = ['py38']
 include = '.*\.pyi?$'
 
+[tool.ruff]
+# Decrease the maximum line length to 79 characters.
+line-length = 120
+select = [
+    "E",   # pycodestyle
+    "F",   # pyflakes
+    "I",   # isort
+    "D",   # pydocstyle
+    "RUF", # Ruff specific
+]
+
 [tool.tbump]
 # Uncomment this if your project is hosted on GitHub:
 # github_url = "https://github.com/<user or organization>/<project>/"

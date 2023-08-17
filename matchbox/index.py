@@ -17,15 +17,14 @@
 # along with matchbox.  If not, see <http://www.gnu.org/licenses/>.
 """Data structure that allows indexing includes and excludes of values."""
 from collections import defaultdict
-from typing import Set, Hashable, Dict, TypeVar, Generic
+from typing import Dict, Generic, Hashable, Set, TypeVar
 
 ET = TypeVar("ET", bound=Hashable)
 TT = TypeVar("TT", bound=Hashable)
 
 
 class MatchIndex(Generic[TT, ET]):
-    """
-    An index for matching or mismatching of entities by hashable traits.
+    """An index for matching or mismatching of entities by hashable traits.
 
     It can answer one question - 'given a trait, what entities are excluded by it?'.
     It can be used to filter a set of potential matches - not for general querying ('given a trait
@@ -143,8 +142,7 @@ class MatchIndex(Generic[TT, ET]):
         self.index: Dict[TT, Set[ET]] = defaultdict(self.mismatch_unknown.copy)
 
     def add_mismatch(self, entity: ET, *traits: TT) -> None:
-        """
-        Add a mismatching entity to the index.
+        """Add a mismatching entity to the index.
 
         We do this by simply adding the mismatch to the index.
 
@@ -155,8 +153,7 @@ class MatchIndex(Generic[TT, ET]):
             self.index[trait].add(entity)
 
     def add_match(self, entity: ET, *traits: TT) -> None:
-        """
-        Add a matching entity to the index.
+        """Add a matching entity to the index.
 
         We have to maintain the constraints of the data layout:
             - `self.mismatch_unknown` must still contain all matched entities
@@ -184,8 +181,7 @@ class MatchIndex(Generic[TT, ET]):
         self.mismatch_unknown.add(entity)
 
     def mismatch(self, trait: TT) -> Set[ET]:
-        """
-        Return a set of indexed entities that are mismatched by the trait.
+        """Return a set of indexed entities that are mismatched by the trait.
 
         The returned set can be used for filtering by substracting it from another set created by a previous MatchIndex
         or other set operations.
@@ -197,8 +193,7 @@ class MatchIndex(Generic[TT, ET]):
         return self.index[trait]
 
     def match(self, collection: Set[ET], trait: TT) -> Set[ET]:
-        """
-        Filter out those entities from collection that do not match the trait.
+        """Filter out those entities from collection that do not match the trait.
 
         .. note ::
 

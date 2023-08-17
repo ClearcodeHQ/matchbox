@@ -8,7 +8,6 @@ from pytest_benchmark.session import BenchmarkSession
 from benchmarks import Chair
 from matchbox import MatchBox
 
-
 Dummy = namedtuple("Dummy", "c c_match")
 
 

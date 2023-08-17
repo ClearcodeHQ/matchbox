@@ -18,9 +18,9 @@
 """Match box - for indexing objects by their fields."""
 from collections.abc import Hashable
 from dataclasses import dataclass
-from typing import Set, Generic, Iterable
+from typing import Generic, Iterable, Set
 
-from matchbox.index import MatchIndex, ET, TT
+from matchbox.index import ET, TT, MatchIndex
 
 
 @dataclass
@@ -35,8 +35,7 @@ class MatchBox(MatchIndex[TT, ET]):
     """MatchBox is a MatchIndex that can index objects by their fields."""
 
     def __init__(self, characteristic: str) -> None:
-        """
-        Initialise the box and set the attribute this box will be indexing objects on.
+        """Initialise the box and set the attribute this box will be indexing objects on.
 
         Indexed entities are expected to have an attribute of the same name as
         `characteristic` that contains a trait by which entity is classified.
@@ -67,8 +66,7 @@ class MatchBox(MatchIndex[TT, ET]):
         self._characteristic = characteristic
 
     def extract_traits(self, entity: ET) -> Trait:
-        """
-        Extract data required to classify entity.
+        """Extract data required to classify entity.
 
         :param object entity:
         :return: namedtuple consisting of characteristic traits and match flag
@@ -80,8 +78,7 @@ class MatchBox(MatchIndex[TT, ET]):
         return Trait(traits, getattr(entity, self._characteristic + "_match", True))
 
     def add(self, entity: ET) -> None:
-        """
-        Add entity to index.
+        """Add entity to index.
 
         :param object entity: single object to add to box's index
         """
@@ -95,8 +92,7 @@ class MatchBox(MatchIndex[TT, ET]):
             self.add_mismatch(entity, *characteristic.traits)
 
     def remove(self, entity: ET) -> None:
-        """
-        Remove entity from the MatchBox.
+        """Remove entity from the MatchBox.
 
         :param object entity:
         """

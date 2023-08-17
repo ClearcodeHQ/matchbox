@@ -1,11 +1,11 @@
 """Benchmark tests comparing different approaches to same problem - finiding fitting element."""
 from random import Random
-from typing import Set, List, Optional, Union
+from typing import List, Optional, Set, Union
 
 import pytest
 from pytest_benchmark.session import BenchmarkSession
 
-from benchmarks import SIZE, COLOURS, MAX_LEGS, Chair
+from benchmarks import COLOURS, MAX_LEGS, SIZE, Chair
 from matchbox import MatchBox
 
 RANDOM_CHECKER_COLOUR = Random(f"Chair{SIZE}colour")

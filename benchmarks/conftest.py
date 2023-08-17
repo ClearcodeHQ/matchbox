@@ -5,9 +5,8 @@ from typing import List, Set
 
 import pytest
 
+from benchmarks import COLOURS, MAX_LEGS, SIZE, Chair
 from matchbox import MatchBox
-
-from benchmarks import Chair, SIZE, COLOURS, MAX_LEGS
 
 COLOUR_RANDOMIZER = Random("colour")
 COLOUR_MATCH_RANDOMIZER = Random("colour_match")
