@@ -1,18 +1,17 @@
-
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Rationale &#8212; matchbox 1.2.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
+    <title>Rationale &#8212; matchbox 1.2.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css?v=514cf933" />
     
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/documentation_options.js?v=ca842793"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -34,7 +33,7 @@
         <li class="right" >
           <a href="glossary.html" title="Glossary"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">matchbox 1.2.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">matchbox 1.2.1 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Rationale</a></li> 
       </ul>
     </div>  
@@ -45,22 +44,22 @@
           <div class="body" role="main">
             
   <section id="rationale">
-<h1>Rationale<a class="headerlink" href="#rationale" title="Permalink to this heading">¶</a></h1>
+<h1>Rationale<a class="headerlink" href="#rationale" title="Link to this heading">¶</a></h1>
 <p>Main reason MatchBox got created was to limit any data processing within the process of looking up
 for the desired set of entities. MatchBox achieves that through pre-processing entities and setting
 them up in a hashmap.</p>
 <section id="assumptions">
-<h2>Assumptions<a class="headerlink" href="#assumptions" title="Permalink to this heading">¶</a></h2>
+<h2>Assumptions<a class="headerlink" href="#assumptions" title="Link to this heading">¶</a></h2>
 <p>Now, please note that matchbox makes some assumptions about entities it is processing</p>
 <section id="characteristics">
-<h3>Characteristics<a class="headerlink" href="#characteristics" title="Permalink to this heading">¶</a></h3>
+<h3>Characteristics<a class="headerlink" href="#characteristics" title="Link to this heading">¶</a></h3>
 <p>Every one of us, has up to two eyes, up to two hands, legs, has determined hair colour and height.
 It’s not something that identifies us, but rather describes us. That’s what we call characteristic.
 In database we’d set up an index on a column with traits - values for given characteristic to make
 the search faster, here, each characteristic is being categorised by a separate MatchBox.</p>
 </section>
 <section id="characteristic-always-have-to-have-some-trait">
-<h3>Characteristic always have to have some trait<a class="headerlink" href="#characteristic-always-have-to-have-some-trait" title="Permalink to this heading">¶</a></h3>
+<h3>Characteristic always have to have some trait<a class="headerlink" href="#characteristic-always-have-to-have-some-trait" title="Link to this heading">¶</a></h3>
 <p>It means that even the lack of characteristic trait is a trait of it’s own. Entity with no trait for
 given characteristic simple means that it fits any trait the characteristic might have.
 Otherwise, if we’d want to say, that this characteristic has no trait, then the entity would be always
@@ -69,7 +68,7 @@ Such object should not be used in the process which should the pool data smaller
 this bit faster. And sometimes, even in a operations that get constantly repeated, even a nanosecond is a huge gain.</p>
 </section>
 <section id="a-trait-can-never-be-both-matched-and-missed">
-<h3>A trait can never be both matched and missed<a class="headerlink" href="#a-trait-can-never-be-both-matched-and-missed" title="Permalink to this heading">¶</a></h3>
+<h3>A trait can never be both matched and missed<a class="headerlink" href="#a-trait-can-never-be-both-matched-and-missed" title="Link to this heading">¶</a></h3>
 <p>There’s no point of setting a characteristic trait to actually match, and other traits to missmatch
 on the same entity. Setting few selected traits that matches means also that all other traits doesn’t
 fit this entity at all, and probably matching process would never get there anyway.
@@ -77,7 +76,7 @@ It’s like saying this couch is red, there’s no point to say it’s not pink.
 </section>
 </section>
 <section id="computational-complexity">
-<h2>Computational complexity<a class="headerlink" href="#computational-complexity" title="Permalink to this heading">¶</a></h2>
+<h2>Computational complexity<a class="headerlink" href="#computational-complexity" title="Link to this heading">¶</a></h2>
 <p>For each box, the computational complexity can be quickly reviewed on python’s wiki page
 <a class="reference external" href="https://wiki.python.org/moin/TimeComplexity">Time Complexity</a></p>
 <p>Accessing key in a dictionary is at worst <cite>O(n)</cite> while average <cite>O(1)</cite>, and difference between
@@ -154,13 +153,13 @@ two sets s and t is <cite>O(len(s))</cite> with average for the combination bein
         <li class="right" >
           <a href="glossary.html" title="Glossary"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">matchbox 1.2.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">matchbox 1.2.1 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Rationale</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2015, Clearcode.cc.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
+    &#169; Copyright 2015, Clearcode.cc.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>
