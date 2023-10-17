@@ -3,6 +3,27 @@ CHANGELOG
 
 .. towncrier release notes start
 
+1.2.1 (2023-10-17)
+==================
+
+Breaking changes
+----------------
+
+- Drop support for python 3.7 (`#477 <https://github.com/ClearcodeHQ/matchbox/issues/477>`_)
+
+
+Features
+--------
+
+- Add Support for Python 3.12 (`#505 <https://github.com/ClearcodeHQ/matchbox/issues/505>`_)
+
+
+Miscellaneus
+------------
+
+- `#443 <https://github.com/ClearcodeHQ/matchbox/issues/443>`_, `#461 <https://github.com/ClearcodeHQ/matchbox/issues/461>`_, `#463 <https://github.com/ClearcodeHQ/matchbox/issues/463>`_, `#481 <https://github.com/ClearcodeHQ/matchbox/issues/481>`_, `#506 <https://github.com/ClearcodeHQ/matchbox/issues/506>`_
+
+
 1.2.0 (2023-02-03)
 ==================
 
