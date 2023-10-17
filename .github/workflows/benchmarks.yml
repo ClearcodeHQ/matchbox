@@ -23,7 +23,6 @@ jobs:
     - uses: fizyk/actions-reuse/.github/actions/pipenv@v2.4.0
       with:
         python-version: ${{ matrix.python-version }}
-        pipenv-install-options: "--skip-lock"
         command: "pytest benchmarks/  --benchmark-json output.json"
     - name: Analyse benchmark results for Pull Requests
       uses: rhysd/github-action-benchmark@v1.18.0
