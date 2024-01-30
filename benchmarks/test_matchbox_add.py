@@ -1,4 +1,5 @@
 """Reference performance tests - adding entities to MatchBox."""
+
 from collections import namedtuple
 from typing import Any, Set, Tuple
 

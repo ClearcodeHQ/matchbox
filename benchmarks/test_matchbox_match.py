@@ -1,4 +1,5 @@
 """Benchmark tests comparing different approaches to same problem - finiding fitting element."""
+
 from random import Random
 from typing import List, Optional, Set, Union
 
