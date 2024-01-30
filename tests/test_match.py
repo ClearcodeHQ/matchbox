@@ -1,4 +1,5 @@
 """Tests for match method."""
+
 from typing import Any, List, Union
 
 import pytest

@@ -1,4 +1,5 @@
 """Tests for basic functionality of MatchBox and basic data structure."""
+
 from collections import defaultdict
 from typing import Any, List, Union
 

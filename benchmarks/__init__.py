@@ -1,6 +1,5 @@
 """MatchBoxes benchamr tests."""
 
-
 from collections import namedtuple
 
 Chair = namedtuple(
