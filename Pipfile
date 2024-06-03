@@ -14,4 +14,4 @@ mypy = "==1.10.0"
 black = {version = "==24.4.2", markers="python_version >= '3.8'"}
 tbump = "==6.11.0"
 sphinx = {version = "==7.3.7", markers="python_version >= '3.9'"}
-ruff = "==0.4.6"
+ruff = "==0.4.7"
