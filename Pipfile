@@ -13,5 +13,5 @@ pytest-cov = "==5.0.0"
 mypy = "==1.10.1"
 black = {version = "==24.4.2", markers="python_version >= '3.8'"}
 tbump = "==6.11.0"
-sphinx = {version = "==7.4.6", markers="python_version >= '3.9'"}
+sphinx = {version = "==7.4.7", markers="python_version >= '3.9'"}
 ruff = "==0.5.2"
