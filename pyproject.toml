@@ -1,6 +1,6 @@
 [project]
 name = "matchbox"
-version = "1.2.2"
+version = "1.2.3"
 description = "Abstraction layer for creating hash maps to speed up extracting subsets out of objects in collection"
 readme = "README.rst"
 keywords = ["index", "match", "set", "hashmap"]
@@ -29,7 +29,7 @@ requires-python = ">= 3.9"
 [project.urls]
 "Source" = "https://github.com/fizyk/matchbox"
 "Bug Tracker" = "https://github.com/fizyk/matchbox/issues"
-"Changelog" = "https://github.com/fizyk/matchbox/blob/v1.2.2/CHANGES.rst"
+"Changelog" = "https://github.com/fizyk/matchbox/blob/v1.2.3/CHANGES.rst"
 "Documentation" = "http://fizyk.github.io/matchbox/"
 
 [project.optional-dependencies]
@@ -103,7 +103,7 @@ select = [
 # github_url = "https://github.com/<user or organization>/<project>/"
 
 [tool.tbump.version]
-current = "1.2.2"
+current = "1.2.3"
 
 # Example of a semver regexp.
 # Make sure this matches current_version before

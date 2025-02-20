@@ -3,6 +3,17 @@ CHANGELOG
 
 .. towncrier release notes start
 
+1.2.3 (2025-02-20)
+==================
+
+Miscellaneus
+------------
+
+- `#483 <https://github.com/fizyk/matchbox/issues/483>`_
+- Adjust links after repository transfer
+- Adjust workflows for actions-reuse 3
+
+
 1.2.2 (2024-10-10)
 ==================
 

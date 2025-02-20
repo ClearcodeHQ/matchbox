@@ -1,2 +1,0 @@
-Add pre-commit with rstcheck.
-Drop linters workflow, as linting will go through pre-commit.
