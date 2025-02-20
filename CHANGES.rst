@@ -21,7 +21,7 @@ Features
 Miscellaneus
 ------------
 
-- `#534 <https://github.com/ClearcodeHQ/matchbox/issues/534>`_, `#593 <https://github.com/ClearcodeHQ/matchbox/issues/593>`_
+- `#534 <https://github.com/fizyk/matchbox/issues/534>`_, `#593 <https://github.com/fizyk/matchbox/issues/593>`_
 
 
 1.2.1 (2023-10-17)
@@ -30,19 +30,19 @@ Miscellaneus
 Breaking changes
 ----------------
 
-- Drop support for python 3.7 (`#477 <https://github.com/ClearcodeHQ/matchbox/issues/477>`_)
+- Drop support for python 3.7 (`#477 <https://github.com/fizyk/matchbox/issues/477>`_)
 
 
 Features
 --------
 
-- Add Support for Python 3.12 (`#505 <https://github.com/ClearcodeHQ/matchbox/issues/505>`_)
+- Add Support for Python 3.12 (`#505 <https://github.com/fizyk/matchbox/issues/505>`_)
 
 
 Miscellaneus
 ------------
 
-- `#443 <https://github.com/ClearcodeHQ/matchbox/issues/443>`_, `#461 <https://github.com/ClearcodeHQ/matchbox/issues/461>`_, `#463 <https://github.com/ClearcodeHQ/matchbox/issues/463>`_, `#481 <https://github.com/ClearcodeHQ/matchbox/issues/481>`_, `#506 <https://github.com/ClearcodeHQ/matchbox/issues/506>`_
+- `#443 <https://github.com/fizyk/matchbox/issues/443>`_, `#461 <https://github.com/fizyk/matchbox/issues/461>`_, `#463 <https://github.com/fizyk/matchbox/issues/463>`_, `#481 <https://github.com/fizyk/matchbox/issues/481>`_, `#506 <https://github.com/fizyk/matchbox/issues/506>`_
 
 
 1.2.0 (2023-02-03)
@@ -51,19 +51,19 @@ Miscellaneus
 Features
 --------
 
-- Support python 3.11 (`#424 <https://github.com/ClearcodeHQ/matchbox/issues/424>`_)
+- Support python 3.11 (`#424 <https://github.com/fizyk/matchbox/issues/424>`_)
 
 
 Miscellaneus
 ------------
 
-- Add towncrier to manage newsfragments and automatically build CHANGES.rst (`#422 <https://github.com/ClearcodeHQ/matchbox/issues/422>`_)
-- Move dependency management from requirements to pipenv (`#423 <https://github.com/ClearcodeHQ/matchbox/issues/423>`_)
-- Migrate most of setup.cfg to pyproject.toml (`#425 <https://github.com/ClearcodeHQ/matchbox/issues/425>`_)
-- Migrate automerge to a shared workflow from `fizyk/actions-reuse` (`#426 <https://github.com/ClearcodeHQ/matchbox/issues/426>`_)
-- Use tbump as version management tool. Also fix a number of places where bumpversion wasn't used previously. (`#427 <https://github.com/ClearcodeHQ/matchbox/issues/427>`_)
-- Run benchmarks only after tests passes. (`#434 <https://github.com/ClearcodeHQ/matchbox/issues/434>`_)
-- Publish documentation next to benchmarks on github pages. (`#435 <https://github.com/ClearcodeHQ/matchbox/issues/435>`_)
+- Add towncrier to manage newsfragments and automatically build CHANGES.rst (`#422 <https://github.com/fizyk/matchbox/issues/422>`_)
+- Move dependency management from requirements to pipenv (`#423 <https://github.com/fizyk/matchbox/issues/423>`_)
+- Migrate most of setup.cfg to pyproject.toml (`#425 <https://github.com/fizyk/matchbox/issues/425>`_)
+- Migrate automerge to a shared workflow from `fizyk/actions-reuse` (`#426 <https://github.com/fizyk/matchbox/issues/426>`_)
+- Use tbump as version management tool. Also fix a number of places where bumpversion wasn't used previously. (`#427 <https://github.com/fizyk/matchbox/issues/427>`_)
+- Run benchmarks only after tests passes. (`#434 <https://github.com/fizyk/matchbox/issues/434>`_)
+- Publish documentation next to benchmarks on github pages. (`#435 <https://github.com/fizyk/matchbox/issues/435>`_)
 
 
 1.1.1
