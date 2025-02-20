@@ -1,4 +1,4 @@
-.. image:: https://raw.githubusercontent.com/ClearcodeHQ/matchbox/master/logo.png
+.. image:: https://raw.githubusercontent.com/fizyk/matchbox/master/logo.png
     :width: 100px
     :height: 150px
 
@@ -27,8 +27,8 @@ Matchbox is a simple python library designed to make selecting object, or object
 
 Documentation:
 
-* `Documentation <http://clearcodehq.github.io/matchbox/docs/>`_
-* `Benchmarks <http://clearcodehq.github.io/matchbox/benchmark/>`_
+* `Documentation <http://fizyk/.github.io/matchbox/docs/>`_
+* `Benchmarks <http://fizyk/.github.io/matchbox/benchmark/>`_
 
 
 

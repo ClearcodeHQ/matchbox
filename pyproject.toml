@@ -27,10 +27,10 @@ classifiers = [
 requires-python = ">= 3.9"
 
 [project.urls]
-"Source" = "https://github.com/ClearcodeHQ/matchbox"
-"Bug Tracker" = "https://github.com/ClearcodeHQ/matchbox/issues"
-"Changelog" = "https://github.com/ClearcodeHQ/matchbox/blob/v1.2.2/CHANGES.rst"
-"Documentation" = "http://clearcodehq.github.io/matchbox/"
+"Source" = "https://github.com/fizyk/matchbox"
+"Bug Tracker" = "https://github.com/fizyk/matchbox/issues"
+"Changelog" = "https://github.com/fizyk/matchbox/blob/v1.2.2/CHANGES.rst"
+"Documentation" = "http://fizyk.github.io/matchbox/"
 
 [project.optional-dependencies]
 docs = ["sphinx"]
@@ -51,7 +51,7 @@ namespaces = false
 directory = "newsfragments"
 single_file=true
 filename="CHANGES.rst"
-issue_format="`#{issue} <https://github.com/ClearcodeHQ/matchbox/issues/{issue}>`_"
+issue_format="`#{issue} <https://github.com/fizyk/matchbox/issues/{issue}>`_"
 
 [[tool.towncrier.type]]
 directory = "break"
@@ -145,7 +145,7 @@ search = 'version = "{current_version}"'
 
 [[tool.tbump.file]]
 src = "pyproject.toml"
-search = '"Changelog" = "https://github.com/ClearcodeHQ/matchbox/blob/v{current_version}/CHANGES.rst"'
+search = '"Changelog" = "https://github.com/fizyk/matchbox/blob/v{current_version}/CHANGES.rst"'
 
 # You can specify a list of commands to
 # run after the files have been patched
