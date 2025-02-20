@@ -18,13 +18,13 @@ not that colour (or colours). In the example let's use entities defined by this 
 .. code-block:: python
 
     HomeObject = namedtuple('HomeObject', 'colour colour_match')
-
     chair = HomeObject('red', True)
     table = HomeObject('blue', True)
     wall = HomeObject('pink', False)
     paint_bucket = HomeObject('orange', True)
 
- And add these entities to our box.
+
+And add these entities to our box.
 
 .. code-block:: python
 

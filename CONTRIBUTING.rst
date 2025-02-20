@@ -40,5 +40,4 @@ Commits
 Coding style
 ------------
 
-#. All python coding style are being enforced by `Pylama <https://pypi.python.org/pypi/pylama>`_ and configured in pylama.ini file.
-#. Additional, not always mandatory checks are being performed by `QuantifiedCode <https://www.quantifiedcode.com/app/project/gh:fizyk/:matchbox>`_
+Every linter configuration is kept in repository, and overall code style is kept in check by pre-commit.

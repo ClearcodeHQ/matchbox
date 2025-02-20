@@ -16,4 +16,3 @@ jobs:
     secrets:
       app_id: ${{ secrets.MERGE_APP_ID }}
       private_key: ${{ secrets.MERGE_APP_PRIVATE_KEY }}
-
