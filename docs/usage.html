@@ -5,12 +5,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Usage &#8212; matchbox 1.2.2 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="_static/classic.css?v=def86cc0" />
+    <title>Usage &#8212; matchbox 1.2.3 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css?v=2bf1fcf8" />
     
-    <script src="_static/documentation_options.js?v=fd7cadf9"></script>
-    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/documentation_options.js?v=590429e0"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     
     <link rel="index" title="Index" href="genindex.html" />
@@ -33,7 +33,7 @@
         <li class="right" >
           <a href="rationale.html" title="Rationale"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">matchbox 1.2.2 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">matchbox 1.2.3 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Usage</a></li> 
       </ul>
     </div>  
@@ -54,16 +54,14 @@
 which in combination create our <em>characteristic</em>. These are <strong>colour</strong> which should describe a colour
 and <strong>colour_match</strong> which should describe whether this entity is of that colour (or colours) or it’s
 not that colour (or colours). In the example let’s use entities defined by this <a class="reference external" href="https://docs.python.org/3.4/library/collections.html#collections.namedtuple" title="(in Python v3.4)"><code class="xref py py-func docutils literal notranslate"><span class="pre">collections.namedtuple()</span></code></a>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>   <span class="n">HomeObject</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;HomeObject&#39;</span><span class="p">,</span> <span class="s1">&#39;colour colour_match&#39;</span><span class="p">)</span>
-
-   <span class="n">chair</span> <span class="o">=</span> <span class="n">HomeObject</span><span class="p">(</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
-   <span class="n">table</span> <span class="o">=</span> <span class="n">HomeObject</span><span class="p">(</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
-   <span class="n">wall</span> <span class="o">=</span> <span class="n">HomeObject</span><span class="p">(</span><span class="s1">&#39;pink&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-   <span class="n">paint_bucket</span> <span class="o">=</span> <span class="n">HomeObject</span><span class="p">(</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
-
-<span class="n">And</span> <span class="n">add</span> <span class="n">these</span> <span class="n">entities</span> <span class="n">to</span> <span class="n">our</span> <span class="n">box</span><span class="o">.</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">HomeObject</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;HomeObject&#39;</span><span class="p">,</span> <span class="s1">&#39;colour colour_match&#39;</span><span class="p">)</span>
+<span class="n">chair</span> <span class="o">=</span> <span class="n">HomeObject</span><span class="p">(</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">table</span> <span class="o">=</span> <span class="n">HomeObject</span><span class="p">(</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">wall</span> <span class="o">=</span> <span class="n">HomeObject</span><span class="p">(</span><span class="s1">&#39;pink&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">paint_bucket</span> <span class="o">=</span> <span class="n">HomeObject</span><span class="p">(</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>And add these entities to our box.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">box</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">chair</span><span class="p">)</span>
 <span class="n">box</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
 <span class="n">box</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">wall</span><span class="p">)</span>
@@ -134,13 +132,13 @@ Replacing <strong>red</strong> with <strong>pink</strong> in the above example w
         <li class="right" >
           <a href="rationale.html" title="Rationale"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">matchbox 1.2.2 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">matchbox 1.2.3 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Usage</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2015, Clearcode.cc.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.0.2.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.0.
     </div>
   </body>
 </html>
