@@ -35,7 +35,7 @@ jobs:
     - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       with:
         persist-credentials: false
-    - uses: fizyk/actions-reuse/.github/actions/uv@06f5123d5a89db10f394aaa1533a5c119b34a48f # v5.10.1
+    - uses: fizyk/actions-reuse/.github/actions/uv@f291c85379e7f30693e73f06b88f4b122eaf0812 # v5.10.2
       with:
         python-version: ${{ matrix.python-version }}
         command: "pytest benchmarks/  --benchmark-json output.json"
